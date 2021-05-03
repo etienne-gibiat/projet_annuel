@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-
+using System;
 public class vThirdPersonInput : MonoBehaviour
 {
     #region Variables       
-
+    public event EventHandler OnLevelChanged;
     [Header("Controller Input")]
     public string horizontalInput = "Horizontal";
     public string verticallInput = "Vertical";
@@ -23,8 +23,10 @@ public class vThirdPersonInput : MonoBehaviour
     public float MaxMana;
     public float speedMana = 15f;
     public int level;
-    public int xp;
+    public float xp;
+    public float MaxXpBeforeLevelUp;
     private bool isDead;
+    private Transform MenuLevelUp;
     [HideInInspector] public vThirdPersonController cc;
     [HideInInspector] public vThirdPersonCamera tpCamera;
     [HideInInspector] public Camera cameraMain;
@@ -76,7 +78,9 @@ public class vThirdPersonInput : MonoBehaviour
         Mana = MaxMana;
         level = 1;
         xp = 0;
+        MaxXpBeforeLevelUp = 100;
         isDead = false;
+        MenuLevelUp = GameObject.Find("LevelUpMenu").transform.Find("PauseMenu");
     }
     protected virtual void InitilizeController()
     {
@@ -192,8 +196,10 @@ public class vThirdPersonInput : MonoBehaviour
             {
                 Mana = Mathf.Max(Mana - 20, 0);
                 cc.animator.CrossFadeInFixedTime("Fire", 0.1f);
+                cc.animator.SetLayerWeight(1, 1);
                 GameObject fireball = Instantiate(Spells.spellFireBall, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-                fireball.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 300);
+                fireball.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 500);
+                Destroy(fireball, 5);
             }
         }
     }
@@ -214,10 +220,38 @@ public class vThirdPersonInput : MonoBehaviour
             }
         }
     }
+
+    public void getXp(float xpToGet)
+    {
+        xp += xpToGet;
+        while(xp >= MaxXpBeforeLevelUp)
+        {
+            xp = xp - MaxXpBeforeLevelUp;
+            level += 1;
+            Spells.UpdateXp(level);
+            levelUp();
+            print("You won a level !");
+            if (OnLevelChanged != null) OnLevelChanged(this, EventArgs.Empty);
+        }
+    }
+    private void levelUp()
+    {
+        speedMana += 2;
+        MaxXpBeforeLevelUp *= 1.2f;
+        MenuLevelUp.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+
+    }
     private void Dead()
     {
         cc.animator.Play("Death");
         isDead = true;
+        CapsuleCollider cap;
+        cap = GetComponent<CapsuleCollider>();
+        cap.enabled = false;
+        cap = GetComponentsInChildren<CapsuleCollider>()[1];
+        cap.enabled = true;
+        GameObject.Find("GameManager").GetComponent<GameManager>().GameOver();
     }
     #endregion
 }

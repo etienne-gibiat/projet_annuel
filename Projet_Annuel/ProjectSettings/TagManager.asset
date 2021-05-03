@@ -8,6 +8,7 @@ TagManager:
   - Fireball
   - Ennemy
   - SpellManager
+  - Weapon
   layers:
   - Default
   - TransparentFX

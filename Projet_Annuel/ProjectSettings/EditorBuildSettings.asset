@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SceneCedric.unity
+    guid: 0c0bf1fe6f7f3894ca1f8ccccf071ced
   m_configObjects: {}
