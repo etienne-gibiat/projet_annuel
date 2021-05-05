@@ -83,7 +83,7 @@ public class BotControl : MonoBehaviour
     {
         //Retourne à la base, s'arrêteras dans un périmètre de 2m autour de sa base car on ne peut jamais retourner à sa position exact.
 
-        if (DistanceBase > 2)
+        if (DistanceBase > 8)
         {
             agent.destination = basePositions;
         }
