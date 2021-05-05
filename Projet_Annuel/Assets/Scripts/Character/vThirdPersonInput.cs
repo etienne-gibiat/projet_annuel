@@ -242,6 +242,7 @@ public class vThirdPersonInput : MonoBehaviour
         Time.timeScale = 0f;
 
     }
+
     private void Dead()
     {
         cc.animator.Play("Death");

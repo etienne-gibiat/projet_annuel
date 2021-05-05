@@ -7,6 +7,7 @@ public class Boss : BotControl
     private bool enraged;
     private bool FullPower;
     public GameObject EnragedParticle;
+    public GameObject JumpParticle;
     protected override void Start()
     {
         base.Start();
@@ -94,7 +95,13 @@ public class Boss : BotControl
         agent.isStopped = false;
         invincible = false;
     }
+    public void ParticleJump()
+    {
+        GameObject groundAttack = Instantiate(JumpParticle, transform.position, transform.rotation);
+        groundAttack.GetComponentInChildren<ParticleCollision>().setDamage(actualDamage / 3);
+        Destroy(groundAttack, 5);
 
+    }
     protected override void BotControl_OnLevelChanged(object sender, System.EventArgs e)
     {
 
@@ -107,5 +114,6 @@ public class Boss : BotControl
             GainXP = 250 + (50 * Player.level);
         }
     }
+
 
 }

@@ -153,6 +153,7 @@ public class BotControl : MonoBehaviour
 
     protected void Dead()
     {
+        EnnemyHealth = 0;
         Player.getXp(GainXP);
         Player.OnLevelChanged -= BotControl_OnLevelChanged;
         AttackEnd();
