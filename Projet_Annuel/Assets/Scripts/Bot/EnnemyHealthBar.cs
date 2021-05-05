@@ -14,9 +14,11 @@ public class EnnemyHealthBar : MonoBehaviour
     {
         
         scriptBot = GetComponent<BotControl>();
-        cam = scriptBot.target.GetComponentInChildren<Camera>();
+        cam = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Camera>();
+        HealthBarUI.SetActive(false);
+        //cam = scriptBot.target.GetComponentInChildren<Camera>();
     }
-    private void Update()
+    private void LateUpdate()
     {
         HealthBarUI.transform.LookAt(cam.transform);
         health = scriptBot.EnnemyHealth;
