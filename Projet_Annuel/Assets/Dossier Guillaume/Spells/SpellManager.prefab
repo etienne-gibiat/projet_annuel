@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FireDamage: 30
-  spellFireBall: {fileID: 100008, guid: 6ff1350c2a91520479532984ca642474, type: 3}
-  spellWater: {fileID: 0}
-  spellgrounds: {fileID: 0}
-  spells: {fileID: 0}
+  WaterDamage: 20
+  spellFeu: {fileID: 100008, guid: 6ff1350c2a91520479532984ca642474, type: 3}
+  spellEau: {fileID: 100000, guid: fabdd45f98921b547b28c84c0818d2a4, type: 3}
+  spellTerre: {fileID: 5504787624212005013, guid: d80e152f2c6ad754d9dd2d5873399b84,
+    type: 3}
+  spellAir: {fileID: 8015739324858588950, guid: 09891fa4bf067ca4d8a165f94f2896a9,
+    type: 3}
   damageSupp: 0

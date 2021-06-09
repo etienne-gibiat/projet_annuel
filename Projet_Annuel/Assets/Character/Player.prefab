@@ -1037,10 +1037,14 @@ MonoBehaviour:
   jumpInput: 32
   strafeInput: 9
   sprintInput: 304
-  FireInput: 97
+  FireInput: 323
   rotateCameraXInput: Mouse X
   rotateCameraYInput: Mouse Y
   Spells: {fileID: 0}
+  Feu: 49
+  Eau: 50
+  Terre: 51
+  Air: 52
   Health: 100
   MaxHealth: 100
   Mana: 0
@@ -1049,6 +1053,7 @@ MonoBehaviour:
   level: 0
   xp: 0
   MaxXpBeforeLevelUp: 0
+  ElementPicked: 0
   cc: {fileID: 0}
   tpCamera: {fileID: 0}
   cameraMain: {fileID: 0}
