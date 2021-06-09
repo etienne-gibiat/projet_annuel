@@ -28,8 +28,9 @@ public class BotControl : MonoBehaviour
     protected float DistanceBase; // Distance séparant le bot de sa base
     protected bool invincible = false; // Invincibilité
     protected float TimeBetweenAttacks;
-
+    protected bool isBurning;
     protected int actualDamage; // Degats actuel du bot
+    protected ArrayList listEffectCoroutine = new ArrayList();
     protected virtual void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform; // On récupère le joueur
@@ -151,16 +152,85 @@ public class BotControl : MonoBehaviour
         GetComponentInChildren<Arme>().Active = false;
     }
 
-    protected void Dead()
+    protected virtual void Dead()
     {
-        EnnemyHealth = 0;
+        
         Player.getXp(GainXP);
         Player.OnLevelChanged -= BotControl_OnLevelChanged;
         AttackEnd();
         isDead = true;
+        EnnemyHealth = 0;
         agent.isStopped = true;
         anim.Play("Death");
         Destroy(transform.gameObject, 5);
 
+    }
+    virtual public IEnumerator Brulure(float damage,float time)
+    {
+
+        isBurning = true;
+        float timeBurn = time + 0.1f;
+        while (isBurning)
+        {
+            timeBurn -= 1f;
+            if (timeBurn <= 0)
+            {
+                isBurning = false;
+            }
+            else
+            {
+                ApplyDamage(damage);
+            }
+            yield return new WaitForSeconds(1f);
+        }
+
+
+    }
+
+    virtual public IEnumerator Gel(float damage, float time)
+    {
+
+        isBurning = true;
+        float timeGel = time + 0.1f;
+        while (isBurning)
+        {
+            timeGel -= 0.1f;
+            if (timeGel <= 0)
+            {
+                isBurning = false;
+            }
+            else
+            {
+                agent.speed -= 0.1f;
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+
+
+    }
+    public void StopEffectCoroutines(string name)
+    {
+        ArrayList tmp = new ArrayList();
+        foreach (IEnumerator coroutine in listEffectCoroutine)
+        {
+            if (coroutine.ToString().Contains(name))
+            {
+                StopCoroutine(coroutine);
+                tmp.Add(coroutine);
+                
+            }
+            
+        }
+        foreach(IEnumerator delete in tmp)
+        {
+
+            listEffectCoroutine.Remove(delete);
+        }
+
+    }
+    public void addCoroutine(IEnumerator c)
+    {
+        
+        listEffectCoroutine.Add(c);
     }
 }

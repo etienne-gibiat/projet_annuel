@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     private vThirdPersonInput Player;
     private float delay;
     private bool isOver = false;
+    public CursorLockMode cursorLockMode = CursorLockMode.Locked;
+    public bool cursorVisible = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,8 @@ public class GameManager : MonoBehaviour
         pauseTransform = GameObject.Find("HUD").transform.Find("PausePanel").transform;
         spells = GameObject.Find("SpellManager").GetComponent<SpellManager>();
         Player = GameObject.Find("Player").GetComponent<vThirdPersonInput>();
+        Player.OnLevelChanged += GameManager_OnLevelChanged;
+
     }
 
     // Update is called once per frame
@@ -51,7 +55,6 @@ public class GameManager : MonoBehaviour
         isOver = true;
         GameObject.Find("HUD").transform.Find("GameOver").gameObject.SetActive(true);
     }
-
     public void UpgradeHp()
     {
         Player.MaxHealth += 20;
@@ -74,5 +77,11 @@ public class GameManager : MonoBehaviour
     {
         menu.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    private void GameManager_OnLevelChanged(object sender, System.EventArgs e)
+    {
+        MenuLevelUp.gameObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 }

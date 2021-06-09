@@ -12,7 +12,7 @@ public class SpawnEnnemy : MonoBehaviour
     {
         if(timeSpend >= frequence)
         {
-            Instantiate(EnnemyToSpawn, gameObject.transform.position,transform.rotation);
+            Instantiate(EnnemyToSpawn, gameObject.transform.position + Random.insideUnitSphere,transform.rotation);
             timeSpend = 0;
         }
 

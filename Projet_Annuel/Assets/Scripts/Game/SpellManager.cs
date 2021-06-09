@@ -7,16 +7,19 @@ public class SpellManager : MonoBehaviour
     private vThirdPersonInput Player;
     [Header("Dégats élémentaires")]
     public float FireDamage; // Dégats de feu
+    public float WaterDamage;
     [Header("Sorts")]
-    public GameObject spellFireBall;
-    public GameObject spellWater;
-    public GameObject spellgrounds;
-    public GameObject spells;
-    private float baseDamage;
+    public GameObject spellFeu;
+    public GameObject spellEau;
+    public GameObject spellTerre;
+    public GameObject spellAir;
+    private float baseDamageFire;
+    private float baseDamageWater;
     public float damageSupp;
     private void Start()
     {
-        baseDamage = FireDamage;
+        baseDamageFire = FireDamage;
+        baseDamageWater = WaterDamage;
         Player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<vThirdPersonInput>();
     }
     private void Update()
@@ -25,7 +28,8 @@ public class SpellManager : MonoBehaviour
     }
     public void UpdateXp(int xp)
     {
-        FireDamage = baseDamage + (baseDamage * (xp*0.2f)) + damageSupp;
+        WaterDamage = baseDamageWater + (baseDamageWater * (xp * 0.3f)) + damageSupp;
+        FireDamage = baseDamageFire + (baseDamageFire * (xp*0.2f)) + damageSupp;
     }
 
 

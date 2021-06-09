@@ -11,7 +11,7 @@ public class PaladinBot : BotControl
         MaxHealth = 100;
         EnnemyHealth = MaxHealth;
         agent.speed = 4;
-        GainXP = 40;
+        GainXP = 50;
         actualDamage = 20;
         TimeBetweenAttacks = 5;
     }
@@ -37,10 +37,14 @@ public class PaladinBot : BotControl
 
         if (!isDead)
         {
+            GainXP = 40 + 10 * Player.level;
             MaxHealth += 30;
             EnnemyHealth += 30;
-            agent.speed += 1f;
-            actualDamage += 10;
+            if(agent.speed < 6f)
+            {
+                agent.speed += 1f;
+            }
+            actualDamage += 5;
         }
     }
 }

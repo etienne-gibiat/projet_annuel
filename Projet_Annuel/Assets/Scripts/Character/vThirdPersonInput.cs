@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System;
+using UnityEngine.UI;
+using System.Collections;
+
 public class vThirdPersonInput : MonoBehaviour
 {
     #region Variables       
@@ -10,12 +13,21 @@ public class vThirdPersonInput : MonoBehaviour
     public KeyCode jumpInput = KeyCode.Space;
     public KeyCode strafeInput = KeyCode.Tab;
     public KeyCode sprintInput = KeyCode.LeftShift;
-    public KeyCode FireInput = KeyCode.A;
+    public KeyCode FireInput = KeyCode.Mouse0;
     [Header("Camera Input")]
     public string rotateCameraXInput = "Mouse X";
     public string rotateCameraYInput = "Mouse Y";
     [Header("Spells")]
     public SpellManager Spells;
+    public KeyCode Feu = KeyCode.Alpha1;
+    public KeyCode Eau = KeyCode.Alpha2;
+    public KeyCode Terre = KeyCode.Alpha3;
+    public KeyCode Air = KeyCode.Alpha4;
+    private Transform HUD;
+    private Image AirSpellHUD;
+    private Image EarthSpellHUD;
+    private Image WaterSpellHUD;
+    private Image FireSpellHUD;
     [Header("Caractéristiques")]
     public float Health;
     public float MaxHealth;
@@ -27,12 +39,19 @@ public class vThirdPersonInput : MonoBehaviour
     public float MaxXpBeforeLevelUp;
     private bool isDead;
     private Transform MenuLevelUp;
+    public Elements ElementPicked;
     [HideInInspector] public vThirdPersonController cc;
     [HideInInspector] public vThirdPersonCamera tpCamera;
     [HideInInspector] public Camera cameraMain;
     
     
-
+    public enum Elements
+    {
+        Feu,
+        Eau,
+        Terre,
+        Air
+    }
     #endregion
 
     protected virtual void Start()
@@ -41,6 +60,7 @@ public class vThirdPersonInput : MonoBehaviour
         InitializeStats();
         InitilizeController();
         InitializeTpCamera();
+        StartCoroutine(SpellHUD());
     }
 
     protected virtual void FixedUpdate()
@@ -78,9 +98,15 @@ public class vThirdPersonInput : MonoBehaviour
         Mana = MaxMana;
         level = 1;
         xp = 0;
-        MaxXpBeforeLevelUp = 100;
+        MaxXpBeforeLevelUp = 200;
         isDead = false;
         MenuLevelUp = GameObject.Find("LevelUpMenu").transform.Find("PauseMenu");
+        HUD = GameObject.Find("HUD").transform;
+        AirSpellHUD = HUD.Find("AirSpellHUD").GetComponent<Image>();
+        EarthSpellHUD = HUD.Find("EarthSpellHUD").GetComponent<Image>();
+        WaterSpellHUD = HUD.Find("WaterSpellHUD").GetComponent<Image>();
+        FireSpellHUD = HUD.Find("FireSpellHUD").GetComponent<Image>();
+
     }
     protected virtual void InitilizeController()
     {
@@ -112,10 +138,31 @@ public class vThirdPersonInput : MonoBehaviour
         SprintInput();
         StrafeInput();
         JumpInput();
+        SpellInput();
         AttackInput();
+        
     }
 
-
+    protected virtual void SpellInput()
+    {
+        if (Input.GetKeyDown(Feu))
+        {
+            ElementPicked = Elements.Feu;
+        }
+        if (Input.GetKeyDown(Eau))
+        {
+            ElementPicked = Elements.Eau;
+        }
+        if (Input.GetKeyDown(Terre))
+        {
+            ElementPicked = Elements.Terre;
+        }
+        if (Input.GetKeyDown(Air))
+        {
+            ElementPicked = Elements.Air;
+            
+        }
+    }
     public virtual void MoveInput()
     {
         cc.input.x = Input.GetAxis(horizontalInput);
@@ -197,13 +244,58 @@ public class vThirdPersonInput : MonoBehaviour
                 Mana = Mathf.Max(Mana - 20, 0);
                 cc.animator.CrossFadeInFixedTime("Fire", 0.1f);
                 cc.animator.SetLayerWeight(1, 1);
-                GameObject fireball = Instantiate(Spells.spellFireBall, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-                fireball.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 500);
-                Destroy(fireball, 5);
+                GameObject Spell = new GameObject() ; 
+                switch (ElementPicked) {
+                    case Elements.Feu:
+                        Spell = Instantiate(Spells.spellFeu, transform.position + new Vector3(0, 1, 0), cameraMain.transform.rotation);
+                        Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 500);
+                        break;
+                    case Elements.Eau:
+                        Spell = Instantiate(Spells.spellEau, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+                        Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 400);
+                        break;
+                    case Elements.Terre:
+                        Spell = Instantiate(Spells.spellTerre, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+                        Spell.transform.eulerAngles = Quaternion.LookRotation(cameraMain.transform.eulerAngles).eulerAngles;
+                        break;
+                    case Elements.Air:
+                        Spell = Instantiate(Spells.spellAir, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+                        Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 400);
+                        break;
+
+                }
+                
+                Destroy(Spell, 5);
             }
         }
     }
+    IEnumerator SpellHUD()
+    {
+        while (true)
+        {
+            switch (ElementPicked)
+            {
+                case Elements.Feu:
+                    AirSpellHUD.color = EarthSpellHUD.color = WaterSpellHUD.color = new Color32(255, 255, 255, 80);
+                    FireSpellHUD.color = new Color32(255, 255, 255, 255);
+                    break;
+                case Elements.Eau:
+                    AirSpellHUD.color = EarthSpellHUD.color = FireSpellHUD.color = new Color32(255, 255, 255, 80);
+                    WaterSpellHUD.color = new Color32(255, 255, 255, 255);
+                    break;
+                case Elements.Terre:
+                    AirSpellHUD.color = FireSpellHUD.color = WaterSpellHUD.color = new Color32(255, 255, 255, 80);
+                    EarthSpellHUD.color = new Color32(255, 255, 255, 255);
+                    break;
+                case Elements.Air:
+                    FireSpellHUD.color = EarthSpellHUD.color = WaterSpellHUD.color = new Color32(255, 255, 255, 80);
+                    AirSpellHUD.color = new Color32(255, 255, 255, 255);
+                    break;
 
+            }
+            yield return new WaitForSeconds(0.3f);
+        }
+    }
     public void ApplyDamage(float damage)
     {
         if (!isDead)
@@ -237,10 +329,8 @@ public class vThirdPersonInput : MonoBehaviour
     private void levelUp()
     {
         speedMana += 2;
-        MaxXpBeforeLevelUp *= 1.2f;
-        MenuLevelUp.gameObject.SetActive(true);
-        Time.timeScale = 0f;
-
+        MaxXpBeforeLevelUp *= 1.8f;
+        
     }
 
     private void Dead()
