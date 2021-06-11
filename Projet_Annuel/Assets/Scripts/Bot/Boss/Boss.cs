@@ -27,6 +27,7 @@ public class Boss : BotControl
         shader = this.gameObject.GetComponentInChildren<Renderer>();
         initialSpeed = agent.speed;
         InitialColor = shader.material.GetColor("Color_9372EFE");
+        questManager.AttachToMob(transform.name);
     }
     protected void FixedUpdate()
     {
@@ -130,7 +131,7 @@ public class Boss : BotControl
         base.Dead();
         Destroy(FullPowerParticle);
         StartCoroutine(Dissolve());
-        
+        questManager.DetachToMob(transform.name);
     }
 
     IEnumerator Dissolve()

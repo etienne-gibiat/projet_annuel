@@ -20,7 +20,7 @@ public class HealthBarScript : MonoBehaviour
     public float CurrentXp;
     private float MaxXp;
 
-    //Player
+    // ************ Player ************
     private vThirdPersonInput Player;
     public Text healthText;
     private Text LevelText;

@@ -31,6 +31,7 @@ public class BotControl : MonoBehaviour
     protected bool isBurning;
     protected int actualDamage; // Degats actuel du bot
     protected ArrayList listEffectCoroutine = new ArrayList();
+    protected QuestManager questManager;
     protected virtual void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform; // On récupère le joueur
@@ -41,7 +42,12 @@ public class BotControl : MonoBehaviour
         basePositions = transform.position; // On récupère les coordonnées du spawn du bot
         Player.OnLevelChanged += BotControl_OnLevelChanged;
 
-    }
+        questManager = GameObject.Find("Quest").GetComponent<QuestManager>();
+        if (transform.parent != null)
+        {
+            questManager.AttachToMob(transform.parent.name);
+        }
+}
     void Update()
     {
 
@@ -163,7 +169,10 @@ public class BotControl : MonoBehaviour
         agent.isStopped = true;
         anim.Play("Death");
         Destroy(transform.gameObject, 5);
-
+        if (transform.parent != null)
+        {
+            questManager.DetachToMob(transform.parent.name);
+        }
     }
     virtual public IEnumerator Brulure(float damage,float time)
     {
