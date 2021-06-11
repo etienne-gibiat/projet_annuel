@@ -1,26 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
-    public GameObject MenuLevelUp;
+    [HideInInspector]
+    public Transform MenuLevelUp;
     private Transform pauseTransform;
     private SpellManager spells;
     private vThirdPersonInput Player;
     private float delay;
     private bool isOver = false;
-    public CursorLockMode cursorLockMode = CursorLockMode.Locked;
-    public bool cursorVisible = false;
     // Start is called before the first frame update
     void Start()
     {
         delay = 5.0f;
         pauseTransform = GameObject.Find("HUD").transform.Find("PausePanel").transform;
+        MenuLevelUp = GameObject.Find("HUD").transform.Find("LevelUpMenu").GetChild(0).transform;
         spells = GameObject.Find("SpellManager").GetComponent<SpellManager>();
-        Player = GameObject.Find("Player").GetComponent<vThirdPersonInput>();
+        Player = GameObject.FindWithTag("Player").GetComponent<vThirdPersonInput>();
         Player.OnLevelChanged += GameManager_OnLevelChanged;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
     }
 
@@ -29,16 +31,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (pauseTransform.GetChild(0).gameObject.activeSelf)
-            {
-                pauseTransform.GetChild(0).gameObject.SetActive(false);
-                Time.timeScale = 1;
-            }
-            else
-            {
-                pauseTransform.GetChild(0).gameObject.SetActive(true);
-                Time.timeScale = 0;
-            }
+            PauseMenuChangeState();
         }
         if(delay <= 0)
         {
@@ -50,6 +43,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    public void PauseMenuChangeState()
+    {
+        if (pauseTransform.GetChild(0).gameObject.activeSelf || pauseTransform.GetChild(1).gameObject.activeSelf)
+        {
+            pauseTransform.GetChild(0).gameObject.SetActive(false);
+            pauseTransform.GetChild(1).gameObject.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            Time.timeScale = 1;
+        }
+        else
+        {
+            pauseTransform.GetChild(0).gameObject.SetActive(true);
+            pauseTransform.GetChild(1).gameObject.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Time.timeScale = 0;
+        }
+    }
     public void GameOver()
     {
         isOver = true;
@@ -73,15 +86,38 @@ public class GameManager : MonoBehaviour
         disableMenu(MenuLevelUp);
     }
 
-    private void disableMenu(GameObject menu)
+    public void ControlsMenuChangeState()
     {
-        menu.SetActive(false);
+        if (pauseTransform.GetChild(1).gameObject.activeSelf)
+        {
+            pauseTransform.GetChild(1).gameObject.SetActive(false);
+        }
+        else
+        {
+            pauseTransform.GetChild(0).gameObject.SetActive(false);
+            pauseTransform.GetChild(1).gameObject.SetActive(true);
+        }
+    }
+    private void disableMenu(Transform menu)
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        menu.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
 
     private void GameManager_OnLevelChanged(object sender, System.EventArgs e)
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         MenuLevelUp.gameObject.SetActive(true);
+        
         Time.timeScale = 0f;
+    }
+
+    public void PlayAgain()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
     }
 }

@@ -13,9 +13,6 @@ public class WaterSpell : MonoBehaviour
         damage = spell.WaterDamage;
     }
 
-    private void Update()
-    {
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,4 +27,5 @@ public class WaterSpell : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }

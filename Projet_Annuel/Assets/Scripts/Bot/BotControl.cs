@@ -30,6 +30,7 @@ public class BotControl : MonoBehaviour
     protected float TimeBetweenAttacks;
     protected bool isBurning;
     protected int actualDamage; // Degats actuel du bot
+    protected float initialSpeed;
     protected ArrayList listEffectCoroutine = new ArrayList();
     protected QuestManager questManager;
     protected virtual void Start()
@@ -41,6 +42,7 @@ public class BotControl : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         basePositions = transform.position; // On récupère les coordonnées du spawn du bot
         Player.OnLevelChanged += BotControl_OnLevelChanged;
+        initialSpeed = agent.speed;
 
         questManager = GameObject.Find("Quest").GetComponent<QuestManager>();
         if (transform.parent != null)
@@ -214,6 +216,26 @@ public class BotControl : MonoBehaviour
             }
             yield return new WaitForSeconds(0.1f);
         }
+
+
+    }
+
+    virtual public IEnumerator Rock()
+    {
+         
+        float accel = agent.acceleration;
+
+        Vector3 destination = agent.transform.position - agent.destination;
+        agent.velocity = destination.normalized * 8;
+        agent.speed = 10;
+        agent.angularSpeed = 0;
+        agent.acceleration = 20;
+        yield return new WaitForSeconds(0.2f);
+
+        agent.speed = initialSpeed;
+        agent.acceleration = accel;
+        agent.angularSpeed = 120;
+
 
 
     }

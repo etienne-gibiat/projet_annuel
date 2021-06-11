@@ -11,7 +11,7 @@ public class Boss : BotControl
     private GameObject FullPowerParticle;
     private float dissolve = -1;
     private Renderer shader;
-    private float initialSpeed;
+    
     private Color InitialColor;
     protected override void Start()
     {
@@ -25,7 +25,6 @@ public class Boss : BotControl
         GainXP = 300;
         TimeBetweenAttacks = 5;
         shader = this.gameObject.GetComponentInChildren<Renderer>();
-        initialSpeed = agent.speed;
         InitialColor = shader.material.GetColor("Color_9372EFE");
         questManager.AttachToMob(transform.name);
     }

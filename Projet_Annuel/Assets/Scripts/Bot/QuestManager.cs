@@ -10,18 +10,14 @@ public class QuestManager : MonoBehaviour
     public int camp3 = 0;
     public int boss = 0;
 
-    private Transform[] children1;
-    private Transform[] children2;
-    private Transform[] children3;
-
-    public Text queteCampText;
-    public Text queteKemalText;
+    private Text queteCampText;
+    private Text queteKemalText;
 
     // Start is called before the first frame update
     void Start()
     {
-        queteCampText = this.transform.Find("quete1").GetComponentInChildren<Text>();
-        queteKemalText = this.transform.Find("quete2").GetComponentInChildren<Text>();
+        queteCampText = this.transform.Find("Canvas/quete1").GetComponent<Text>();
+        queteKemalText = this.transform.Find("Canvas/quete2").GetComponent<Text>();
     }
 
     // Update is called once per frame

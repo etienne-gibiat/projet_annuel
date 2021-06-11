@@ -21,12 +21,12 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - Disolve_: 0.128
+    - Disolve_: 0.215
     - NoiseScale_: 20
     - TwirlAmount_: 5
     - Vector1_410E5739: 1
     m_Colors:
-    - Color_: {r: 0, g: 6.9952154, b: 6.4896502, a: 0}
+    - Color_: {r: 3.788528, g: 3.7378273, b: 3.1273227, a: 0}
     - NoiseSpeed_: {r: -1.5, g: 1.5, b: 0, a: 0}
     - TwirlCenter_: {r: 0, g: 4.92, b: 0, a: 0}
     - TwirlSpeed_: {r: 0.5, g: 0.5, b: 0, a: 0}

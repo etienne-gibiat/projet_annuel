@@ -237,35 +237,40 @@ public class vThirdPersonInput : MonoBehaviour
     protected virtual void AttackInput()
     {
         // Lancer un spell
-        if (Input.GetKeyDown(FireInput))
+        if (Time.timeScale > 0f)
         {
-            if (Mana >= 20)
+            if (Input.GetKeyDown(FireInput))
             {
-                Mana = Mathf.Max(Mana - 20, 0);
-                cc.animator.CrossFadeInFixedTime("Fire", 0.1f);
-                cc.animator.SetLayerWeight(1, 1);
-                GameObject Spell = new GameObject() ; 
-                switch (ElementPicked) {
-                    case Elements.Feu:
-                        Spell = Instantiate(Spells.spellFeu, transform.position + new Vector3(0, 1, 0), cameraMain.transform.rotation);
-                        Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 500);
-                        break;
-                    case Elements.Eau:
-                        Spell = Instantiate(Spells.spellEau, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-                        Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 400);
-                        break;
-                    case Elements.Terre:
-                        Spell = Instantiate(Spells.spellTerre, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-                        Spell.transform.eulerAngles = Quaternion.LookRotation(cameraMain.transform.eulerAngles).eulerAngles;
-                        break;
-                    case Elements.Air:
-                        Spell = Instantiate(Spells.spellAir, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-                        Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 400);
-                        break;
+                if (Mana >= 20)
+                {
+                    Mana = Mathf.Max(Mana - 20, 0);
+                    cc.animator.CrossFadeInFixedTime("Fire", 0.1f);
+                    cc.animator.SetLayerWeight(1, 1);
+                    GameObject Spell = new GameObject();
+                    switch (ElementPicked)
+                    {
+                        case Elements.Feu:
+                            Spell = Instantiate(Spells.spellFeu, transform.position + new Vector3(0, 1, 0), cameraMain.transform.rotation);
+                            Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 500);
+                            break;
+                        case Elements.Eau:
+                            Spell = Instantiate(Spells.spellEau, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+                            Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 400);
+                            break;
+                        case Elements.Terre:
+                            Spell = Instantiate(Spells.spellTerre, transform.position + new Vector3(0, 3, 0), new Quaternion(-90, 0, 0, 0));
+                            Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 2000);
+                            //Spell.transform.eulerAngles = Quaternion.LookRotation(cameraMain.transform.eulerAngles).eulerAngles;
+                            break;
+                        case Elements.Air:
+                            Spell = Instantiate(Spells.spellAir, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+                            Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 200);
+                            break;
 
+                    }
+
+                    Destroy(Spell, 5);
                 }
-                
-                Destroy(Spell, 5);
             }
         }
     }
