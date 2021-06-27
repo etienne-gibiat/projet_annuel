@@ -72,12 +72,14 @@ public class GameManager : MonoBehaviour
     {
         Player.MaxHealth += 20;
         Player.Health = Player.MaxHealth;
+        Player.speedHealth += 0.2f;
         disableMenu(MenuLevelUp);
     }
     public void UpgradeMana()
     {
         Player.MaxMana += 20;
         Player.Mana = Player.MaxMana;
+        Player.speedMana += 1;
         disableMenu(MenuLevelUp);
     }
     public void UpgradeDamage()

@@ -31,6 +31,7 @@ public class BotControl : MonoBehaviour
     protected bool isBurning;
     protected int actualDamage; // Degats actuel du bot
     protected float initialSpeed;
+    protected Arme arme;
     protected ArrayList listEffectCoroutine = new ArrayList();
     protected QuestManager questManager;
     protected virtual void Start()
@@ -43,14 +44,14 @@ public class BotControl : MonoBehaviour
         basePositions = transform.position; // On récupère les coordonnées du spawn du bot
         Player.OnLevelChanged += BotControl_OnLevelChanged;
         initialSpeed = agent.speed;
-
+        arme = GetComponentInChildren<Arme>();
         questManager = GameObject.Find("Quest").GetComponent<QuestManager>();
         if (transform.parent != null)
         {
             questManager.AttachToMob(transform.parent.name);
         }
 }
-    void Update()
+    protected virtual void Update()
     {
 
         if (!isDead)
@@ -80,14 +81,23 @@ public class BotControl : MonoBehaviour
 
         }
     }
-    protected void Move()
+    /// <summary>
+    /// Bouge le bot vers le joueur
+    /// </summary>
+    virtual protected void Move()
     {
         agent.SetDestination(target.position);
     }
+    /// <summary>
+    /// Gestion de l'attaque du bot
+    /// </summary>
     virtual protected void Attack()
     {
 
     }
+    /// <summary>
+    /// Retourne à la base et se soigne une fois à la base
+    /// </summary>
     protected void returnToIdle()
     {
         //Retourne à la base, s'arrêteras dans un périmètre de 2m autour de sa base car on ne peut jamais retourner à sa position exact.
@@ -125,6 +135,10 @@ public class BotControl : MonoBehaviour
         return navHit.position;
     }
 
+    /// <summary>
+    /// Applique les dégats au bot
+    /// </summary>
+    /// <param name="damage">dégats à appliquer</param>
     public void ApplyDamage(float damage)
     {
         getAttacked = true;
@@ -147,19 +161,35 @@ public class BotControl : MonoBehaviour
         }
     }
 
-
-    public void AttackBegin()
+    /// <summary>
+    /// Méthode appelée dans l'animator, associée à une animation elle déclenche la fonction au début de l'attaque
+    /// </summary>
+    public virtual void AttackBegin()
     {
-        GetComponentInChildren<Arme>().setDamage(actualDamage);
-        GetComponentInChildren<Arme>().Active = true;
+        if(arme != null)
+        {
+            arme.setDamage(actualDamage);
+            arme.Active = true;
+        }
+       
     }
 
-    //Méthode appelée dans l'animator, associée à une animation elle déclenche la fonction à la fin de l'attaque
-    public void AttackEnd()
+    /// <summary>
+    /// Méthode appelée dans l'animator, associée à une animation elle déclenche la fonction à la fin de l'attaque
+    /// </summary>
+    public virtual void AttackEnd()
     {
-        GetComponentInChildren<Arme>().Active = false;
+        
+        if(arme != null)
+        {
+            arme.Active = false;
+        }
+        
     }
 
+    /// <summary>
+    /// Mort du bot
+    /// </summary>
     protected virtual void Dead()
     {
         
@@ -176,6 +206,13 @@ public class BotControl : MonoBehaviour
             questManager.DetachToMob(transform.parent.name);
         }
     }
+
+    /// <summary>
+    /// Effet de Brulure
+    /// </summary>
+    /// <param name="damage">Dégats par seconde</param>
+    /// <param name="time">Durée de l'effet de brulure</param>
+    /// <returns></returns>
     virtual public IEnumerator Brulure(float damage,float time)
     {
 
@@ -198,6 +235,12 @@ public class BotControl : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Effet de Gel
+    /// </summary>
+    /// <param name="damage"></param>
+    /// <param name="time">Durée du gel</param>
+    /// <returns></returns>
     virtual public IEnumerator Gel(float damage, float time)
     {
 
@@ -220,10 +263,14 @@ public class BotControl : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Effet repoussant après un coup de roche
+    /// </summary>
+    /// <returns></returns>
     virtual public IEnumerator Rock()
     {
          
-        float accel = agent.acceleration;
+        float accel = agent.acceleration; 
 
         Vector3 destination = agent.transform.position - agent.destination;
         agent.velocity = destination.normalized * 8;
@@ -239,6 +286,11 @@ public class BotControl : MonoBehaviour
 
 
     }
+
+    /// <summary>
+    /// Arrête les coroutines par nom
+    /// </summary>
+    /// <param name="name"></param>
     public void StopEffectCoroutines(string name)
     {
         ArrayList tmp = new ArrayList();
@@ -259,6 +311,10 @@ public class BotControl : MonoBehaviour
         }
 
     }
+    /// <summary>
+    /// Ajoute une coroutine dans la liste des coroutines
+    /// </summary>
+    /// <param name="c"></param>
     public void addCoroutine(IEnumerator c)
     {
         
