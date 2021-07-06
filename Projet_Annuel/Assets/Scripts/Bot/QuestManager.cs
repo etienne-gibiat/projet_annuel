@@ -10,6 +10,8 @@ public class QuestManager : MonoBehaviour
     public int camp3 = 0;
     public int boss = 0;
 
+    public GameObject portail;
+
     private Text queteCampText;
     private Text queteKemalText;
 
@@ -18,6 +20,7 @@ public class QuestManager : MonoBehaviour
     {
         queteCampText = this.transform.Find("Canvas/quete1").GetComponent<Text>();
         queteKemalText = this.transform.Find("Canvas/quete2").GetComponent<Text>();
+        portail.SetActive(true);
     }
 
     // Update is called once per frame
@@ -32,11 +35,13 @@ public class QuestManager : MonoBehaviour
         if (camp1 + camp2 + camp3 == 0)
         {
             queteCampText.color = new Color(0f, 0.7f, 0f);
+            portail.SetActive(false);
         }
 
         if(boss == 0)
         {
             queteKemalText.color = new Color(0f, 0.7f, 0f);
+            portail.SetActive(true);
         }
     }
 

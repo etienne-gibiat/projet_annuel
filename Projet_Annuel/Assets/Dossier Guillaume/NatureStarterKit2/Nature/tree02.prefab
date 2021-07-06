@@ -13,13 +13,12 @@ GameObject:
   - component: {fileID: 3305382}
   - component: {fileID: 2389710}
   - component: {fileID: 13687634}
-  - component: {fileID: 1534223585731235626}
   m_Layer: 0
   m_Name: tree02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &445910
 Transform:
@@ -106,22 +105,6 @@ CapsuleCollider:
   m_Height: 7.6
   m_Direction: 1
   m_Center: {x: 0.07, y: 4.07, z: 0.01}
---- !u!54 &1534223585731235626
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123896}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 122
-  m_CollisionDetection: 0
 --- !u!21 &2117434
 Material:
   serializedVersion: 6

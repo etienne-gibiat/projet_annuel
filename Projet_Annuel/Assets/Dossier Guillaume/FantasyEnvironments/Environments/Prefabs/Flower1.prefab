@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4840065526933142}
   - component: {fileID: 33581525542801438}
   - component: {fileID: 23485772402101522}
+  - component: {fileID: -5346014661851010479}
+  - component: {fileID: 3690275225352811858}
   m_Layer: 0
   m_Name: Flower1
   m_TagString: Untagged
@@ -79,3 +81,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-5346014661851010479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422759184610782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6781862de081ba468b120f19d44a15c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectSound: {fileID: 2362692343676218068, guid: 7dbef7f62f8563147abb8b4c65dc71d6,
+    type: 3}
+  prefabName: Orchidee
+--- !u!65 &3690275225352811858
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422759184610782}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8829763, y: 0.9042502, z: 0.9912245}
+  m_Center: {x: -0.080130205, y: 0.4521251, z: -0.00750266}

@@ -61,6 +61,9 @@ public class vThirdPersonCamera : MonoBehaviour
     void Start()
     {
         Init();
+        CollectThings.violetteCount = 0;
+        CollectThings.coquelicotCount = 0;
+        CollectThings.orchideeCount = 0;
     }
 
     public void Init()

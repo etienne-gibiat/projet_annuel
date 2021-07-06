@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4306860098056932}
   - component: {fileID: 33706458395976176}
   - component: {fileID: 23862144876871240}
+  - component: {fileID: 6661521456331511515}
+  - component: {fileID: 8699281801135527158}
   m_Layer: 0
   m_Name: Flower2
   m_TagString: Untagged
@@ -79,3 +81,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6661521456331511515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370357002708338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6781862de081ba468b120f19d44a15c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectSound: {fileID: 2362692343676218068, guid: 7dbef7f62f8563147abb8b4c65dc71d6,
+    type: 3}
+  prefabName: Violette
+--- !u!65 &8699281801135527158
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370357002708338}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9, y: 0.9, z: 0.9}
+  m_Center: {x: -0.0042312145, y: 0.5492611, z: -0.01090011}

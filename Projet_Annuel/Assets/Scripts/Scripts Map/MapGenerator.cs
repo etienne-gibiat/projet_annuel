@@ -39,8 +39,14 @@ public class MapGenerator : MonoBehaviour
     Queue<MapThreadInfo<MeshData>> meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
 
     public GameObject parentPrefab;
-    [Range(0, 3)]
+    [Range(0, 5)]
     public int biomeToGenerate;
+
+    public Texture2D main_texture;
+    public Texture2D[] main_texture_tab;
+    public Texture2D sand_texture;
+
+    public Renderer m_Renderer;
 
     public void DrawMapInEditor()
     {
@@ -57,20 +63,23 @@ public class MapGenerator : MonoBehaviour
         }
         else if (drawMode == DrawMode.Mesh)
         {
-            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, editorPreviewLOD), TextureGenerator.TextureFromColourMap(mapData.colourMap, mapChunkSize, mapChunkSize));
+            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, editorPreviewLOD, main_texture, m_Renderer), main_texture);
             switch(biomeToGenerate)
             {
-                case 0:
+                case 0: //Sand
                     GenerateNature.GenerateSandWithHeight(useFalloff, seed, noiseScale, octaves, persistance, lacunarity, Vector2.zero, offset, normalizeMode, falloffMap, regions, meshHeightCurve, meshHeightMultiplier, parentPrefab);
                     break;
-                case 1:
+                case 1: //Grass
                     GenerateNature.GenerateGrassWithHeight(useFalloff, seed, noiseScale, octaves, persistance, lacunarity, Vector2.zero, offset, normalizeMode, falloffMap, regions, meshHeightCurve, meshHeightMultiplier, parentPrefab);
                     break;
-                case 2:
+                case 2: //Grass2
                     GenerateNature.GenerateGrass2WithHeight(useFalloff, seed, noiseScale, octaves, persistance, lacunarity, Vector2.zero, offset, normalizeMode, falloffMap, regions, meshHeightCurve, meshHeightMultiplier, parentPrefab);
                     break;
-                case 3:
+                case 3: //Nature
                     GenerateNature.GenerateNatureWithHeight(useFalloff, seed, noiseScale, octaves, persistance, lacunarity, Vector2.zero, offset, normalizeMode, falloffMap, regions, meshHeightCurve, meshHeightMultiplier, parentPrefab);
+                    break;
+                case 4: //Texture
+                    GenerateNature.GenerateTextureMesh(useFalloff, seed, noiseScale, octaves, persistance, lacunarity, Vector2.zero, offset, normalizeMode, falloffMap, regions, meshHeightCurve, meshHeightMultiplier, parentPrefab, main_texture_tab, m_Renderer);
                     break;
                 default:
                     Debug.Log("Wrong biome");
@@ -118,7 +127,7 @@ public class MapGenerator : MonoBehaviour
 
     void MeshDataThread(MapData mapData, int lod, Action<MeshData> callback)
     {
-        MeshData meshData = MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, lod);
+        MeshData meshData = MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, lod, main_texture, m_Renderer);
         lock (meshDataThreadInfoQueue)
         {
             meshDataThreadInfoQueue.Enqueue(new MapThreadInfo<MeshData>(callback, meshData));
@@ -148,6 +157,9 @@ public class MapGenerator : MonoBehaviour
 
     MapData GenerateMapData(Vector2 center)
     {
+        /*m_Renderer.material.EnableKeyword("_NORMALMAP");
+        m_Renderer.material.EnableKeyword("_METALLICGLOSSMAP");*/
+
         float[,] noiseMap;
         noiseMap = Noise.GenerateNoiseMap(mapChunkSize + 2, mapChunkSize + 2, seed, noiseScale, octaves, persistance, lacunarity, center + offset, normalizeMode);
 
@@ -177,6 +189,10 @@ public class MapGenerator : MonoBehaviour
                             if (currentHeight >= regions[i].height)
                             {
                                 colourMap[y * mapChunkSize + x] = regions[i].colour;
+
+                                /*m_Renderer.material.SetTexture("_MainTex", main_texture);
+                                m_Renderer.material.SetTexture("_BumpMap", main_texture);
+                                m_Renderer.material.SetTexture("_MetallicGlossMap", main_texture);*/
 
                                 Vector3 position = new Vector3(y, 0f, x);
                             }
