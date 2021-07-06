@@ -947,8 +947,9 @@ GameObject:
   - component: {fileID: 8129516603899221904}
   - component: {fileID: 1382124625801126842}
   - component: {fileID: 4377608545413359743}
+  - component: {fileID: 1986859273}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Niala
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1050,6 +1051,7 @@ MonoBehaviour:
   Mana: 0
   MaxMana: 0
   speedMana: 15
+  speedHealth: 0.2
   level: 0
   xp: 0
   MaxXpBeforeLevelUp: 0
@@ -1106,6 +1108,19 @@ MonoBehaviour:
   groundMinDistance: 0.25
   groundMaxDistance: 0.5
   slopeLimit: 45
+--- !u!114 &1986859273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2909829067383002468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f878c0c7950f3945b9c58b2f1c3b71b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pullable: 1
 --- !u!1 &2933715218437306366
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,16 +2670,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
+  m_RequiresDepthTextureOption: 1
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1024
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0

@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Dossier Guillaume/ProceduralMap.unity
+    guid: 742f73f2e9c1b724fb7ae7ae4adb1578
+  - enabled: 0
     path: Assets/Scenes/SceneCedric.unity
     guid: 0c0bf1fe6f7f3894ca1f8ccccf071ced
   m_configObjects: {}

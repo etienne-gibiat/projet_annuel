@@ -43,6 +43,7 @@ public class PaladinBot : BotControl
             if(agent.speed < 6f)
             {
                 agent.speed += 1f;
+                initialSpeed = agent.speed;
             }
             actualDamage += 5;
         }

@@ -21,6 +21,8 @@ public class QuestManager : MonoBehaviour
         queteCampText = this.transform.Find("Canvas/quete1").GetComponent<Text>();
         queteKemalText = this.transform.Find("Canvas/quete2").GetComponent<Text>();
         portail.SetActive(true);
+
+        queteCampText.transform.parent.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

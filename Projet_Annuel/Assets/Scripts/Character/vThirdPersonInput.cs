@@ -34,6 +34,7 @@ public class vThirdPersonInput : MonoBehaviour
     public float Mana;
     public float MaxMana;
     public float speedMana = 15f;
+    public float speedHealth = 0.2f;
     public int level;
     public float xp;
     public float MaxXpBeforeLevelUp;
@@ -71,6 +72,7 @@ public class vThirdPersonInput : MonoBehaviour
             cc.ControlLocomotionType();     // handle the controller locomotion type and movespeed
             cc.ControlRotationType();       // handle the controller rotation type
             Mana = Mathf.Min(Mana + (Time.deltaTime * speedMana) * MaxMana / 100, MaxMana);
+            Health = Mathf.Min(Health + (Time.deltaTime * speedHealth) * MaxHealth / 100, MaxHealth);
         }
     }
 
@@ -90,6 +92,9 @@ public class vThirdPersonInput : MonoBehaviour
 
     #region Basic Locomotion Inputs
 
+    /// <summary>
+    /// Initialise les stats et l'HUD du joueur
+    /// </summary>
     protected virtual void InitializeStats()
     {
         MaxHealth = 100f;
@@ -143,6 +148,7 @@ public class vThirdPersonInput : MonoBehaviour
         
     }
 
+    
     protected virtual void SpellInput()
     {
         if (Input.GetKeyDown(Feu))
@@ -259,7 +265,7 @@ public class vThirdPersonInput : MonoBehaviour
                             break;
                         case Elements.Terre:
                             Spell = Instantiate(Spells.spellTerre, transform.position + new Vector3(0, 3, 0), new Quaternion(-90, 0, 0, 0));
-                            Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 2000);
+                            Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 1500);
                             //Spell.transform.eulerAngles = Quaternion.LookRotation(cameraMain.transform.eulerAngles).eulerAngles;
                             break;
                         case Elements.Air:
@@ -274,6 +280,10 @@ public class vThirdPersonInput : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Gestion de l'HUD des spells
+    /// </summary>
+    /// <returns></returns>
     IEnumerator SpellHUD()
     {
         while (true)
@@ -301,6 +311,11 @@ public class vThirdPersonInput : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }
     }
+
+    /// <summary>
+    /// Dommages appliqués au joueur
+    /// </summary>
+    /// <param name="damage"></param>
     public void ApplyDamage(float damage)
     {
         if (!isDead)
@@ -318,6 +333,10 @@ public class vThirdPersonInput : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Donne de l'xp au joueur
+    /// </summary>
+    /// <param name="xpToGet">xp à donner</param>
     public void getXp(float xpToGet)
     {
         xp += xpToGet;
@@ -331,13 +350,20 @@ public class vThirdPersonInput : MonoBehaviour
             if (OnLevelChanged != null) OnLevelChanged(this, EventArgs.Empty);
         }
     }
+    /// <summary>
+    /// Permet la montée de niveau du joueur
+    /// </summary>
     private void levelUp()
     {
         speedMana += 2;
+        speedHealth += 0.1f;
         MaxXpBeforeLevelUp *= 1.8f;
         
     }
 
+    /// <summary>
+    /// Le joueur meurt
+    /// </summary>
     private void Dead()
     {
         cc.animator.Play("Death");
