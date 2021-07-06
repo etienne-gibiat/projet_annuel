@@ -351,7 +351,7 @@ public class GenerateNature : MonoBehaviour
             finalSplatTexture.Apply();
             byte[] res = finalSplatTexture.EncodeToPNG();
             File.WriteAllBytes("Assets/Dossier Guillaume" + " / exported_texture.png", res);
-            AssetDatabase.CreateAsset(finalSplatTexture, dataPath);
+            //AssetDatabase.CreateAsset(finalSplatTexture, dataPath);
             parentPrefab.transform.position = new Vector3(-600, 0, 600);
         }
     }

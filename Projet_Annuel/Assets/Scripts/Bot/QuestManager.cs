@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class QuestManager : MonoBehaviour
 {
@@ -12,8 +13,11 @@ public class QuestManager : MonoBehaviour
 
     public GameObject portail;
 
-    private Text queteCampText;
-    private Text queteKemalText;
+    private TextMeshProUGUI queteCampText;
+    private TextMeshProUGUI queteKemalText;
+
+    private int nb_camp = 21;
+    private int nb_camp_total = 21;
 
     public GameObject victoirePanel;
 
@@ -23,8 +27,9 @@ public class QuestManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        queteCampText = this.transform.Find("Canvas/quete1").GetComponent<Text>();
-        queteKemalText = this.transform.Find("Canvas/quete2").GetComponent<Text>();
+        nb_camp = nb_camp_total;
+        queteCampText = this.transform.Find("Canvas/quete1").GetComponent<TextMeshProUGUI>();
+        queteKemalText = this.transform.Find("Canvas/quete2").GetComponent<TextMeshProUGUI>();
         portail.SetActive(true);
         victoirePanel.SetActive(false);
         queteCampText.transform.parent.gameObject.SetActive(false);
@@ -39,9 +44,14 @@ public class QuestManager : MonoBehaviour
     public IEnumerator TextChange()
     {
         yield return new WaitForSeconds(1f);
+        if (camp1 + camp2 + camp3 > 0)
+        {
+            queteCampText.text = "Quête 1 : tuer les camps Biancheur (" + nb_camp + "/" + nb_camp_total + ")";
+        }
         if (camp1 + camp2 + camp3 == 0)
         {
             queteCampText.color = new Color(0f, 0.7f, 0f);
+            queteCampText.text = "Quête 1 : tuer les camps Biancheur";
             portail.SetActive(false);
         }
 
@@ -79,14 +89,17 @@ public class QuestManager : MonoBehaviour
     {
         if (name == "Spawn Biancheur 1")
         {
+            nb_camp--;
             camp1--;
         }
         if (name == "Spawn Biancheur 2")
         {
+            nb_camp--;
             camp2--;
         }
         if (name == "Spawn Biancheur 3")
         {
+            nb_camp--;
             camp3--;
         }
         if (name == "Kemal le Bengali")

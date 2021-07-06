@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private vThirdPersonInput Player;
     private float delay;
     private bool isOver = false;
+
+    public GameObject MenuStart;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +23,10 @@ public class GameManager : MonoBehaviour
         spells = GameObject.Find("SpellManager").GetComponent<SpellManager>();
         Player = GameObject.FindWithTag("Player").GetComponent<vThirdPersonInput>();
         Player.OnLevelChanged += GameManager_OnLevelChanged;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        Time.timeScale = 0.0f;
+        MenuStart.SetActive(true);
 
     }
 
@@ -119,7 +123,15 @@ public class GameManager : MonoBehaviour
 
     public void PlayAgain()
     {
-        Time.timeScale = 1.0f;
+        Time.timeScale = 0.0f;
         Application.Quit();
+    }
+
+    public void Jouer()
+    {
+        MenuStart.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1.0f;
     }
 }
