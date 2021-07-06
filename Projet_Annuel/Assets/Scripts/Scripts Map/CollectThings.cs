@@ -15,6 +15,7 @@ public class CollectThings : MonoBehaviour
 
     public static int idCollected = -1;
 
+
     private void OnTriggerEnter(Collider other)
     {
         collectSound.Play();

@@ -15,13 +15,18 @@ public class QuestManager : MonoBehaviour
     private Text queteCampText;
     private Text queteKemalText;
 
+    public GameObject victoirePanel;
+
+    private bool victory = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
         queteCampText = this.transform.Find("Canvas/quete1").GetComponent<Text>();
         queteKemalText = this.transform.Find("Canvas/quete2").GetComponent<Text>();
         portail.SetActive(true);
-
+        victoirePanel.SetActive(false);
         queteCampText.transform.parent.gameObject.SetActive(false);
     }
 
@@ -40,10 +45,13 @@ public class QuestManager : MonoBehaviour
             portail.SetActive(false);
         }
 
-        if(boss == 0)
+        if(boss == 0 && !victory)
         {
             queteKemalText.color = new Color(0f, 0.7f, 0f);
             portail.SetActive(true);
+            victoirePanel.SetActive(true);
+            victory = true;
+            Destroy(victoirePanel, 3f);
         }
     }
 

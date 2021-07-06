@@ -98,7 +98,7 @@ public class SelectInventaire : MonoBehaviour
                 nb_slot_count -= 1;
                 inventaire_script.slot[2] -= 1;
                 xpPotionScoreText.GetComponent<Text>().text = "" + nb_slot_count;
-                player.GetComponent<vThirdPersonInput>().xp += 40;
+                player.GetComponent<vThirdPersonInput>().getXp(40);
             }
         }
         else

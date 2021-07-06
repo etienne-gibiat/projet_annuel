@@ -45,7 +45,7 @@ public class BotControl : MonoBehaviour
         Player.OnLevelChanged += BotControl_OnLevelChanged;
         initialSpeed = agent.speed;
         arme = GetComponentInChildren<Arme>();
-        questManager = GameObject.Find("Quest").GetComponent<QuestManager>();
+        questManager = GameObject.Find("HUD/Quest").GetComponent<QuestManager>();
         if (transform.parent != null)
         {
             questManager.AttachToMob(transform.parent.name);

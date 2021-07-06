@@ -30,7 +30,7 @@ public class Demon : BotControl
     protected override void Update()
     {
         base.Update();
-        rand = UnityEngine.Random.Range(0, 6);
+        rand = UnityEngine.Random.Range(0, 1000);
         if(rand == 5)
         {
             anim.SetTrigger("BattleCry");
