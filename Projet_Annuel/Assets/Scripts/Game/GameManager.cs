@@ -120,6 +120,6 @@ public class GameManager : MonoBehaviour
     public void PlayAgain()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
+        Application.Quit();
     }
 }
