@@ -7,6 +7,7 @@ public class NPC : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    public AudioSource hmmm;
     public string[] dialog;
     private Transform player;
     private Animator anim;
@@ -35,11 +36,13 @@ public class NPC : MonoBehaviour
             anim.SetTrigger("PlayerAround");
             QuestTxt.gameObject.SetActive(true);
             Exclamation.gameObject.SetActive(false);
+            
         }
         else
         {
             QuestTxt.gameObject.SetActive(false);
             Exclamation.gameObject.SetActive(true);
+            hmmm.Play();
         }
         var lookPos = player.position - transform.position;
         lookPos.y = 0;
@@ -55,6 +58,7 @@ public class NPC : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         QuestManager.gameObject.SetActive(true);
+        
     }
 
 }

@@ -18,14 +18,21 @@ public class WaterSpell : MonoBehaviour
     {
         if (other.tag == "Ennemy")
         {
+
             bot = other.gameObject.GetComponentInParent<BotControl>();
             bot.ApplyDamage(damage);
             bot.StopEffectCoroutines("Gel");
             IEnumerator gel = bot.Gel(damage, 5);
             bot.StartCoroutine(gel);
             bot.addCoroutine(gel);
-            Destroy(gameObject);
+            StartCoroutine(destroy());
         }
     }
+
+    virtual public IEnumerator destroy() {
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
+    }
+
 
 }

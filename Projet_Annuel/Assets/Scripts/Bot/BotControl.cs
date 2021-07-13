@@ -241,22 +241,29 @@ public class BotControl : MonoBehaviour
     /// <param name="damage"></param>
     /// <param name="time">Durée du gel</param>
     /// <returns></returns>
-    virtual public IEnumerator Gel(float damage, float time)
-    {
-
+    virtual public IEnumerator Gel(float damage, float time) {
         isBurning = true;
         float timeGel = time + 0.1f;
-        while (isBurning)
-        {
+        while (isBurning) {
             timeGel -= 0.1f;
-            if (timeGel <= 0)
-            {
+            if (timeGel <= 0) {
                 isBurning = false;
             }
-            else
-            {
-                agent.speed -= 0.1f;
+            else {
+                if (agent.speed > initialSpeed / 2) {
+                    agent.speed -= 0.1f;
+                }
+
             }
+            yield return new WaitForSeconds(0.1f);
+        }
+        timeGel = time;
+        while (timeGel >= 0f) {
+            if (agent.speed < initialSpeed) {
+                agent.speed += 0.1f;
+            }
+
+            timeGel -= 0.1f;
             yield return new WaitForSeconds(0.1f);
         }
 
@@ -273,6 +280,30 @@ public class BotControl : MonoBehaviour
         float accel = agent.acceleration; 
 
         Vector3 destination = agent.transform.position - agent.destination;
+        agent.velocity = destination.normalized * 8;
+        agent.speed = 10;
+        agent.angularSpeed = 0;
+        agent.acceleration = 20;
+        yield return new WaitForSeconds(0.2f);
+
+        agent.speed = initialSpeed;
+        agent.acceleration = accel;
+        agent.angularSpeed = 120;
+
+
+
+    }
+
+
+    /// <summary>
+    /// Effet repoussant après un coup de roche
+    /// </summary>
+    /// <returns></returns>
+    virtual public IEnumerator Tornado(Transform pos) {
+
+        float accel = agent.acceleration;
+
+        Vector3 destination = pos.position - agent.transform.position;
         agent.velocity = destination.normalized * 8;
         agent.speed = 10;
         agent.angularSpeed = 0;

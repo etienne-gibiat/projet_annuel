@@ -260,8 +260,7 @@ public class vThirdPersonInput : MonoBehaviour
                             Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 500);
                             break;
                         case Elements.Eau:
-                            Spell = Instantiate(Spells.spellEau, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-                            Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 400);
+                            Spell = Instantiate(Spells.spellEau, transform.position + new Vector3(0, (float)0.08, 0), Quaternion.Euler(0, cameraMain.transform.eulerAngles.y, 0));
                             break;
                         case Elements.Terre:
                             Spell = Instantiate(Spells.spellTerre, transform.position + new Vector3(0, 3, 0), new Quaternion(-90, 0, 0, 0));
@@ -269,8 +268,13 @@ public class vThirdPersonInput : MonoBehaviour
                             //Spell.transform.eulerAngles = Quaternion.LookRotation(cameraMain.transform.eulerAngles).eulerAngles;
                             break;
                         case Elements.Air:
-                            Spell = Instantiate(Spells.spellAir, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-                            Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 200);
+                            Spell = Instantiate(Spells.spellAir, transform.position + cameraMain.transform.forward * 20 + new Vector3(0, 100, 0), Quaternion.identity);
+                            RaycastHit hit;
+                            // Does the ray intersect any objects excluding the player layer
+                            if (Physics.Raycast(Spell.transform.position, Spell.transform.TransformDirection(new Vector3(0, -1, 0)), out hit, Mathf.Infinity, LayerMask.GetMask("Default"))) {
+                                Vector3 pos = new Vector3(Spell.transform.position.x, Spell.transform.position.y - hit.distance, Spell.transform.position.z);
+                                Spell.transform.position = pos;
+                            }
                             break;
 
                     }

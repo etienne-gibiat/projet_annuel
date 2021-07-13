@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PaladinBot : BotControl
 {
+    public AudioSource audioSource;
     
     protected override void Start()
     {
@@ -22,10 +23,12 @@ public class PaladinBot : BotControl
 
             if (timerAttack >= TimeBetweenAttacks)
             {
+                
                 timerAttack = 0;
                 rand = UnityEngine.Random.Range(0, 2);
                 anim.SetTrigger("Attack");
                 anim.SetInteger("TypeAttack", rand);
+                StartCoroutine(soundAttack(1f, rand));
             }
 
         }
@@ -47,5 +50,21 @@ public class PaladinBot : BotControl
             }
             actualDamage += 5;
         }
+    }
+
+    public IEnumerator soundAttack(float time, int n) {
+        int count = 0;
+        if(n == 0) {
+            yield return new WaitForSeconds(time);
+            audioSource.Play();
+        }
+        else {
+            yield return new WaitForSeconds(time);
+            audioSource.Play();
+            StartCoroutine(soundAttack(0.5f, 0));
+            StartCoroutine(soundAttack(1.3f, 0));
+        }
+        
+
     }
 }

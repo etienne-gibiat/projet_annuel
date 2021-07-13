@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Boss : BotControl
 {
+    public AudioSource boss1;
+    public AudioSource boss2;
+    public AudioSource boss3;
+    public AudioSource BattleCry;
+
     private bool enraged;
     private bool FullPower;
     public GameObject EnragedParticle;
@@ -60,6 +65,12 @@ public class Boss : BotControl
             {
                 timerAttack = 0;
                 anim.SetTrigger("Attack");
+                //if(FullPower)
+                //    StartCoroutine(soundAttack(0.5f, 4));
+                if(enraged)
+                    StartCoroutine(soundAttack(1.25f, 1));
+                else
+                    StartCoroutine(soundAttack(1f, 0));
             }
 
         }
@@ -78,10 +89,12 @@ public class Boss : BotControl
         agent.isStopped = true;
         invincible = true;
         FullPowerParticle = Instantiate(EnragedParticle, transform.position, Quaternion.identity);
+        StartCoroutine(soundAttack(0.01f, 3));
         FullPowerParticle.transform.parent = transform;
         attackRange += 2;
         actualDamage += 10;
         TimeBetweenAttacks -= 1;
+        
     }
 
     protected void GetEnraged()
@@ -97,7 +110,8 @@ public class Boss : BotControl
         TimeBetweenAttacks -= 2;
         GameObject Summon = Instantiate(EnragedParticle, transform.position, Quaternion.identity);
         Destroy(Summon, 4);
-        
+        StartCoroutine(soundAttack(0.01f, 3));
+
     }
     public void EnragedEnded()
     {
@@ -263,6 +277,31 @@ public class Boss : BotControl
             }
             shader.material.SetColor("Color_9372EFE", MeshColor);
             yield return new WaitForSeconds(0.1f);
+        }
+
+
+    }
+
+    public IEnumerator soundAttack(float time, int n) {
+        if (n == 0) {
+            yield return new WaitForSeconds(time);
+            boss1.Play();
+        }
+        else if(n == 1){
+            yield return new WaitForSeconds(time);
+            boss1.Play();
+            StartCoroutine(soundAttack(1.7f, 2));
+
+        }
+        else if (n == 2) {
+            yield return new WaitForSeconds(time);
+            boss2.Play();
+
+        }
+        else if (n == 3) { 
+            yield return new WaitForSeconds(time);
+            BattleCry.Play();
+
         }
 
 
