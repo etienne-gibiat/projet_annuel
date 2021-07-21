@@ -22,7 +22,7 @@ public class Boss : BotControl
     {
         base.Start();
         actualDamage = 30;
-        chaseRange = 30f;
+        chaseRange = 60f;
         MaxHealth = 1000f;
         EnnemyHealth = MaxHealth;
         enraged = false;
@@ -67,7 +67,7 @@ public class Boss : BotControl
                 anim.SetTrigger("Attack");
                 //if(FullPower)
                 //    StartCoroutine(soundAttack(0.5f, 4));
-                if(enraged)
+                if (enraged)
                     StartCoroutine(soundAttack(1.25f, 1));
                 else
                     StartCoroutine(soundAttack(1f, 0));
@@ -288,6 +288,7 @@ public class Boss : BotControl
             boss1.Play();
         }
         else if(n == 1){
+            boss1.Play();
             yield return new WaitForSeconds(time);
             boss1.Play();
             StartCoroutine(soundAttack(1.7f, 2));

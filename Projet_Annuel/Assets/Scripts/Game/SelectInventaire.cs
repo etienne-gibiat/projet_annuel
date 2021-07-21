@@ -15,11 +15,12 @@ public class SelectInventaire : MonoBehaviour
     public GameObject healthPotionScoreText;
     public GameObject xpPotionScoreText;
     public GameObject player;
-
+    public vThirdPersonInput scriptPlayer;
 
     private void Start()
     {
         inventaire_script = GameObject.Find("Inventaire").GetComponent<Inventaire>();
+        scriptPlayer = player.GetComponent<vThirdPersonInput>();
     }
 
     public void Selection()
@@ -65,40 +66,45 @@ public class SelectInventaire : MonoBehaviour
         }
         else if (nr_slot == 0) // Potion vie
         {
-            float diffHealth = player.GetComponent<vThirdPersonInput>().MaxHealth - player.GetComponent<vThirdPersonInput>().Health;
+            
+            float AddHp = scriptPlayer.MaxHealth * 33 / 100;
+            float diffHealth = scriptPlayer.MaxHealth - scriptPlayer.Health;
             if (nb_slot_count >= 1 && diffHealth != 0)
             {
                 nb_slot_count -= 1;
                 inventaire_script.slot[0] -= 1;
-                healthPotionScoreText.GetComponent<Text>().text = "" + nb_slot_count;                
-                if (diffHealth >= 40)
-                    player.GetComponent<vThirdPersonInput>().Health += 40;
+                healthPotionScoreText.GetComponent<Text>().text = "" + nb_slot_count;
+                scriptPlayer.Health += AddHp;
+                if (diffHealth >= AddHp)
+                    scriptPlayer.Health += AddHp;
                 else
-                    player.GetComponent<vThirdPersonInput>().Health += diffHealth;
+                    scriptPlayer.Health += diffHealth;
             }
         }
         else if (nr_slot == 1) // Potion mana
         {
-            float diffMana = player.GetComponent<vThirdPersonInput>().MaxMana - player.GetComponent<vThirdPersonInput>().Mana;
+            float AddMana = scriptPlayer.MaxMana * 50 / 100;
+            float diffMana = scriptPlayer.MaxMana - scriptPlayer.Mana;
             if (nb_slot_count >= 1 && diffMana != 0)
             {
                 nb_slot_count -= 1;
                 inventaire_script.slot[1] -= 1;
                 manaPotionScoreText.GetComponent<Text>().text = "" + nb_slot_count;
-                if (diffMana >= 40)
-                    player.GetComponent<vThirdPersonInput>().Mana += 40;
+                if (diffMana >= AddMana)
+                    scriptPlayer.Mana += AddMana;
                 else
-                    player.GetComponent<vThirdPersonInput>().Mana += diffMana;
+                    scriptPlayer.Mana += diffMana;
             }
         }
         else if (nr_slot == 2) // Potion xp
         {
+            float AddXp = scriptPlayer.MaxXpBeforeLevelUp * 33 / 100;
             if (nb_slot_count >= 1)
             {
                 nb_slot_count -= 1;
                 inventaire_script.slot[2] -= 1;
                 xpPotionScoreText.GetComponent<Text>().text = "" + nb_slot_count;
-                player.GetComponent<vThirdPersonInput>().getXp(40);
+                scriptPlayer.getXp(AddXp);
             }
         }
         else

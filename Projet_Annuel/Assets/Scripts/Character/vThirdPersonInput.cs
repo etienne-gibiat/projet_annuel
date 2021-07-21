@@ -38,9 +38,11 @@ public class vThirdPersonInput : MonoBehaviour
     public int level;
     public float xp;
     public float MaxXpBeforeLevelUp;
-    private bool isDead;
+    [HideInInspector] public bool isDead;
     private Transform MenuLevelUp;
     public Elements ElementPicked;
+    private Inventaire inventaire;
+    [HideInInspector] public Transform respawn;
     [HideInInspector] public vThirdPersonController cc;
     [HideInInspector] public vThirdPersonCamera tpCamera;
     [HideInInspector] public Camera cameraMain;
@@ -107,10 +109,12 @@ public class vThirdPersonInput : MonoBehaviour
         isDead = false;
         MenuLevelUp = GameObject.Find("LevelUpMenu").transform.Find("PauseMenu");
         HUD = GameObject.Find("HUD").transform;
+        inventaire = HUD.Find("Inventaire").GetComponent<Inventaire>();
         AirSpellHUD = HUD.Find("AirSpellHUD").GetComponent<Image>();
         EarthSpellHUD = HUD.Find("EarthSpellHUD").GetComponent<Image>();
         WaterSpellHUD = HUD.Find("WaterSpellHUD").GetComponent<Image>();
         FireSpellHUD = HUD.Find("FireSpellHUD").GetComponent<Image>();
+        respawn = GameObject.Find("Respawn").transform;
 
     }
     protected virtual void InitilizeController()
@@ -247,42 +251,69 @@ public class vThirdPersonInput : MonoBehaviour
         {
             if (Input.GetKeyDown(FireInput))
             {
-                if (Mana >= 20)
-                {
-                    Mana = Mathf.Max(Mana - 20, 0);
-                    cc.animator.CrossFadeInFixedTime("Fire", 0.1f);
-                    cc.animator.SetLayerWeight(1, 1);
-                    GameObject Spell = new GameObject();
+                GameObject Spell = new GameObject();
                     switch (ElementPicked)
                     {
                         case Elements.Feu:
+                        if (Mana >= 20)
+                        {
+                            animateSpell();
                             Spell = Instantiate(Spells.spellFeu, transform.position + new Vector3(0, 1, 0), cameraMain.transform.rotation);
                             Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 500);
+                            Mana = Mathf.Max(Mana - 20, 0);
+                        }
                             break;
                         case Elements.Eau:
+                        if (Mana >= 20)
+                        {
+                            animateSpell();
                             Spell = Instantiate(Spells.spellEau, transform.position + new Vector3(0, (float)0.08, 0), Quaternion.Euler(0, cameraMain.transform.eulerAngles.y, 0));
+                            Mana = Mathf.Max(Mana - 20, 0);
+                        }
                             break;
                         case Elements.Terre:
+                        if (Mana >= 40)
+                        {
+                            animateSpell();
                             Spell = Instantiate(Spells.spellTerre, transform.position + new Vector3(0, 3, 0), new Quaternion(-90, 0, 0, 0));
                             Spell.GetComponent<Rigidbody>().AddForce(cameraMain.transform.TransformDirection(Vector3.forward) * 1500);
-                            //Spell.transform.eulerAngles = Quaternion.LookRotation(cameraMain.transform.eulerAngles).eulerAngles;
-                            break;
+                            Mana = Mathf.Max(Mana - 40, 0);
+                        }
+                                //Spell.transform.eulerAngles = Quaternion.LookRotation(cameraMain.transform.eulerAngles).eulerAngles;
+                                break;
                         case Elements.Air:
+                        if (Mana >= 50)
+                        {
+                            animateSpell();
+                            Mana = Mathf.Max(Mana - 50, 0);
                             Spell = Instantiate(Spells.spellAir, transform.position + cameraMain.transform.forward * 20 + new Vector3(0, 100, 0), Quaternion.identity);
                             RaycastHit hit;
                             // Does the ray intersect any objects excluding the player layer
-                            if (Physics.Raycast(Spell.transform.position, Spell.transform.TransformDirection(new Vector3(0, -1, 0)), out hit, Mathf.Infinity, LayerMask.GetMask("Default"))) {
+                            if (Physics.Raycast(Spell.transform.position, Spell.transform.TransformDirection(new Vector3(0, -1, 0)), out hit, Mathf.Infinity, LayerMask.GetMask("Default")))
+                            {
                                 Vector3 pos = new Vector3(Spell.transform.position.x, Spell.transform.position.y - hit.distance, Spell.transform.position.z);
                                 Spell.transform.position = pos;
                             }
+                        }
                             break;
 
                     }
-
+                    if(ElementPicked == Elements.Terre)
+                {
+                    Destroy(Spell, 10);
+                }
+                else
+                {
                     Destroy(Spell, 5);
                 }
+                    
             }
         }
+    }
+    private void animateSpell()
+    {
+        cc.animator.CrossFadeInFixedTime("Fire", 0.1f);
+        cc.animator.SetLayerWeight(1, 1);
     }
     /// <summary>
     /// Gestion de l'HUD des spells
@@ -350,6 +381,10 @@ public class vThirdPersonInput : MonoBehaviour
             level += 1;
             Spells.UpdateXp(level);
             levelUp();
+            if (inventaire.activation)
+            {
+                inventaire.ActivateInventaire();
+            }
             print("You won a level !");
             if (OnLevelChanged != null) OnLevelChanged(this, EventArgs.Empty);
         }

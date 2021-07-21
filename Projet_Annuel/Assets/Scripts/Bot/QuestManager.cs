@@ -11,6 +11,10 @@ public class QuestManager : MonoBehaviour
     public int camp3 = 0;
     public int boss = 0;
 
+
+    private GameObject Spawn1;  
+    private GameObject Spawn2;  
+    private GameObject Spawn3;  
     public GameObject portail;
 
     private TextMeshProUGUI queteCampText;
@@ -33,6 +37,10 @@ public class QuestManager : MonoBehaviour
         portail.SetActive(true);
         victoirePanel.SetActive(false);
         queteCampText.transform.parent.gameObject.SetActive(false);
+
+        Spawn1 = GameObject.Find("Spawn Biancheur 1").gameObject;
+        Spawn2 = GameObject.Find("Spawn Biancheur 2").gameObject;
+        Spawn3 = GameObject.Find("Spawn Biancheur 3").gameObject;
     }
 
     // Update is called once per frame
@@ -46,7 +54,7 @@ public class QuestManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (camp1 + camp2 + camp3 > 0)
         {
-            queteCampText.text = "Quête 1 : tuer les camps Biancheur (" + nb_camp + "/" + nb_camp_total + ")";
+            queteCampText.text = "Quête 1 : tuer les camps Biancheur (" + (camp1 + camp2 + camp3) + "/" + nb_camp_total + ")";
         }
         if (camp1 + camp2 + camp3 == 0)
         {
@@ -62,6 +70,19 @@ public class QuestManager : MonoBehaviour
             victoirePanel.SetActive(true);
             victory = true;
             Destroy(victoirePanel, 3f);
+        }
+
+        if(camp1 == 0)
+        {
+            Destroy(Spawn1);
+        }
+        if (camp2 == 0)
+        {
+            Destroy(Spawn2);
+        }
+        if (camp3 == 0)
+        {
+            Destroy(Spawn3);
         }
     }
 

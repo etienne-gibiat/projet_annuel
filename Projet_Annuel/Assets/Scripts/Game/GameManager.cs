@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
         if(delay <= 0)
         {
             Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         if (isOver)
         {
@@ -83,7 +85,7 @@ public class GameManager : MonoBehaviour
     {
         Player.MaxMana += 20;
         Player.Mana = Player.MaxMana;
-        Player.speedMana += 1;
+        Player.speedMana += 0.50f;
         disableMenu(MenuLevelUp);
     }
     public void UpgradeDamage()
@@ -133,5 +135,29 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1.0f;
+    }
+
+    public void Respawn()
+    {
+        Player.transform.position = Player.respawn.position;
+        Player.Health = Player.MaxHealth;
+        Player.Mana = Player.MaxMana;
+        Player.xp = 0;
+        isOver = false;
+        delay = 5f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1.0f;
+        GameObject.Find("HUD").transform.Find("GameOver").gameObject.SetActive(false);
+
+
+        Player.cc.animator.Play("Idle/Run");
+        Player.isDead = false;
+        CapsuleCollider cap;
+        cap = Player.GetComponent<CapsuleCollider>();
+        cap.enabled = true;
+        cap = Player.GetComponentsInChildren<CapsuleCollider>()[1];
+        cap.enabled = false;
+
     }
 }

@@ -64,7 +64,7 @@ public class HealthBarScript : MonoBehaviour
         // ************ Xp ***************
 
         CurrentXp = Player.xp;
-        XpBar.fillAmount = CurrentXp / MaxXp;
+        XpBar.fillAmount = CurrentXp / Player.MaxXpBeforeLevelUp;
         LevelText.text = Player.level.ToString();
 
     }

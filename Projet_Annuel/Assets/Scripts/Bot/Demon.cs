@@ -18,7 +18,7 @@ public class Demon : BotControl
     protected override void Start()
     {
         base.Start();
-        MaxHealth = 500;
+        MaxHealth = 300;
         EnnemyHealth = MaxHealth;
         agent.speed = 3;
         GainXP = 70;
@@ -72,12 +72,12 @@ public class Demon : BotControl
         agent.isStopped = true;
         while(time > 0)
         {
-            transform.localScale += new Vector3(0.02f, 0.02f, 0.02f);
+            transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
             time -= 0.2f;
             yield return new WaitForSeconds(0.2f);
         }
         agent.isStopped = false;
-        agent.speed += 0.2f;
+        agent.speed += 0.1f;
         actualDamage += 5;
         EnnemyHealth += 30;
         MaxHealth += 30;
