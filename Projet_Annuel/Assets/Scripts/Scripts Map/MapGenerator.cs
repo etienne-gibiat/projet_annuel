@@ -39,7 +39,7 @@ public class MapGenerator : MonoBehaviour
     Queue<MapThreadInfo<MeshData>> meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
 
     public GameObject parentPrefab;
-    [Range(0, 5)]
+    [Range(0, 6)]
     public int biomeToGenerate;
 
     public Texture2D main_texture;
@@ -78,7 +78,10 @@ public class MapGenerator : MonoBehaviour
                 case 3: //Nature
                     GenerateNature.GenerateNatureWithHeight(useFalloff, seed, noiseScale, octaves, persistance, lacunarity, Vector2.zero, offset, normalizeMode, falloffMap, regions, meshHeightCurve, meshHeightMultiplier, parentPrefab);
                     break;
-                case 4: //Texture
+                case 4: //Mob
+                    GenerateNature.GenerateMobWithHeight(useFalloff, seed, noiseScale, octaves, persistance, lacunarity, Vector2.zero, offset, normalizeMode, falloffMap, regions, meshHeightCurve, meshHeightMultiplier, parentPrefab);
+                    break;
+                case 5: //Texture
                     GenerateNature.GenerateTextureMesh(useFalloff, seed, noiseScale, octaves, persistance, lacunarity, Vector2.zero, offset, normalizeMode, falloffMap, regions, meshHeightCurve, meshHeightMultiplier, parentPrefab, main_texture_tab, m_Renderer);
                     break;
                 default:
