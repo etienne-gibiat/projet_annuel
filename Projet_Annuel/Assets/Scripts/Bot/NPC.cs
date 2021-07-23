@@ -37,12 +37,13 @@ public class NPC : MonoBehaviour
             QuestTxt.gameObject.SetActive(true);
             Exclamation.gameObject.SetActive(false);
             
+
         }
         else
         {
             QuestTxt.gameObject.SetActive(false);
             Exclamation.gameObject.SetActive(true);
-            hmmm.Play();
+            
         }
         var lookPos = player.position - transform.position;
         lookPos.y = 0;
@@ -56,9 +57,11 @@ public class NPC : MonoBehaviour
     /// <returns></returns>
     IEnumerator getQuete()
     {
+        hmmm.Play();
         yield return new WaitForSeconds(2f);
         QuestManager.gameObject.SetActive(true);
         
+
     }
 
 }
