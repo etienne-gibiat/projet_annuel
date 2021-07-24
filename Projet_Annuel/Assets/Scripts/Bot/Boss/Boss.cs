@@ -132,9 +132,13 @@ public class Boss : BotControl
         {
             MaxHealth += 500;
             EnnemyHealth += 500;
-            agent.speed += 1f;
-            initialSpeed = agent.speed;
-            actualDamage += 10;
+            if (agent.speed < 5f)
+            {
+                agent.speed += 1f;
+                initialSpeed = agent.speed;
+            }
+            
+            actualDamage += 2;
             GainXP = 250 + (50 * Player.level);
         }
     }

@@ -24,8 +24,8 @@ public class Demon : BotControl
         GainXP = 70;
         actualDamage = 20;
         TimeBetweenAttacks = 8;
-        attackRange = 20;
-        chaseRange = 40;
+        attackRange = 15;
+        chaseRange = 30;
     }
     protected override void Update()
     {
@@ -77,13 +77,17 @@ public class Demon : BotControl
             yield return new WaitForSeconds(0.2f);
         }
         agent.isStopped = false;
-        agent.speed += 0.1f;
+        if (agent.speed < 6f)
+        {
+            agent.speed += 0.1f;
+            initialSpeed = agent.speed;
+        }
         actualDamage += 5;
         EnnemyHealth += 30;
         MaxHealth += 30;
-        attackRange += 4;
-        chaseRange += 8;
-        BlackHoleScale += new Vector3(0.2f, 0.2f, 0.2f);
+        attackRange += 2;
+        chaseRange += 4;
+        BlackHoleScale += new Vector3(0.1f, 0.1f, 0.1f);
 
     }
 

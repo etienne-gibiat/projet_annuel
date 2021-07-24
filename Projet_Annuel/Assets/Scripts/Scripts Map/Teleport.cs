@@ -5,6 +5,12 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
     Vector3 destination;
+    private AudioSource portal;
+
+    private void Start()
+    {
+        portal = GetComponent<AudioSource>();
+    }
     void OnCollisionEnter (Collision col) 
     {
         if (col.transform.tag == "Player")
@@ -12,6 +18,7 @@ public class Teleport : MonoBehaviour
             if(this.name=="portail1")
             {
                 destination = GameObject.Find("portail2").transform.position;
+                portal.Play();
             }
             else
             {
