@@ -637,7 +637,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7719580736481561982, guid: ffc457e48fc7eb34e9deeb07f57eb22d, type: 3}
+  - {fileID: 2100000, guid: ca857d37062fb0b4086be6b1643b8916, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1666,7 +1666,7 @@ GameObject:
   - component: {fileID: 147161509307562367}
   - component: {fileID: 6554070840542829167}
   m_Layer: 11
-  m_Name: Demon
+  m_Name: Kirem le Baron
   m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
