@@ -159,15 +159,15 @@ public class vThirdPersonInput : MonoBehaviour
         {
             ElementPicked = Elements.Feu;
         }
-        if (Input.GetKeyDown(Eau) && level >= 2)
+        if (Input.GetKeyDown(Eau) )
         {
             ElementPicked = Elements.Eau;
         }
-        if (Input.GetKeyDown(Terre) && level >= 3)
+        if (Input.GetKeyDown(Terre))
         {
             ElementPicked = Elements.Terre;
         }
-        if (Input.GetKeyDown(Air) && level >= 4)
+        if (Input.GetKeyDown(Air))
         {
             ElementPicked = Elements.Air;
             

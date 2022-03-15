@@ -1041,6 +1041,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1533,6 +1534,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1651,6 +1653,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1847,6 +1850,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1962,6 +1966,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2840,12 +2845,12 @@ PrefabInstance:
     - target: {fileID: 5658720447340964420, guid: 0d8c1fb6d2feaf047b36e3c714848f42,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5658720447340964420, guid: 0d8c1fb6d2feaf047b36e3c714848f42,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1080
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5658720447340964420, guid: 0d8c1fb6d2feaf047b36e3c714848f42,
         type: 3}
@@ -2916,6 +2921,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658720447340964442, guid: 0d8c1fb6d2feaf047b36e3c714848f42,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5658720447631635160, guid: 0d8c1fb6d2feaf047b36e3c714848f42,
         type: 3}
