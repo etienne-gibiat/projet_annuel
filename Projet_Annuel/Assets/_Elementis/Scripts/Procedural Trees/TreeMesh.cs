@@ -18,7 +18,58 @@ namespace _Elementis.Scripts.Procedural_Trees
             var treeMesh = new Mesh();
             var branches = tree.Branches;
             UpdateBranchSizes(tree, branches);
+            var vertices = CreateVertices(tree, branches);
+            var triangles = CreateTriangles(branches);
+            UpdateMesh(treeMesh, vertices, triangles);
+        }
 
+        private void UpdateMesh(Mesh treeMesh, Vector3[] vertices, int[] triangles)
+        {
+            treeMesh.vertices = vertices;
+            treeMesh.triangles = triangles;
+            treeMesh.RecalculateBounds();
+            treeMesh.RecalculateNormals();
+            filter.mesh = treeMesh;
+        }
+
+        private int[] CreateTriangles(IReadOnlyList<Branch> branches)
+        {
+            var triangles = new int [branches.Count * radialSubdivisions * 6];
+            for (int i = 0; i < branches.Count; i++)
+            {
+                var branch = branches[i];
+                var fIndex = i * radialSubdivisions * 6;
+                var bottomIndex = branch.IsRoot ? branches.Count * radialSubdivisions : branch.Parent.VertexId;
+                var topIndex = branch.VertexId;
+
+                for (int j = 0; j < radialSubdivisions; j++)
+                {
+                    triangles[fIndex + j * 6] = bottomIndex + j;
+                    triangles[fIndex + j * 6 + 1] = topIndex + j;
+                    if (j == radialSubdivisions - 1)
+                    {
+                        triangles[fIndex + j * 6 + 2] = topIndex;
+                        
+                        triangles[fIndex + j * 6 + 3] = bottomIndex + j;
+                        triangles[fIndex + j * 6 + 4] = topIndex;
+                        triangles[fIndex + j * 6 + 5] = bottomIndex;
+                    }
+                    else
+                    {
+                        triangles[fIndex + j * 6 + 2] = topIndex + j + 1;
+                        
+                        triangles[fIndex + j * 6 + 3] = bottomIndex + j;
+                        triangles[fIndex + j * 6 + 4] = topIndex + j + 1;
+                        triangles[fIndex + j * 6 + 5] = bottomIndex + j + 1;
+                    }
+                }
+            }
+
+            return triangles;
+        }
+
+        private Vector3[] CreateVertices(TreeGenerator tree, IReadOnlyList<Branch> branches)
+        {
             var vertices = new Vector3[(branches.Count + 1) * radialSubdivisions];
             for (int i = 0; i < branches.Count; i++)
             {
@@ -54,43 +105,8 @@ namespace _Elementis.Scripts.Procedural_Trees
                     }
                 }
             }
-            
-            var triangles = new int [branches.Count * radialSubdivisions * 6];
-            for (int i = 0; i < branches.Count; i++)
-            {
-                var branch = branches[i];
-                var fIndex = i * radialSubdivisions * 6;
-                var bottomIndex = branch.IsRoot ? branches.Count * radialSubdivisions : branch.Parent.VertexId;
-                var topIndex = branch.VertexId;
 
-                for (int j = 0; j < radialSubdivisions; j++)
-                {
-                    triangles[fIndex + j * 6] = bottomIndex + j;
-                    triangles[fIndex + j * 6 + 1] = topIndex + j;
-                    if (j == radialSubdivisions - 1)
-                    {
-                        triangles[fIndex + j * 6 + 2] = topIndex;
-                        
-                        triangles[fIndex + j * 6 + 3] = bottomIndex + j;
-                        triangles[fIndex + j * 6 + 4] = topIndex;
-                        triangles[fIndex + j * 6 + 5] = bottomIndex;
-                    }
-                    else
-                    {
-                        triangles[fIndex + j * 6 + 2] = topIndex + j + 1;
-                        
-                        triangles[fIndex + j * 6 + 3] = bottomIndex + j;
-                        triangles[fIndex + j * 6 + 4] = topIndex + j + 1;
-                        triangles[fIndex + j * 6 + 5] = bottomIndex + j + 1;
-                    }
-                }
-
-                treeMesh.vertices = vertices;
-                treeMesh.triangles = triangles;
-                treeMesh.RecalculateBounds();
-                treeMesh.RecalculateNormals();
-                filter.mesh = treeMesh;
-            }
+            return vertices;
         }
 
         private void UpdateBranchSizes(TreeGenerator tree, IReadOnlyList<Branch> branches)

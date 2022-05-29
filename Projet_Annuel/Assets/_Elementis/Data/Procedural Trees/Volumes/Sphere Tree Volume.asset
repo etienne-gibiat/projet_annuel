@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b68c5d4adc74e9286f6cd7521b1c031, type: 3}
   m_Name: Sphere Tree Volume
   m_EditorClassIdentifier: 
-  center: {x: 0, y: 5, z: 0}
+  center: {x: 0, y: 4.5, z: 0}
   radius: 3
