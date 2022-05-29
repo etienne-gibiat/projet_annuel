@@ -46,6 +46,8 @@ namespace _Elementis.Scripts.Procedural_Trees
         public IReadOnlyList<Branch> Branches => _branches;
         public float IterationTimeRatio => _timeElapsedSinceLastIteration / timeBetweenIterations;
 
+        [ShowInInspector] public int BranchCount => _branches != null ? _branches.Count : 0;
+
         private void Awake()
         {
             _attractors = new List<Vector3>();
@@ -68,6 +70,10 @@ namespace _Elementis.Scripts.Procedural_Trees
 
         private void Update()
         {
+            if (nbAttractors <= 0)
+            {
+                return;
+            }
             _timeElapsedSinceLastIteration += Time.deltaTime;
             if (_timeElapsedSinceLastIteration > timeBetweenIterations)
             {
