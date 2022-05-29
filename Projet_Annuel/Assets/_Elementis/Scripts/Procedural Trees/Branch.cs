@@ -8,9 +8,9 @@ namespace _Elementis.Scripts.Procedural_Trees
     {
         public Vector3 Start { get; set; }
         public Vector3 End { get; set; }
-        private Vector3 Direction { get; set; }
-        private Branch Parent { get; set; }
-        private List<Branch> Children { get; set; }
+        public Vector3 Direction { get; private set; }
+        public Branch Parent { get; set; }
+        public List<Branch> Children { get; set; }
         private List<Vector3> Attractors { get; set; }
         public bool Grown { get; set; }
         public bool HasAttractors => Attractors.Count > 0;
@@ -18,6 +18,9 @@ namespace _Elementis.Scripts.Procedural_Trees
         private int AttractorsNumber => Attractors.Count;
         private int DistanceFromRoot { get; set; }
         public bool IsLeaf => Children.Count == 0;
+        public float Size { get; set; }
+        public int VertexId { get; set; }
+        public bool IsRoot => Parent == null;
 
         public Branch(Vector3 start, Vector3 end, Vector3 direction, Branch parent = null)
         {

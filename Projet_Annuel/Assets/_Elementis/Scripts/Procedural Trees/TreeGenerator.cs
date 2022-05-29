@@ -28,6 +28,7 @@ namespace _Elementis.Scripts.Procedural_Trees
         private float killRange = 0.5f;
         [FoldoutGroup(ParamsGroup), SerializeField, Range(0f, 0.2f)]
         private float randomGrowth = 0.1f;
+        [SerializeField] private TreeMesh treeMesh;
 
         /// <summary>
         /// Local positions of the attractors
@@ -42,6 +43,8 @@ namespace _Elementis.Scripts.Procedural_Trees
         private float _attractionRangeSqr;
 
         public int NbAttractors => nbAttractors;
+        public IReadOnlyList<Branch> Branches => _branches;
+        public float IterationTimeRatio => _timeElapsedSinceLastIteration / timeBetweenIterations;
 
         private void Awake()
         {
@@ -113,7 +116,7 @@ namespace _Elementis.Scripts.Procedural_Trees
 
         private void ToMesh()
         {
-            PGDebug.Message($"Tree To Mesh").LogTodo();
+            treeMesh.ToMesh(this);
         }
 
         private void DoIteration()
