@@ -9,6 +9,8 @@ Projet_Annuel/[Bb]uild/
 Projet_Annuel/[Bb]uilds/
 Projet_Annuel/[Ll]ogs/
 Projet_Annuel/[Mm]emoryCaptures/
+Projet_Annuel/[Aa]ssets/IMPORTED NICOLAS/
+Projet_Annuel/[Aa]ssets/IMPORTED NICOLAS.meta
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
