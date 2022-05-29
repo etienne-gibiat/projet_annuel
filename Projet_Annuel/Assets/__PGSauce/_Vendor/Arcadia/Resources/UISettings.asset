@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efba8dcde6670e42a3a504756dba4a4, type: 3}
+  m_Name: UISettings
+  m_EditorClassIdentifier: 
+  m_loadAllOnStart: 0
+  m_layerNames:
+  - Other
+  - Background
+  - MainMenu
+  - HUD
+  - Popups
+  - HyperPopups
+  m_groupsNames:
+  - Main Menu Casual
+  - In Game Menu Casual
+  m_groupsMenus:
+  - menuList:
+    - {fileID: -5016264241152699091, guid: d6bd6bcc2280f87408a9feba1d2ed3da, type: 3}
+    - {fileID: 804080879282317843, guid: 1e59ec5ca6f33414183c436144fabbff, type: 3}
+    - {fileID: 1130247769300119519, guid: 40cbf833fe482ce419cba09889044f9c, type: 3}
+    - {fileID: 2727740672216507168, guid: bbef54614eefa5044966a3cb83ca64b2, type: 3}
+    - {fileID: -8307740247774769346, guid: eed173337b968f54fa5327dd1d234e62, type: 3}
+    - {fileID: 2182486004934823658, guid: 21d8fa292df32b948b007cb6dd980038, type: 3}
+    - {fileID: 4890873059322778756, guid: 94a7725a7c1ba264780d21f83f62cd62, type: 3}
+    - {fileID: 1664587948239962771, guid: e715a6754f6e325419b28e52318630a0, type: 3}
+    - {fileID: 8672212697677303918, guid: 60f08c0e14d3a48bd974361bead99f2b, type: 3}
+    - {fileID: 3987537969208832945, guid: 34f4d7e01e4a54fa59a12f82e7196228, type: 3}
+    - {fileID: 3647533274104071308, guid: 025b4efcd786c478981d92d7dcfacd73, type: 3}
+    - {fileID: 5057955560243209703, guid: 17607c0733dee48fa9a926eba30b7390, type: 3}
+    - {fileID: 5179576205444107279, guid: f3129cde62c4c4d1a9ef47f8125042be, type: 3}
+    - {fileID: 2348433541475416402, guid: 664f40b63df013646ab5ba8270b2b38a, type: 3}
+    - {fileID: 4578535409451913148, guid: b5f6e0a0ba8957141a1d45606df50d42, type: 3}
+    - {fileID: 1445895099928089241, guid: 9df6d63b6d4437d4088998ae7a6e60b0, type: 3}
+    - {fileID: 1386205951432847865, guid: f6fc7f6b6aa94e648bedbe461429f4dc, type: 3}
+    - {fileID: 3303945806557771946, guid: 11773e0c3405cc445b130d9839386541, type: 3}
+    - {fileID: 7005320649547588490, guid: dfa6c08f236924953ac306e820584011, type: 3}
+    - {fileID: 2583694349213242218, guid: 9ee5758f34abb4dadb0e7e98613c3b49, type: 3}
+  - menuList:
+    - {fileID: 5038857721161213542, guid: 17f56c0d8c410a54a89c8f17b245f3dd, type: 3}
+    - {fileID: 9005654629916729914, guid: 3105a18f8b37ebf49b76096cb47d944a, type: 3}
+    - {fileID: 8254314958392425250, guid: 0ed99dae4d509c844b9b7653ada11f1c, type: 3}

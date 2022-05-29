@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8caab8f89355e6743bb588f246a93f11, type: 3}
+  m_Name: New Throw Projectile Ability Data
+  m_EditorClassIdentifier: 
+  tags:
+    gameplayTag: {fileID: 0}
+    ownerTags:
+      requiredTags: []
+      ignoredTags: []
+    sourceTags:
+      requiredTags: []
+      ignoredTags: []
+    targetTags:
+      requiredTags: []
+      ignoredTags: []
+  cost: {fileID: 11400000, guid: 97f1b8d44a1761743a2b7d434cdd7616, type: 2}
+  coolDown: {fileID: 11400000, guid: 9e5a044ff8b166043a0fee11e34e79ac, type: 2}
+  projectilePrefab: {fileID: 1364880936114101917, guid: 6f5e67cdf8a206f4e9fcfb2315dfb732, type: 3}
+  onHitEffect: {fileID: 11400000, guid: c8136c93227a2a647b3d1e9ebf3b5d11, type: 2}

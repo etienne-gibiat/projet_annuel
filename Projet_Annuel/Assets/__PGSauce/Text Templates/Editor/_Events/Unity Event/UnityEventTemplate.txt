@@ -1,0 +1,11 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using PGSauce.Core.PGEvents;
+
+namespace PGSauce.#SUBNAMESPACE#
+{
+    [Serializable]
+    public class UnityEvent#FORMATTEDTYPES# : UnityEvent<#TYPES#> { }
+}

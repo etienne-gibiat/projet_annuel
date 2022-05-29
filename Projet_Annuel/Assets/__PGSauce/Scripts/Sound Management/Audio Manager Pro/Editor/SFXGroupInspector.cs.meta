@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: b1cd1998deb2664489600ed578d60b4a
+timeCreated: 1501232592
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - Banner: {fileID: 2800000, guid: a703e3727d49d1f4d8fb60c2b7c34fff, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

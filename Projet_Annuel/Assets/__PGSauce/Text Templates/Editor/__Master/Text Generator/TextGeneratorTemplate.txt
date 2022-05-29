@@ -1,0 +1,16 @@
+using UnityEngine;
+using System.Collections.Generic;
+using PGSauce.Core;
+
+namespace PGSauce.#SUBNAMESPACE#
+{
+	public class #TEMPLATENAME# : TextTemplateGeneratorBase
+	{
+	    public #TEMPLATENAME#(I#TEMPLATENAME# templateInterface)
+        {
+            TagGenerators = new Dictionary<string, TagGenerator>();
+            
+#TAGGENERATORINIT#
+        }
+	}
+}

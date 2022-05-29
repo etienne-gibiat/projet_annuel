@@ -1,0 +1,9 @@
+using PGSauce.Core;
+
+namespace PGSauce.#SUBNAMESPACE#
+{
+	public interface I#TEMPLATENAME# : ITextTemplateBase
+	{
+#METHODS#
+	}
+}

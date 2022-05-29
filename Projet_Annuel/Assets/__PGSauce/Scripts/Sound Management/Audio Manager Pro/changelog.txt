@@ -1,0 +1,44 @@
+V1.1.9
+Bug Fix 0010: Fixed a bug where the looping segment of a track would sometimes not play after the intro segment when the FPS is low
+Addition 0010: Added mixer override option to SFX layers
+Addition 0011: Added volume rolloff settings to SFX layers
+
+V1.1.8
+Bug Fix 0009: Fixed polyphony limiting not working with 3D sounds
+
+V1.1.7
+Bug Fix 0008: Fixed issues when playing SFXObjects with a 3D position
+
+V1.1.6
+Bug Fix 0007: Fixed an issue where a Track with an intro segment and no crossfade to the looping section would not play properly
+
+V1.1.5
+Addition 0009: Provided plenty of new callbacks to enable hooking custom behaviour
+Bug Fix 0006: Fixed scene persistent mode not causing singleton behaviour
+
+V1.1.4
+Bug Fix 0005: Fixed a bug with muting the SFXManager
+
+V1.1.3
+Bug Fix 0004: Fixed styling error in empty lists
+
+V1.1.2
+Bug Fix 0003: Fixed SFX volume being odd on unpause
+Addition 0007: Added realtime voice counts to inspectors
+Addition 0008: SFXManager and MusicManager now support global muting
+
+V1.1.1
+Bug Fix 0001: Fixed an array of issues with playlists
+Bug Fix 0002: Fixed a bug where inspectors would throw a null ref exception after any script recompiles
+Addition 0006: SFXManager sync corrector stage 1
+
+V1.1.0
+Addition 0001: Polyphony limiting stage 1
+Addition 0002: Transition sync corrector stage 1
+Addition 0003: MusicManager inspector
+Addition 0004: SFXManager inspector
+Addition 0005: PlaylistManager inspector
+Addition 0006: Preview buttons added to inspectors
+
+V1.0.0
+Initial Release

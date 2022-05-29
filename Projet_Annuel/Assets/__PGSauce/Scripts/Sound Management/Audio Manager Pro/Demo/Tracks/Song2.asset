@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 104287de7c288421ab9000b53a4fbfd5, type: 3}
+  m_Name: Song2
+  m_EditorClassIdentifier: 
+  CollapseEditions: 0
+  Name: Song2
+  Intro: {fileID: 8300000, guid: 25b5f7fecc8ac0a4aa5c2694d0e3cc7c, type: 3}
+  IntroVolume: 1
+  OverlapDuration: 2
+  Editions:
+  - Name: Main
+    Soundtrack: {fileID: 8300000, guid: 24b781e48d20f214a9c3e2fa09c3689c, type: 3}
+    SoundtrackVolume: 1
+    TransitionSound: {fileID: 0}
+    TransitionVolume: 1
+    KeepPlaybackTime: 0
+    FadeLength: 2

@@ -1,0 +1,15 @@
+using UnityEngine;
+using PGSauce.Core.Strings;
+using PGSauce.Core.FSM.WithSo;
+
+namespace PGSauce.#SUBNAMESPACE#
+{
+	[CreateAssetMenu(menuName = #MENUDECISION#)]
+	public class #DECISIONNAME# : SoDecision<#STATECONTROLLERNAME#>
+	{
+		public override bool Decide(#STATECONTROLLERNAME# controller)
+		{
+			return #DEFAULTVALUE#;
+		}
+	}
+}

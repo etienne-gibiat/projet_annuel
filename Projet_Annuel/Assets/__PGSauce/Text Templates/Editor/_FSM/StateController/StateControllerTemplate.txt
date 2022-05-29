@@ -1,0 +1,11 @@
+using UnityEngine;
+using PGSauce.Core.FSM.WithSo;
+
+namespace PGSauce.#SUBNAMESPACE#
+{
+	public class #STATECONTROLLERNAME# : MonoStateMachineWithSo<#STATECONTROLLERNAME#>
+	{
+	}
+}
+
+

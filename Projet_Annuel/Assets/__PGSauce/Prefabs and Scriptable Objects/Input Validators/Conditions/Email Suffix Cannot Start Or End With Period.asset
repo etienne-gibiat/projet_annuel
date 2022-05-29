@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c10c4c34ee84e71acb9165683f8c1a0, type: 3}
+  m_Name: Email Suffix Cannot Start Or End With Period
+  m_EditorClassIdentifier: 
+  descriptionTerm: InputValidations/NoPeriodAroundArobase
+  conditionDescription: Pas de point juste apres @ ou a la fin de l'email
+  testString: fzefzef@rze.rzer
+  containsArobase: {fileID: 11400000, guid: 3c92c53d466b5b346ac56563978c59fc, type: 2}

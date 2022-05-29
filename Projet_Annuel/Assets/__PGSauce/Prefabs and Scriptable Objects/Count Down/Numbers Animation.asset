@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633334b5593c48f69247fade7a02d2b1, type: 3}
+  m_Name: Numbers Animation
+  m_EditorClassIdentifier: 
+  showClip: {fileID: 0}
+  hideClip: {fileID: 0}
+  movementSection:
+    useSection: 0
+    hideAnimation: {fileID: 0}
+    showAnimation: {fileID: 0}
+  opacitySection:
+    useSection: 1
+    hideAnimation: {fileID: 11400000, guid: b6f0fcbc1c1c4564c9c7c4100d944896, type: 2}
+    showAnimation: {fileID: 11400000, guid: 07c20421dd944b841b88bf1ca47c3052, type: 2}
+  rotationSection:
+    useSection: 0
+    hideAnimation: {fileID: 0}
+    showAnimation: {fileID: 0}
+  scaleSection:
+    useSection: 1
+    hideAnimation: {fileID: 11400000, guid: d81e1832790014149a83d6f9e04a514e, type: 2}
+    showAnimation: {fileID: 11400000, guid: 516f5f3658d3204458facf99e4d79776, type: 2}
+  sliceSection:
+    useSection: 0
+    hideAnimation: {fileID: 0}
+    showAnimation: {fileID: 0}

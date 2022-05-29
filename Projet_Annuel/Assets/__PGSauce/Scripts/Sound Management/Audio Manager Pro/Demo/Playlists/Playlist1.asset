@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331f842f2d69e475ebf97d978d4ce296, type: 3}
+  m_Name: Playlist1
+  m_EditorClassIdentifier: 
+  PlaylistName: Playlist1
+  Shuffle: 0
+  Crossfade: 0
+  CrossfadeDuration: 3
+  TrackGapDuration: 0
+  Tracks:
+  - {fileID: 11400000, guid: 7b98e2584749be148a32b5517c13ed85, type: 2}
+  - {fileID: 11400000, guid: fdd944a19d4976f48b114b6f61e074a3, type: 2}

@@ -1,0 +1,16 @@
+using UnityEngine;
+
+namespace LeTai
+{
+public static class ShaderId
+{
+    public static readonly int MAIN_TEX          = Shader.PropertyToID("_MainTex");
+    public static readonly int CLIP_RECT         = Shader.PropertyToID("_ClipRect");
+    public static readonly int COLOR_MASK        = Shader.PropertyToID("_ColorMask");
+    public static readonly int STENCIL_OP        = Shader.PropertyToID("_StencilOp");
+    public static readonly int STENCIL_ID        = Shader.PropertyToID("_Stencil");
+    public static readonly int STENCIL_READ_MASK = Shader.PropertyToID("_StencilReadMask");
+    public static readonly int OFFSET            = Shader.PropertyToID("_Offset");
+    public static readonly int OVERFLOW_ALPHA    = Shader.PropertyToID("_OverflowAlpha");
+}
+}

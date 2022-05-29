@@ -1,0 +1,12 @@
+using UnityEngine;
+using System.Collections.Generic;
+using PGSauce.Core.PGEvents;
+using PGSauce.Core.Strings;
+
+namespace PGSauce.#SUBNAMESPACE#
+{
+	[CreateAssetMenu(fileName = "Game Event #FORMATTEDSPACEDTYPES#", menuName = #MENUNAME#)]
+	public class PGEvent#FORMATTEDTYPES# : PGEvent#NUMBERARG#Args<#TYPES#>
+	{
+	}
+}

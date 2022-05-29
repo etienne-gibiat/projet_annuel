@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f8413d7b71ca047b8afe1501f5e7f8, type: 3}
+  m_Name: Text Template Master SO SINGLETON
+  m_EditorClassIdentifier: 
+  interfaceTemplate: {fileID: 11400000, guid: b508123ad175a054cb423e10a1170c73, type: 2}
+  textGeneratorTemplate: {fileID: 11400000, guid: 2994161b8a5a3614aab580462d3ee23b, type: 2}
+  templates:
+    unityEvent: {fileID: 11400000, guid: cac1b641b70895f4fb49be6542fafa76, type: 2}
+    pgEvent: {fileID: 11400000, guid: c9c83b39ae9d2134193b0604d685b8fb, type: 2}
+    pgEventListener: {fileID: 11400000, guid: 39b6b66e4d93ca243bc55fdd1c1b1b06, type: 2}
+    globalVariable: {fileID: 11400000, guid: fdb8b977867a6e1468f0dc9a6a7249b0, type: 2}
+    fsmAction: {fileID: 11400000, guid: 49f61723d697c134698c12899dafcb34, type: 2}
+    fsmDecision: {fileID: 11400000, guid: 1ae1ccae05812f9469db526840e7854f, type: 2}
+    fsmState: {fileID: 11400000, guid: 917a12f0724af8b489eb8cfc80034a35, type: 2}
+    fsmStateController: {fileID: 11400000, guid: 9848d613605b0c14ea7c097bb759c27d, type: 2}
+    fsmAny: {fileID: 11400000, guid: 57231683870c14536a6defa5682ce899, type: 2}
+    strings: {fileID: 11400000, guid: d0adcec1f94b2eb46bf1245d720b56bb, type: 2}
+  lastInsidePGSauceSubNameSpace: FSM.WithSo

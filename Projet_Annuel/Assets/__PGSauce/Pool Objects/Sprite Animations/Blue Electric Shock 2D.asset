@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d355783be352466ca19857729cfe3d35, type: 3}
+  m_Name: Blue Electric Shock 2D
+  m_EditorClassIdentifier: 
+  poolable: {fileID: 541606996095851125, guid: 9deea548c44c9ac4e94d6932a0d85eaf, type: 3}
+  size: 5

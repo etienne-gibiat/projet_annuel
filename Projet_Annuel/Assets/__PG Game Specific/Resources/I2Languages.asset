@@ -1,0 +1,1089 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0b0c553be8edd4682e9180fdd13e37, type: 3}
+  m_Name: I2Languages
+  m_EditorClassIdentifier: 
+  mSource:
+    UserAgreesToHaveItOnTheScene: 0
+    UserAgreesToHaveItInsideThePluginsFolder: 0
+    GoogleLiveSyncIsUptoDate: 1
+    mTerms:
+    - Term: AGameBy
+      TermType: 0
+      Description: 
+      Languages:
+      - 'Un jeu de :'
+      - 'A Game By :'
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AbilityDescriptions/Biggito
+      TermType: 0
+      Description: 
+      Languages:
+      - Lance une ancre qui attrape la bombe et la ramene vers lui
+      - Throws an anchor that catches the bomb and brings it back to him
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AbilityDescriptions/Smallito
+      TermType: 0
+      Description: 
+      Languages:
+      - Lance un poisson pas frais qui etourdit l'adversaire
+      - Throws a nasty fish that stuns the opponent
+      Flags: 0000
+      Languages_Touch: []
+    - Term: About
+      TermType: 0
+      Description: 
+      Languages:
+      - A propos
+      - About
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AccountManaging
+      TermType: 0
+      Description: 
+      Languages:
+      - Gestion de compte
+      - Account management
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AlreadyHaveAnAccount
+      TermType: 0
+      Description: 
+      Languages:
+      - Vous avez deja un compte ?
+      - Already have an account ?
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AppUpdateErrorCode/ErrorAppNotOwned
+      TermType: 0
+      Description: 
+      Languages:
+      - "Vous n'avez pas t\xE9l\xE9charg\xE9 le jeu depuis le Play Store, la mise
+        \xE0 jour n'est pas disponible"
+      - You have not downloaded the game from the Play Store, the update is not available
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AppUpdateErrorCode/ErrorDownloadNotPresent
+      TermType: 0
+      Description: 
+      Languages:
+      - "La mise \xE0 jour n'est pas totalement t\xE9l\xE9charg\xE9e"
+      - The update is not fully downloaded
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AppUpdateErrorCode/ErrorInternalError
+      TermType: 0
+      Description: 
+      Languages:
+      - "Une erreur est survenue sur les serveurs du Play Store. Veuillez r\xE9essayer
+        plus tard."
+      - An error has occurred on the Play Store servers. Please try again later.
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AppUpdateErrorCode/ErrorPlayStoreNotFound
+      TermType: 0
+      Description: 
+      Languages:
+      - "Le Play Store n'est pas disponible sur votre appareil, l'avez-vous supprim\xE9
+        ?"
+      - The Play Store is not available on your device, have you deleted it?
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AppUpdateErrorCode/ErrorUnknown
+      TermType: 0
+      Description: 
+      Languages:
+      - "Une erreur inconnue s'est produite. Veuillez r\xE9essayer plus tard."
+      - An unknown error has occurred. Please try again later.
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AppUpdateErrorCode/ErrorUpdateFailed
+      TermType: 0
+      Description: 
+      Languages:
+      - "La mise \xE0 jour a \xE9chou\xE9. Ceci peut-\xEAtre d\xFB \xE0 une connexion
+        internet coup\xE9e"
+      - The update failed. This may be due to a broken internet connection.
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AppUpdateErrorCode/ErrorUpdateNotAllowed
+      TermType: 0
+      Description: 
+      Languages:
+      - "Votre appareil interdit la mise \xE0 jour : y'a-t-il assez de batterie et
+        d'espace de stockage ?"
+      - 'Your device prohibits the update: is there enough battery and storage space?'
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AppUpdateErrorCode/ErrorUpdateUnavailable
+      TermType: 0
+      Description: 
+      Languages:
+      - "La mise \xE0 jour a \xE9chou\xE9. Peut-\xEAtre que votre appareil n'est
+        pas compatible ?"
+      - The update failed. Maybe your device is not compatible?
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AppUpdateErrorCode/ErrorUserCanceled
+      TermType: 0
+      Description: 
+      Languages:
+      - "Vous avez annul\xE9 la mise \xE0 jour"
+      - You canceled the update
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AppUpdateErrorCode/NoError
+      TermType: 0
+      Description: 
+      Languages:
+      - Il n'y a pas d'erreur.
+      - There are no error.
+      Flags: 0000
+      Languages_Touch: []
+    - Term: AvailableIn
+      TermType: 0
+      Description: 
+      Languages:
+      - Disponible dans {[HOURS]}h{[MINUTES]}m
+      - Available in {[HOURS]}h{[MINUTES]}m
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Back
+      TermType: 0
+      Description: 
+      Languages:
+      - Retour
+      - Go back
+      Flags: 0000
+      Languages_Touch: []
+    - Term: BombBounce
+      TermType: 0
+      Description: 
+      Languages:
+      - Rebonds Bombe
+      - Bomb Bounces
+      Flags: 0000
+      Languages_Touch: []
+    - Term: BombBounceMax
+      TermType: 0
+      Description: 
+      Languages:
+      - Rebonds Bombe MAX
+      - MAX Bomb Bounces
+      Flags: 0000
+      Languages_Touch: []
+    - Term: BoxingCategories/Heavy
+      TermType: 0
+      Description: 
+      Languages:
+      - Mastoc
+      - Hefty
+      Flags: 0000
+      Languages_Touch: []
+    - Term: BoxingCategories/Light
+      TermType: 0
+      Description: 
+      Languages:
+      - Minus
+      - Titch
+      Flags: 0000
+      Languages_Touch: []
+    - Term: BoxingCategories/Medium
+      TermType: 0
+      Description: 
+      Languages:
+      - Moyen
+      - Medium
+      Flags: 0000
+      Languages_Touch: []
+    - Term: BuyHero
+      TermType: 0
+      Description: 
+      Languages:
+      - Acheter un hero
+      - Buy a hero
+      Flags: 0000
+      Languages_Touch: []
+    - Term: BuySkin
+      TermType: 0
+      Description: 
+      Languages:
+      - Acheter un costume
+      - Buy a skin
+      Flags: 0000
+      Languages_Touch: []
+    - Term: ChangePassword
+      TermType: 0
+      Description: 
+      Languages:
+      - Changer de mot de passe
+      - Change password
+      Flags: 0000
+      Languages_Touch: []
+    - Term: ComingSoon
+      TermType: 0
+      Description: 
+      Languages:
+      - A venir
+      - Coming Soon
+      Flags: 0000
+      Languages_Touch: []
+    - Term: CoolDown
+      TermType: 0
+      Description: 
+      Languages:
+      - Pouvoir en charge
+      - Cooldown
+      Flags: 0000
+      Languages_Touch: []
+    - Term: CreateAccount
+      TermType: 0
+      Description: 
+      Languages:
+      - Creer un compte
+      - Create an account
+      Flags: 0000
+      Languages_Touch: []
+    - Term: CreateAccountWarning
+      TermType: 0
+      Description: 
+      Languages:
+      - Creer un compte / Se connecter
+      - Sign Up / Login
+      Flags: 0000
+      Languages_Touch: []
+    - Term: CreateAccountWarningLong
+      TermType: 0
+      Description: 
+      Languages:
+      - 'Bien que creer un compte n''est pas necessaire, c''est tres recommande.
+        En effet, votre progression, vos recompenses, vos achats, sont lies a votre
+        telephone. Si vous changez de telephone, vous ne pourrez pas recuperer ces
+        donnees. En creant un compte, vous etes sur(e) de ne rien perdre.  '
+      - Although creating an account is not necessary, it is highly recommended.
+        Indeed, your progress, your rewards, your purchases, are linked to your phone.
+        If you change your phone, you will not be able to recover this data. By creating
+        an account, you are sure not to lose anything.
+      Flags: 0000
+      Languages_Touch: []
+    - Term: CurrentLanguage
+      TermType: 0
+      Description: 
+      Languages:
+      - Francais
+      - English
+      Flags: 0000
+      Languages_Touch: []
+    - Term: CustomGame
+      TermType: 0
+      Description: 
+      Languages:
+      - Personnaliser la partie
+      - Customize the game
+      Flags: 0000
+      Languages_Touch: []
+    - Term: DailyRewards
+      TermType: 0
+      Description: 
+      Languages:
+      - Recompenses quotidiennes
+      - Daily rewards
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Day
+      TermType: 0
+      Description: 
+      Languages:
+      - JOUR {[DAY_NUMBER]}
+      - DAY {[DAY_NUMBER]}
+      Flags: 0000
+      Languages_Touch: []
+    - Term: DisappearsIn
+      TermType: 0
+      Description: 
+      Languages:
+      - Disparait dans {[HOURS]}h{[MINUTES]}m
+      - Disappears in {[HOURS]}h{[MINUTES]}m
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Email
+      TermType: 0
+      Description: 
+      Languages:
+      - Email
+      - Email
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Error
+      TermType: 0
+      Description: 
+      Languages:
+      - Erreur !
+      - Error !
+      Flags: 0000
+      Languages_Touch: []
+    - Term: ForgottenPassword
+      TermType: 0
+      Description: 
+      Languages:
+      - Mot de passe oublie ?
+      - Forgot your password ?
+      Flags: 0000
+      Languages_Touch: []
+    - Term: FormErrors/AccountAlreadyLinked
+      TermType: 0
+      Description: 
+      Languages:
+      - Un compte est deja lie a votre appareil, veuillez vous connecter.
+      - An account is already linked to your device, please login.
+      Flags: 0000
+      Languages_Touch: []
+    - Term: FormErrors/EmailInUse
+      TermType: 0
+      Description: 
+      Languages:
+      - L'adresse email est deja utilisee. Vous pouvez vous connecter en appuyant
+        sur Se connecter
+      - The email address is already used. You can sign in by tapping Log In
+      Flags: 0000
+      Languages_Touch: []
+    - Term: FormErrors/GenericError
+      TermType: 0
+      Description: 
+      Languages:
+      - 'L''erreur suivante a ete generee par le serveur : {[ERROR]}.\nVous pouvez
+        contacter le support depuis les options.'
+      - 'The following error was generated by the server: {[ERROR]} .\nYou can contact
+        support from the settings.'
+      Flags: 0000
+      Languages_Touch: []
+    - Term: FormErrors/InvalidEmail
+      TermType: 0
+      Description: 
+      Languages:
+      - L'adresse email n'est pas reconnue. Veuillez la verifier, ou creez un compte.
+      - The email address is not recognized. Check it out or create an account.
+      Flags: 0000
+      Languages_Touch: []
+    - Term: FormErrors/InvalidPassword
+      TermType: 0
+      Description: 
+      Languages:
+      - Le mot de passe n'est pas reconnu, si vous l'avez oublie, appuyez sur Mot
+        de Passe oublie
+      - The password is not recognised, if you have forgotten it, press Forgot Password
+      Flags: 0000
+      Languages_Touch: []
+    - Term: FormErrors/Password
+      TermType: 0
+      Description: 
+      Languages:
+      - Le mot de passe doit au moins avoir 6 caracteres
+      - 'Password must be at least 6 characters '
+      Flags: 0000
+      Languages_Touch: []
+    - Term: FormErrors/ServiceUnavailable
+      TermType: 0
+      Description: 
+      Languages:
+      - Le service n'est pas disponible, veuillez patienter un instant et reessayer.
+        Si le probleme persiste, vous pouvez nous contacter depuis les options.
+      - The service is not available, please wait a moment and try again. If the
+        problem persists, you can contact us from the options.
+      Flags: 0000
+      Languages_Touch: []
+    - Term: FortuneWheel
+      TermType: 0
+      Description: 
+      Languages:
+      - Roulette
+      - Wheel
+      Flags: 0000
+      Languages_Touch: []
+    - Term: FortuneWheelLong
+      TermType: 0
+      Description: 
+      Languages:
+      - Roue de la Fortune
+      - Wheel Of Fortune
+      Flags: 0000
+      Languages_Touch: []
+    - Term: GamesCount
+      TermType: 0
+      Description: 
+      Languages:
+      - Nombre de parties
+      - Number of games
+      Flags: 0000
+      Languages_Touch: []
+    - Term: GetCoins
+      TermType: 0
+      Description: 
+      Languages:
+      - Obtenir des pieces
+      - Get coins
+      Flags: 0000
+      Languages_Touch: []
+    - Term: GetGems
+      TermType: 0
+      Description: 
+      Languages:
+      - Obtenir des gemmes
+      - Get gems
+      Flags: 0000
+      Languages_Touch: []
+    - Term: HEROS
+      TermType: 0
+      Description: 
+      Languages:
+      - HEROS
+      - HEROES
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Heros/Biggito
+      TermType: 0
+      Description: 
+      Languages:
+      - Biggito
+      - Biggito
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Heros/Smallito
+      TermType: 0
+      Description: 
+      Languages:
+      - Smallito
+      - Smalitto
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Id
+      TermType: 0
+      Description: 
+      Languages:
+      - Identifiant
+      - Identifier
+      Flags: 0000
+      Languages_Touch: []
+    - Term: InputErrorEmail
+      TermType: 0
+      Description: 
+      Languages:
+      - Erreurs de saisie email
+      - Email input errors
+      Flags: 0000
+      Languages_Touch: []
+    - Term: InputErrorPassword
+      TermType: 0
+      Description: 
+      Languages:
+      - Erreurs de saisie mot de passe
+      - Password input errors
+      Flags: 0000
+      Languages_Touch: []
+    - Term: InputValidations/AtLeast8Characters
+      TermType: 0
+      Description: 
+      Languages:
+      - Doit avoir au moins 8 caracteres
+      - Must be at least 8 characters
+      Flags: 0000
+      Languages_Touch: []
+    - Term: InputValidations/EmailSize
+      TermType: 0
+      Description: 
+      Languages:
+      - La partie avant le @ doit avoir entre 1 et 64 caracteres
+      - The part before the @ must be between 1 and 64 characters
+      Flags: 0000
+      Languages_Touch: []
+    - Term: InputValidations/MustContainADot
+      TermType: 0
+      Description: 
+      Languages:
+      - Doit contenir un point
+      - Must contain a period
+      Flags: 0000
+      Languages_Touch: []
+    - Term: InputValidations/MustContainExactlyOneArobase
+      TermType: 0
+      Description: 
+      Languages:
+      - Doit avoir un seul @
+      - Must have only one @
+      Flags: 0000
+      Languages_Touch: []
+    - Term: InputValidations/NoPeriodAroundArobase
+      TermType: 0
+      Description: 
+      Languages:
+      - Pas de point juste apres @ ou a la fin de l'email
+      - No period right after @ or at the end of the email
+      Flags: 0000
+      Languages_Touch: []
+    - Term: InputValidations/NoPeriodAtBeginning
+      TermType: 0
+      Description: 
+      Languages:
+      - Ne peut pas commencer avec un point
+      - Can't start with a period
+      Flags: 0000
+      Languages_Touch: []
+    - Term: InputValidations/NoPeriodRightBeforeArobase
+      TermType: 0
+      Description: 
+      Languages:
+      - Pas de point juste avant le @
+      - No period just before the @
+      Flags: 0000
+      Languages_Touch: []
+    - Term: InputValidations/SuffixContainsPeriod
+      TermType: 0
+      Description: 
+      Languages:
+      - La partie apres l'@ doit contenir un point
+      - The part after the @ must contain a period
+      Flags: 0000
+      Languages_Touch: []
+    - Term: InternetError
+      TermType: 0
+      Description: 
+      Languages:
+      - Erreur de connection internet.
+      - Internet connection error.
+      Flags: 0000
+      Languages_Touch: []
+    - Term: InternetErrorLong
+      TermType: 0
+      Description: 
+      Languages:
+      - Cette fonctionnalite necessite Internet. Veuillez verifier votre connection
+        Wifi ou vos donnees mobiles.
+      - This feature requires internet. Please check your Wifi connection or your
+        mobile data.
+      Flags: 0000
+      Languages_Touch: []
+    - Term: InternetWarning
+      TermType: 0
+      Description: 
+      Languages:
+      - Connection internet conseillee
+      - Internet connection recommended
+      Flags: 0000
+      Languages_Touch: []
+    - Term: InternetWarningLong
+      TermType: 0
+      Description: 
+      Languages:
+      - Une connection internet n'est pas necessaire pour jouer, mais si vous n'etes
+        pas connecte, vous n'aurez pas de recompenses
+      - An internet connection is not required to play, but if you are not connected,
+        you will not get rewards
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Language
+      TermType: 0
+      Description: 
+      Languages:
+      - Langue
+      - Language
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Leaderboard
+      TermType: 0
+      Description: 
+      Languages:
+      - Classement
+      - Leaderboard
+      Flags: 0000
+      Languages_Touch: []
+    - Term: LogIn
+      TermType: 0
+      Description: 
+      Languages:
+      - Se connecter
+      - Log in
+      Flags: 0000
+      Languages_Touch: []
+    - Term: LogOut
+      TermType: 0
+      Description: 
+      Languages:
+      - Se deconnecter
+      - Sign out
+      Flags: 0000
+      Languages_Touch: []
+    - Term: LookingForUpdate
+      TermType: 0
+      Description: 
+      Languages:
+      - "Recherche de mise \xE0 jour"
+      - Looking For Update
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Music
+      TermType: 0
+      Description: 
+      Languages:
+      - Musique
+      - Music
+      Flags: 0000
+      Languages_Touch: []
+    - Term: NotEnoughCoins
+      TermType: 0
+      Description: 
+      Languages:
+      - Il manque {[AMOUNT]} pieces[i2p_One]Il manque 1 piece
+      - '{[AMOUNT]} coins short[i2p_One]{[AMOUNT]} coin short'
+      Flags: 0000
+      Languages_Touch: []
+    - Term: NotEnoughGems
+      TermType: 0
+      Description: 
+      Languages:
+      - Il manque {[AMOUNT]} gemmes[i2p_One]Il manque 1 gemme
+      - '{[AMOUNT]} gems short[i2p_One]One gem short'
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Ok
+      TermType: 0
+      Description: 
+      Languages:
+      - Ok
+      - Ok
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Owned
+      TermType: 0
+      Description: 
+      Languages:
+      - Possede
+      - Owned
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Password
+      TermType: 0
+      Description: 
+      Languages:
+      - Mot de passe
+      - Password
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Pets
+      TermType: 0
+      Description: 
+      Languages:
+      - FAMILIERS
+      - PETS
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Play
+      TermType: 0
+      Description: 
+      Languages:
+      - JOUER
+      - PLAY
+      Flags: 0000
+      Languages_Touch: []
+    - Term: PlayerStatus/Stun
+      TermType: 0
+      Description: 
+      Languages:
+      - ETOURDI
+      - STUNNED
+      Flags: 0000
+      Languages_Touch: []
+    - Term: RateUs
+      TermType: 0
+      Description: 
+      Languages:
+      - Noter le jeu
+      - Rate the game
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Ready
+      TermType: 0
+      Description: 
+      Languages:
+      - PRET
+      - READY
+      Flags: 0000
+      Languages_Touch: []
+    - Term: RememberMe
+      TermType: 0
+      Description: 
+      Languages:
+      - Se souvenir de moi
+      - Remember me
+      Flags: 0000
+      Languages_Touch: []
+    - Term: ResetPassword
+      TermType: 0
+      Description: 
+      Languages:
+      - Nouveau mot de passe
+      - Reset password
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Rewards
+      TermType: 0
+      Description: 
+      Languages:
+      - Cadeaux
+      - Rewards
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Roles
+      TermType: 0
+      Description: 
+      Languages:
+      - Roulette
+      - Wheel
+      Flags: 0000
+      Languages_Touch: []
+    - Term: SFX
+      TermType: 0
+      Description: 
+      Languages:
+      - Sons
+      - SFX
+      Flags: 0000
+      Languages_Touch: []
+    - Term: ScreenShake
+      TermType: 0
+      Description: 
+      Languages:
+      - Tremblements Ecran
+      - Screen Shake
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Settings
+      TermType: 0
+      Description: 
+      Languages:
+      - Options
+      - Settings
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Shop
+      TermType: 0
+      Description: 
+      Languages:
+      - Magasin
+      - Shop
+      Flags: 0000
+      Languages_Touch: []
+    - Term: ShopLoading
+      TermType: 0
+      Description: 
+      Languages:
+      - Chargement du magasin
+      - Loading the shop
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Size
+      TermType: 0
+      Description: 
+      Languages:
+      - TAILLE
+      - SIZE
+      Flags: 0000
+      Languages_Touch: []
+    - Term: SkinDescriptions/BiggitoDefault
+      TermType: 0
+      Description: 
+      Languages:
+      - Un marin mastoc
+      - A hefty sailor
+      Flags: 0000
+      Languages_Touch: []
+    - Term: SkinDescriptions/BiggitoRedBeard
+      TermType: 0
+      Description: 
+      Languages:
+      - Biggito Barbe Rouge, terreur des mers
+      - Red Beard Biggito, Terror of the Seas
+      Flags: 0000
+      Languages_Touch: []
+    - Term: SkinDescriptions/SmallitoDefault
+      TermType: 0
+      Description: 
+      Languages:
+      - "Petit marin rus\xE9"
+      - Cunning little sailor
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Skins
+      TermType: 0
+      Description: 
+      Languages:
+      - COSTUMES
+      - SKINS
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Skins/BiggitoDefault
+      TermType: 0
+      Description: 
+      Languages:
+      - Biggito
+      - Biggito
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Skins/BiggitoRedBeard
+      TermType: 0
+      Description: 
+      Languages:
+      - Biggito Barbe Rouge
+      - Red Beard Biggito
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Skins/SmallitoDefault
+      TermType: 0
+      Description: 
+      Languages:
+      - Smallito
+      - Smallito
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Speed
+      TermType: 0
+      Description: 
+      Languages:
+      - Jouer
+      - Play
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Spin
+      TermType: 0
+      Description: 
+      Languages:
+      - LANCER
+      - SPIN
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Stats
+      TermType: 0
+      Description: 
+      Languages:
+      - Stats
+      - Stats
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Strength
+      TermType: 0
+      Description: 
+      Languages:
+      - FORCE
+      - STRENGTH
+      Flags: 0000
+      Languages_Touch: []
+    - Term: SuccessPopUp/AccountCreated
+      TermType: 0
+      Description: 
+      Languages:
+      - Compte cree ! Vous etes connecte(e)
+      - Account created! You are logged in
+      Flags: 0000
+      Languages_Touch: []
+    - Term: SuccessPopUp/LoggedIn
+      TermType: 0
+      Description: 
+      Languages:
+      - Connexion reussie !
+      - Successful connection !
+      Flags: 0000
+      Languages_Touch: []
+    - Term: SuccessPopUp/ResetPassword
+      TermType: 0
+      Description: 
+      Languages:
+      - Vous avez recu un email pour reinitialiser votre mot de passe !
+      - You have received an email to reset your password!
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Support
+      TermType: 0
+      Description: 
+      Languages:
+      - Support
+      - Assistance
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Trophies
+      TermType: 0
+      Description: 
+      Languages:
+      - Trophees
+      - Trophies
+      Flags: 0000
+      Languages_Touch: []
+    - Term: TryAd
+      TermType: 0
+      Description: 
+      Languages:
+      - Regarder une courte video pour essayer {[TRY_ENTITY]} pendant une journee
+        ?
+      - Watch a short video to try {[TRY_ENTITY]} for a day?
+      Flags: 0000
+      Languages_Touch: []
+    - Term: TryTitle
+      TermType: 0
+      Description: Used in watch ad menu
+      Languages:
+      - Essayer {[TRY_ENTITY]}
+      - Try {[TRY_ENTITY]}
+      Flags: 0000
+      Languages_Touch: []
+    - Term: UnlockWorld
+      TermType: 0
+      Description: 
+      Languages:
+      - Debloquer Monde
+      - Unlock World
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Update
+      TermType: 0
+      Description: 
+      Languages:
+      - "Mise \xE0 jour"
+      - Update
+      Flags: 0000
+      Languages_Touch: []
+    - Term: ValidateHero
+      TermType: 0
+      Description: 
+      Languages:
+      - Valider Hero
+      - Validate Hero
+      Flags: 0000
+      Languages_Touch: []
+    - Term: ValidateSkin
+      TermType: 0
+      Description: 
+      Languages:
+      - "Valider Costume\t"
+      - Validate Skin
+      Flags: 0000
+      Languages_Touch: []
+    - Term: ValidateWorld
+      TermType: 0
+      Description: 
+      Languages:
+      - Valider Monde
+      - Validate World
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Version
+      TermType: 0
+      Description: 
+      Languages:
+      - Version {[VERSION]}
+      - Release {[VERSION]}
+      Flags: 0000
+      Languages_Touch: []
+    - Term: WaitPopUp/CreateAccount
+      TermType: 0
+      Description: 
+      Languages:
+      - Creation du compte en cours
+      - Account creation in progress
+      Flags: 0000
+      Languages_Touch: []
+    - Term: WaitPopUp/LoggingIn
+      TermType: 0
+      Description: 
+      Languages:
+      - Connexion en cours...
+      - Logging In...
+      Flags: 0000
+      Languages_Touch: []
+    - Term: WaitPopUp/OngoingOperation
+      TermType: 0
+      Description: 
+      Languages:
+      - Operation en cours
+      - Ongoing operation
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Watch
+      TermType: 0
+      Description: 
+      Languages:
+      - Regarder !
+      - Watch !
+      Flags: 0000
+      Languages_Touch: []
+    - Term: WheelExplanation
+      TermType: 0
+      Description: 
+      Languages:
+      - Obtiens des objets en regardant une courte video. L'objet obtenu depend du
+        resultat de la roulette apres la video. La roulette peut-etre lancee 6 fois
+        par jour.
+      - Get items by watching a short video. The item obtained depends on the result
+        of the wheel after the video. Roulette can be spun 6 times a day.
+      Flags: 0000
+      Languages_Touch: []
+    - Term: WorldSelect
+      TermType: 0
+      Description: 
+      Languages:
+      - Selection du monde
+      - Selection of the world
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Worlds
+      TermType: 0
+      Description: 
+      Languages:
+      - MONDES
+      - WORLDS
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Worlds/PirateShip
+      TermType: 0
+      Description: 
+      Languages:
+      - Bateau Pirate
+      - Pirate Ship
+      Flags: 0000
+      Languages_Touch: []
+    CaseInsensitiveTerms: 0
+    OnMissingTranslation: 1
+    mTerm_AppName: 
+    mLanguages:
+    - Name: French
+      Code: fr
+      Flags: 0
+    - Name: English
+      Code: en
+      Flags: 0
+    IgnoreDeviceLanguage: 0
+    _AllowUnloadingLanguages: 0
+    Google_WebServiceURL: https://script.google.com/macros/s/AKfycbyHM6W6ffg1-knevGwop-7u2cD-fQSgjhQjrQ0YgDyZI0Z_a_sd9CZXUYXdXe71U4nl/exec
+    Google_SpreadsheetKey: 17FbSa8UcYgcUH-LWsrR3h_E__h0FudEMUZHDfEhdxwE
+    Google_SpreadsheetName: I2Loc Drop Da Bomb Localization
+    Google_LastUpdatedVersion: 1653251411269
+    Google_Password: I2LBigCattoAB123+
+    GoogleUpdateFrequency: 0
+    GoogleInEditorCheckFrequency: 0
+    GoogleUpdateSynchronization: 1
+    GoogleUpdateDelay: 3
+    Assets:
+    - {fileID: 21300000, guid: f697445a9b1fb473e937a4fec1fbdbd4, type: 3}
+    - {fileID: 21300000, guid: 77a9d892ce0a9494388c3e8e2c94b25e, type: 3}
+    Spreadsheet_LocalFileName: 
+    Spreadsheet_LocalCSVSeparator: ','
+    Spreadsheet_LocalCSVEncoding: utf-8
+    Spreadsheet_SpecializationAsRows: 1

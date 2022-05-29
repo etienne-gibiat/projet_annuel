@@ -1,0 +1,15 @@
+using UnityEngine;
+using PGSauce.Core.Strings;
+using PGSauce.Core.FSM.WithSo;
+
+namespace PGSauce.#SUBNAMESPACE#
+{
+	[CreateAssetMenu(menuName = #MENUACTION#)]
+	public class #ACTIONNAME# : SoAction<#STATECONTROLLERNAME#>
+	{
+		public override void Act(#STATECONTROLLERNAME# controller)
+		{
+
+		}
+	}
+}

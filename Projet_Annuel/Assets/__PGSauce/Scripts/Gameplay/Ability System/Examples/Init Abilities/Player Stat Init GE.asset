@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e680b4510474635a9c6501bbb2cd697, type: 3}
+  m_Name: Player Stat Init GE
+  m_EditorClassIdentifier: 
+  gameplayEffect:
+    durationType: 0
+    durationModifierMagnitude:
+      magnitude: {fileID: 0}
+      multiplier: 0
+    modifiers:
+    - attribute: {fileID: 11400000, guid: 8bc5a0effefd9244380895ccec1c407e, type: 2}
+      modifier: 0
+      modifierMagnitude:
+        magnitude: {fileID: 11400000, guid: fc14a0eb287bba14282dbf0f982e5e04, type: 2}
+        multiplier: 20
+    - attribute: {fileID: 11400000, guid: 88ad8bb3f80855b4bbae0ab1f53d34af, type: 2}
+      modifier: 0
+      modifierMagnitude:
+        magnitude: {fileID: 11400000, guid: fc14a0eb287bba14282dbf0f982e5e04, type: 2}
+        multiplier: 300
+  gameplayEffectTags:
+    grantedTags: []
+    requiredTags:
+      requiredTags: []
+      ignoredTags: []
+  period:
+    period: 0
+    executeImmediately: 0

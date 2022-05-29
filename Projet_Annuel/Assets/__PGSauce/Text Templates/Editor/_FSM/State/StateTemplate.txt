@@ -1,0 +1,11 @@
+using UnityEngine;
+using PGSauce.Core.Strings;
+using PGSauce.Core.FSM.WithSo;
+
+namespace PGSauce.#SUBNAMESPACE#
+{
+	[CreateAssetMenu(menuName = #MENUSTATE#)]
+	public class #STATENAME# : SoState<#STATECONTROLLERNAME#>
+	{
+	}
+}

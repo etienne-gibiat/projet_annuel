@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633334b5593c48f69247fade7a02d2b1, type: 3}
+  m_Name: Go! Animation
+  m_EditorClassIdentifier: 
+  showClip: {fileID: 0}
+  hideClip: {fileID: 0}
+  movementSection:
+    useSection: 0
+    hideAnimation: {fileID: 0}
+    showAnimation: {fileID: 0}
+  opacitySection:
+    useSection: 1
+    hideAnimation: {fileID: 11400000, guid: 0350ede78d4be654d8de571d6b65e8e3, type: 2}
+    showAnimation: {fileID: 11400000, guid: 4c7dcf79bed1aa34d8693632f279134e, type: 2}
+  rotationSection:
+    useSection: 1
+    hideAnimation: {fileID: 11400000, guid: 5bb3dabf431b5f2449048a4d78e12391, type: 2}
+    showAnimation: {fileID: 11400000, guid: dc33b1b92f173ad43afe44ccda0d8f17, type: 2}
+  scaleSection:
+    useSection: 1
+    hideAnimation: {fileID: 11400000, guid: e80950907c9c6b145a0b3c124c6abda4, type: 2}
+    showAnimation: {fileID: 11400000, guid: 81b39efd589bc774691c62637b2dd9c0, type: 2}
+  sliceSection:
+    useSection: 0
+    hideAnimation: {fileID: 0}
+    showAnimation: {fileID: 0}

@@ -1,0 +1,12 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using PGSauce.Core.PGEvents;
+
+namespace PGSauce.#SUBNAMESPACE#
+{
+	public class PGEventListener#FORMATTEDTYPES# : PGEventListener#NUMBERARG#Args<#TYPES#, PGEvent#FORMATTEDTYPES#, UnityEvent#FORMATTEDTYPES#>
+	{
+	}
+}

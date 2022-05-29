@@ -1,0 +1,129 @@
+stages:
+  - build_and_test
+  - deploy
+  
+# If you are looking for a place where to add 'UNITY_LICENSE_FILE' and other secrets, please visit your project's gitlab page:
+# settings > CI/CD > Variables instead
+variables:
+  BUILD_NAME: #BUILDNAME#
+  UNITY_ACTIVATION_FILE: ./unity3d.alf
+  UNITY_VERSION: "#UNITYVERSION#"
+  IMAGE: unityci/editor # https://hub.docker.com/r/unityci/editor
+  IMAGE_VERSION: "0.15" # https://github.com/game-ci/docker/releases
+  SUBFOLDER: #SUBFOLDER_FORMATTED_BASH#
+  UNITY_DIR: $CI_PROJECT_DIR#SUBFOLDER# # this needs to be an absolute path. Defaults to the root of your tree.
+  #OTHERVARIABLES#
+  
+image: $IMAGE:$UNITY_VERSION-base-$IMAGE_VERSION
+
+.unity_before_script: &unity_before_script
+  before_script:
+    - chmod +x ./ci/before_script.sh && ./ci/before_script.sh
+ 
+.cache: &cache
+  cache:
+    key: "$CI_PROJECT_NAMESPACE-$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-$TEST_PLATFORM"
+    paths:
+      - $UNITY_DIR/Library/
+      
+.license: &license
+  rules:
+    - if: '$UNITY_LICENSE != null'
+      when: always
+
+.unity_defaults: &unity_defaults
+  <<:
+    - *unity_before_script
+    - *cache
+    - *license
+    
+# run this job when you need to request a license
+# you may need to follow activation steps from documentation
+get-activation-file:
+  rules:
+    - if: '$UNITY_LICENSE == null'
+      when: manual
+  stage: build_and_test
+  script:
+    - chmod +x ./ci/get_activation_file.sh && ./ci/get_activation_file.sh
+  artifacts:
+    paths:
+      - $UNITY_ACTIVATION_FILE
+    expire_in: 10 min # Expiring this as artifacts may contain sensitive data and should not be kept public
+    
+.test: &test
+  stage: build_and_test
+  <<: *unity_defaults
+  script:
+    - chmod +x ./ci/test.sh && ./ci/test.sh
+  artifacts:
+    when: always
+    expire_in: 2 weeks
+  # https://gitlab.com/gableroux/unity3d-gitlab-ci-example/-/issues/83
+  # you may need to remove or replace these to fit your need if you are using your own runners
+  tags:
+    - gitlab-org
+  coverage: /<Linecoverage>(.*?)</Linecoverage>/
+  
+#test-playmode:
+#  <<: *test
+#  variables:
+#    TEST_PLATFORM: playmode
+
+#test-editmode:
+#  <<: *test
+#  variables:
+#    TEST_PLATFORM: editmode
+    
+.build: &build
+  stage: build_and_test
+  <<: *unity_defaults
+  script:
+    - chmod +x ./ci/build.sh && ./ci/build.sh
+  artifacts:
+    paths:
+      - $UNITY_DIR/Builds/
+  # https://gitlab.com/gableroux/unity3d-gitlab-ci-example/-/issues/83
+  # you may need to remove or replace these to fit your need if you are using your own runners
+  tags:
+    - gitlab-org   
+    
+# For webgl support, you need to set Compression Format to Disabled for v0.9. See https://github.com/game-ci/docker/issues/75 ??
+ 
+#BUILDTARGETS#
+
+#DEPLOYS#
+
+workflow:
+ rules:
+   - if: '$CI_COMMIT_BRANCH == "main"'
+     when: always
+   - if: '$CI_COMMIT_BRANCH == "master"'
+     when: always
+   - if: '$CI_COMMIT_BRANCH == "develop"'
+     when: always
+   - when: never
+
+#build-and-deploy-ios:
+#  stage: deploy
+#  script:
+#    - cd $UNITY_DIR/Builds/iOS/$BUILD_NAME
+#    - pod install
+#    - fastlane ios beta
+#  tags:
+#    - ios
+#    - mac
+#  needs: ["build-ios-xcode"]
+
+#pages:
+# image: alpine:latest
+# stage: deploy
+# script:
+#   - mv "$UNITY_DIR/Builds/WebGL/${BUILD_NAME}" public
+# artifacts:
+#   paths:
+#     - public
+# only:
+#  - master
+
+
