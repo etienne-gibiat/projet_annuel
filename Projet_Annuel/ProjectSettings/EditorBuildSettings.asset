@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/_Elementis/Scenes/1_Managers.unity
     guid: 953f9d0ddd083c14f932080e3919eb6a
   - enabled: 1
-    path: Assets/_Elementis/Scenes/3_MenuScene.unity
+    path: Assets/_Elementis/Scenes/2_MenuScene.unity
     guid: 6db8c12fe40613f44999d10f108aaa26
   - enabled: 1
-    path: Assets/_Elementis/Scenes/4_GameScene.unity
+    path: Assets/_Elementis/Scenes/3_GameScene.unity
     guid: d8cd855e6e7f3964485ff4c2eff9e2c0
   m_configObjects: {}
