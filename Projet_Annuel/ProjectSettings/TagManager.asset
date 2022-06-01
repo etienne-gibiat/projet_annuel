@@ -9,6 +9,7 @@ TagManager:
   - Ennemy
   - SpellManager
   - Weapon
+  - CinemachineTarget
   layers:
   - Default
   - TransparentFX
@@ -16,12 +17,12 @@ TagManager:
   - 
   - Water
   - UI
+  - PLAYER
   - 
   - 
-  - Body
-  - tornade
-  - Lighting
-  - NPC
+  - 
+  - 
+  - 
   - 
   - 
   - 
