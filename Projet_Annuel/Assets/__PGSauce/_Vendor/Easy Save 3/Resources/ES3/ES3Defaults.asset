@@ -41,7 +41,9 @@ MonoBehaviour:
     - Elringus.BlendModes.Runtime
     - ALINE
     - LeanTouch
+    - sc.fae.runtime
     - LeanLocalization
+    - sc.fae.editor
     - Animancer.FSM
     - LeanCommon
     - LoadingScreen.Misc
