@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RendererFeatures:
   - {fileID: 2102321749683825052}
-  m_RendererFeatureMap: 9c697b257ef22c1d
+  - {fileID: 4586179666008484216}
+  m_RendererFeatureMap: 9c697b257ef22c1d78298e8c1b62a53f
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -55,5 +56,18 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 729a2e952309e2547a3747b2cdd9a36f, type: 3}
   m_Name: NewShapesRenderFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+--- !u!114 &4586179666008484216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b7f813b992430245ad61f09b0473d9f, type: 3}
+  m_Name: MKGlow
   m_EditorClassIdentifier: 
   m_Active: 1

@@ -48,6 +48,7 @@ MonoBehaviour:
     - LeanCommon
     - LoadingScreen.Misc
     - Sirenix.OdinInspector.CompatibilityLayer
+    - MK.Glow
     - Dreamteck.Splines.Editor
     - Elringus.BlendModes.Editor
     - ShapesEditor
@@ -58,6 +59,8 @@ MonoBehaviour:
     - ALINEEditor
     - Sirenix.OdinInspector.Modules.UnityMathematics
     - ALINEPackageToolsEditor
+    - MK.Glow.Editor
+    - MK.Glow.URP.Editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

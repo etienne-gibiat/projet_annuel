@@ -38,7 +38,7 @@ MonoBehaviour:
   terrainFitResolution: 128
   terrainLayerMask:
     serializedVersion: 2
-    m_Bits: 3895
+    m_Bits: 55
   terrainFogHeight: 25
   terrainFogMinAltitude: 0
   terrainFogMaxAltitude: 150
