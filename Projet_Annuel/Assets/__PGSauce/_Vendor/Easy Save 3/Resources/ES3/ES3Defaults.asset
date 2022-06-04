@@ -40,6 +40,7 @@ MonoBehaviour:
     - Animancer
     - Elringus.BlendModes.Runtime
     - ALINE
+    - MK.Glow
     - LeanTouch
     - sc.fae.runtime
     - LeanLocalization
@@ -48,19 +49,18 @@ MonoBehaviour:
     - LeanCommon
     - LoadingScreen.Misc
     - Sirenix.OdinInspector.CompatibilityLayer
-    - MK.Glow
     - Dreamteck.Splines.Editor
     - Elringus.BlendModes.Editor
+    - MK.Glow.Editor
     - ShapesEditor
     - Dreamteck.Utilities.Editor
     - LeTai.TrueShadow.Editor
     - AssetUsageDetector.Editor
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - ALINEEditor
+    - MK.Glow.URP.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
     - ALINEPackageToolsEditor
-    - MK.Glow.Editor
-    - MK.Glow.URP.Editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

@@ -158,6 +158,7 @@ namespace _Elementis.Scripts.Character_Controller
 
         private void LateUpdate()
         {
+            lockCameraPosition = _input.toggleCameraLock;
             CameraRotation();
         }
 

@@ -95,12 +95,12 @@ MonoBehaviour:
       maxValue: 10
   bloomScattering:
     m_OverrideState: 1
-    m_Value: 5.28
+    m_Value: 10
     min: 1
     max: 10
   bloomIntensity:
     m_OverrideState: 1
-    m_Value: 2.8
+    m_Value: 1.25
   allowLensSurface:
     m_OverrideState: 1
     m_Value: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
     max: 1
   allowGlare:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   glareBlend:
     m_OverrideState: 0
     m_Value: 0.162
@@ -181,7 +181,7 @@ MonoBehaviour:
     max: 1
   glareIntensity:
     m_OverrideState: 1
-    m_Value: 30.91
+    m_Value: 29.18
   glareAngle:
     m_OverrideState: 0
     m_Value: 85
@@ -199,7 +199,7 @@ MonoBehaviour:
     max: 4
   glareScattering:
     m_OverrideState: 1
-    m_Value: 0.46
+    m_Value: 0.21
     min: 0
     max: 4
   glareStyle:

@@ -879,7 +879,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4033813132770208}
   m_Layer: 0
-  m_Name: dfk_chandelier_01_blue
+  m_Name: dont use dfk_chandelier_01_blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

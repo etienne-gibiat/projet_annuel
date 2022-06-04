@@ -1,5 +1,5 @@
 {
-    "name": "StarterAssets",
+    "name": "Elementis Inputs",
     "maps": [
         {
             "name": "Player",
@@ -34,6 +34,14 @@
                     "type": "PassThrough",
                     "id": "980e881e-182c-404c-8cbf-3d09fdb48fef",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Camera Lock",
+                    "type": "Button",
+                    "id": "5293a44e-2334-4827-a7cf-a15e1370f3b8",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -212,6 +220,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c50e0ff7-4351-430e-bb07-90c9d18e91a4",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Camera Lock",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,4 +1,5 @@
-﻿using PGSauce.Unity;
+﻿using PGSauce.Core.PGDebugging;
+using PGSauce.Unity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ namespace _Elementis.Scripts.Character_Controller
         public Vector2 look;
         public bool jump;
         public bool sprint;
+        public bool toggleCameraLock;
 
         [Header("Movement Settings")]
         public bool analogMovement;
@@ -41,6 +43,14 @@ namespace _Elementis.Scripts.Character_Controller
         public void OnSprint(InputValue value)
         {
         	SprintInput(value.isPressed);
+        }
+
+        public void OnCameraLock(InputValue value)
+        {
+	        if (value.isPressed)
+	        {
+		        toggleCameraLock = !toggleCameraLock;
+	        }
         }
 #endif
 
