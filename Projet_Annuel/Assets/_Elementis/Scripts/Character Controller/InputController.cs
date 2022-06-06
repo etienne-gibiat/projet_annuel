@@ -13,6 +13,8 @@ namespace _Elementis.Scripts.Character_Controller
         public bool jump;
         public bool sprint;
         public bool toggleCameraLock;
+        public bool isAiming;
+        public bool isShooting;
 
         [Header("Movement Settings")]
         public bool analogMovement;
@@ -50,6 +52,23 @@ namespace _Elementis.Scripts.Character_Controller
 	        if (value.isPressed)
 	        {
 		        toggleCameraLock = !toggleCameraLock;
+	        }
+        }
+        
+        public void OnAim(InputValue value)
+        {
+	        isAiming = value.isPressed;
+        }
+        
+        public void OnShoot(InputValue value)
+        {
+	        if (value.isPressed && isAiming)
+	        {
+		        isShooting = true;
+	        }
+	        else
+	        {
+		        isShooting = false;
 	        }
         }
 #endif
