@@ -1,4 +1,5 @@
-﻿using PGSauce.Unity;
+﻿using PGSauce.Core.PGDebugging;
+using PGSauce.Unity;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,7 +11,7 @@ namespace _Elementis.Scripts.Character_Controller
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
     [RequireComponent(typeof(PlayerInput))]
 #endif
-    public class ElementisCharacterController : PGMonoBehaviour
+    public class ElementisCharacterController : PGMonoBehaviour, IDieable
     {
         [Header("Player")] [Tooltip("Move speed of the character in m/s")]
         public float moveSpeed = 2.0f;
@@ -160,6 +161,11 @@ namespace _Elementis.Scripts.Character_Controller
         {
             lockCameraPosition = _input.toggleCameraLock;
             CameraRotation();
+        }
+        
+        public void Die()
+        {
+            PGDebug.Message($"KILL PLAYER").LogTodo();
         }
 
         private void AssignAnimationIDs()
@@ -390,5 +396,15 @@ namespace _Elementis.Scripts.Character_Controller
                     footstepAudioVolume);
             }
         }
+        
+        /*
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            var dieable = hit.gameObject.GetComponentInParent<DeathZone>();
+            if (dieable != null)
+            {
+                Die();
+            }
+        }*/
     }
 }
