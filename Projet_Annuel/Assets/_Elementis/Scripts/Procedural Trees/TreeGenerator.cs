@@ -47,6 +47,7 @@ namespace _Elementis.Scripts.Procedural_Trees
         private int _currentThird;
         private int _currentNbAttractorsDone;
 
+        private float _highestAttractorYDone;
         private int TargetAttractorsCount => _currentThird * _nbAttractorsThird;
 
         public int NbAttractors => nbAttractors;
@@ -61,6 +62,7 @@ namespace _Elementis.Scripts.Procedural_Trees
 
         private void Awake()
         {
+            _highestAttractorYDone = transform.position.y;
             _currentNbAttractorsDone = 0;
             _currentThird = 0;
             nbAttractors = nbAttractors - nbAttractors % 3;
@@ -106,6 +108,7 @@ namespace _Elementis.Scripts.Procedural_Trees
         }
 
         public bool IsCurrentThirdFinished => _currentNbAttractorsDone >= TargetAttractorsCount;
+        public Vector3 PointOfInterest => transform.position.WithY(_highestAttractorYDone);
 
         private void OnDrawGizmos()
         {
@@ -259,6 +262,11 @@ namespace _Elementis.Scripts.Procedural_Trees
         
         private void RemoveAttractorAtIndex(int i)
         {
+            var pos = _attractors[i];
+            if (pos.y > _highestAttractorYDone)
+            {
+                _highestAttractorYDone = pos.y;
+            }
             _attractors.RemoveAt(i);
             nbAttractors = NbAttractors - 1;
             _currentNbAttractorsDone++;

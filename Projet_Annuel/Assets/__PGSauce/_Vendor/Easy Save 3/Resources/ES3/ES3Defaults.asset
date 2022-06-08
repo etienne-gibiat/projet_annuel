@@ -49,6 +49,7 @@ MonoBehaviour:
     - LeanCommon
     - LoadingScreen.Misc
     - Sirenix.OdinInspector.CompatibilityLayer
+    - Assembly-CSharp-firstpass
     - Dreamteck.Splines.Editor
     - Elringus.BlendModes.Editor
     - MK.Glow.Editor
