@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MonKey.Extensions;
 using PGSauce.Internal.Attributes;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -426,6 +427,13 @@ namespace PGSauce.Core.Extensions
 	        transform.rotation = originalRotation;
 
 	        return worldRotation;
+        }
+
+        public static void CopyGlobal(this Transform transform, Transform other)
+        {
+	        transform.position = other.position;
+	        transform.rotation = other.rotation;
+	        transform.SetGlobalScale(other.lossyScale);
         }
 
         #endregion

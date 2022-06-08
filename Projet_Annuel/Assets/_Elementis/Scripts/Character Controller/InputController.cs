@@ -1,4 +1,5 @@
-﻿using PGSauce.Core.PGDebugging;
+﻿using System;
+using PGSauce.Core.PGDebugging;
 using PGSauce.Unity;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,33 +23,55 @@ namespace _Elementis.Scripts.Character_Controller
         [Header("Mouse Cursor Settings")]
         public bool cursorLocked = true;
         public bool cursorInputForLook = true;
+        
+        public bool CanUseInputs { get; set; }
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         public void OnMove(InputValue value)
         {
-        	MoveInput(value.Get<Vector2>());
+	        if (!CanUseInputs)
+	        {
+		        return;
+	        }
+            move = value.Get<Vector2>();
         }
 
         public void OnLook(InputValue value)
         {
+	        if (!CanUseInputs)
+	        {
+		        return;
+	        }
         	if(cursorInputForLook)
         	{
-        		LookInput(value.Get<Vector2>());
+	            look = value.Get<Vector2>();
         	}
         }
 
         public void OnJump(InputValue value)
         {
-        	JumpInput(value.isPressed);
+	        if (!CanUseInputs)
+	        {
+		        return;
+	        }
+	        jump = value.isPressed;
         }
 
         public void OnSprint(InputValue value)
         {
-        	SprintInput(value.isPressed);
+	        if (!CanUseInputs)
+	        {
+		        return;
+	        }
+	        sprint = value.isPressed;
         }
 
         public void OnCameraLock(InputValue value)
         {
+	        if (!CanUseInputs)
+	        {
+		        return;
+	        }
 	        if (value.isPressed)
 	        {
 		        toggleCameraLock = !toggleCameraLock;
@@ -57,11 +80,19 @@ namespace _Elementis.Scripts.Character_Controller
         
         public void OnAim(InputValue value)
         {
+	        if (!CanUseInputs)
+	        {
+		        return;
+	        }
 	        isAiming = value.isPressed;
         }
         
         public void OnShoot(InputValue value)
         {
+	        if (!CanUseInputs)
+	        {
+		        return;
+	        }
 	        if (value.isPressed && isAiming)
 	        {
 		        isShooting = true;
@@ -73,28 +104,12 @@ namespace _Elementis.Scripts.Character_Controller
         }
 #endif
 
+	    private void Awake()
+	    {
+		    CanUseInputs = true;
+	    }
 
-        public void MoveInput(Vector2 newMoveDirection)
-        {
-        	move = newMoveDirection;
-        } 
-
-        public void LookInput(Vector2 newLookDirection)
-        {
-        	look = newLookDirection;
-        }
-
-        public void JumpInput(bool newJumpState)
-        {
-        	jump = newJumpState;
-        }
-
-        public void SprintInput(bool newSprintState)
-        {
-        	sprint = newSprintState;
-        }
-
-        private void OnApplicationFocus(bool hasFocus)
+	    private void OnApplicationFocus(bool hasFocus)
         {
         	SetCursorState(cursorLocked);
         }

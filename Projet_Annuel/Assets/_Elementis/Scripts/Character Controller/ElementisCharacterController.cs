@@ -1,4 +1,5 @@
-﻿using PGSauce.Core.PGDebugging;
+﻿using Cinemachine;
+using PGSauce.Core.PGDebugging;
 using PGSauce.Unity;
 using StarterAssets;
 using UnityEngine;
@@ -70,6 +71,9 @@ namespace _Elementis.Scripts.Character_Controller
 
         [Tooltip("For locking the camera position on all axis")]
         public bool lockCameraPosition = false;
+        
+        [SerializeField]
+        private CinemachineVirtualCamera cinemachineCam;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -105,6 +109,7 @@ namespace _Elementis.Scripts.Character_Controller
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
+        
 
         private bool IsCurrentDeviceMouse
         {
@@ -127,6 +132,7 @@ namespace _Elementis.Scripts.Character_Controller
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
         }
+
 
         private void Start()
         {
@@ -397,14 +403,15 @@ namespace _Elementis.Scripts.Character_Controller
             }
         }
         
-        /*
-        private void OnControllerColliderHit(ControllerColliderHit hit)
+        
+        public void LockInputs()
         {
-            var dieable = hit.gameObject.GetComponentInParent<DeathZone>();
-            if (dieable != null)
-            {
-                Die();
-            }
-        }*/
+            _input.CanUseInputs = false;
+        }
+
+        public void UnFocusCamera()
+        {
+            cinemachineCam.Priority = 0;
+        }
     }
 }
