@@ -13,7 +13,9 @@ namespace _Elementis.Scripts.Procedural_Trees
     public class TreeGenerator : MonoBehaviour
     {
         private const string ParamsGroup = "Parameters";
-        
+
+        [FoldoutGroup(ParamsGroup), SerializeField]
+        private float scale = 1f;
         [FoldoutGroup(ParamsGroup), SerializeField, Range(0, 3000)]
         private int nbAttractors = 400;
         [FoldoutGroup(ParamsGroup), SerializeField]
@@ -41,6 +43,11 @@ namespace _Elementis.Scripts.Procedural_Trees
         private float _timeElapsedSinceLastIteration;
         private float _killRangeSqr;
         private float _attractionRangeSqr;
+        private int _nbAttractorsThird;
+        private int _currentThird;
+        private int _currentNbAttractorsDone;
+
+        private int TargetAttractorsCount => _currentThird * _nbAttractorsThird;
 
         public int NbAttractors => nbAttractors;
         public IReadOnlyList<Branch> Branches => _branches;
@@ -48,22 +55,30 @@ namespace _Elementis.Scripts.Procedural_Trees
 
         [ShowInInspector] public int BranchCount => _branches != null ? _branches.Count : 0;
 
+        public float Scale => scale;
+
+        private float BranchLength => branchLength * Scale;
+
         private void Awake()
         {
+            _currentNbAttractorsDone = 0;
+            _currentThird = 0;
+            nbAttractors = nbAttractors - nbAttractors % 3;
+            _nbAttractorsThird = nbAttractors / 3;
             _attractors = new List<Vector3>();
             _activeAttractors = new List<int>();
             _branches = new List<Branch>();
             _extremities = new List<Branch>();
             _timeElapsedSinceLastIteration = 0f;
-            _killRangeSqr = killRange * killRange;
-            _attractionRangeSqr = attractionRange * attractionRange;
+            _killRangeSqr = killRange * killRange * Scale * Scale;
+            _attractionRangeSqr = attractionRange * attractionRange * Scale * Scale;
         }
 
         private void Start()
         {
             _attractors = GenerateAttractors();
             var position = transform.position;
-            _firstBranch = new Branch(position, position + Vector3.up * branchLength, Vector3.up);
+            _firstBranch = new Branch(position, position + Vector3.up * BranchLength, Vector3.up);
             _branches.Add(_firstBranch);
             _extremities.Add(_firstBranch);
         }
@@ -74,6 +89,12 @@ namespace _Elementis.Scripts.Procedural_Trees
             {
                 return;
             }
+
+            if (IsCurrentThirdFinished)
+            {
+                return;
+            }
+            
             _timeElapsedSinceLastIteration += Time.deltaTime;
             if (_timeElapsedSinceLastIteration > timeBetweenIterations)
             {
@@ -81,10 +102,11 @@ namespace _Elementis.Scripts.Procedural_Trees
 
                 DoIteration();
             }
-
             ToMesh();
         }
-        
+
+        public bool IsCurrentThirdFinished => _currentNbAttractorsDone >= TargetAttractorsCount;
+
         private void OnDrawGizmos()
         {
             if (treeVolume)
@@ -98,7 +120,7 @@ namespace _Elementis.Scripts.Procedural_Trees
                 {
                     var attractor = GetWorldSpaceAttractor(i);
                     Gizmos.color = _activeAttractors.Contains(i) ? PgColors.Yellowish : PgColors.Redish;
-                    Gizmos.DrawSphere(attractor, 0.05f);
+                    Gizmos.DrawSphere(attractor, 0.05f * Scale);
                 }
             }
 
@@ -108,8 +130,8 @@ namespace _Elementis.Scripts.Procedural_Trees
                     Gizmos.color = PgColors.Greenish;
                     Gizmos.DrawLine(b.Start, b.End);
                     Gizmos.color = PgColors.Purple;
-                    Gizmos.DrawSphere(b.End, 0.05f);
-                    Gizmos.DrawSphere(b.Start, 0.05f);
+                    Gizmos.DrawSphere(b.End, 0.05f * Scale);
+                    Gizmos.DrawSphere(b.Start, 0.05f * Scale);
                 }
             }
         }
@@ -141,7 +163,7 @@ namespace _Elementis.Scripts.Procedural_Trees
                     var extremity = _extremities[i];
                     var start = extremity.End;
                     var direction = extremity.GetGrowDirection(randomGrowth);
-                    var end = start + direction * branchLength;
+                    var end = start + direction * BranchLength;
                     var newBranch = new Branch(start, end, direction, extremity);
                     _branches.Add(newBranch);
                     _extremities[i] = extremity;
@@ -158,7 +180,7 @@ namespace _Elementis.Scripts.Procedural_Trees
                 if (branch.HasAttractors)
                 {
                     var dir = branch.GetGrowDirection(randomGrowth);
-                    var newBranch = new Branch(branch.End, branch.End + dir * branchLength, dir, branch);
+                    var newBranch = new Branch(branch.End, branch.End + dir * BranchLength, dir, branch);
                     newBranches.Add(newBranch);
                     _extremities.Add(newBranch);
                 }
@@ -239,11 +261,22 @@ namespace _Elementis.Scripts.Procedural_Trees
         {
             _attractors.RemoveAt(i);
             nbAttractors = NbAttractors - 1;
+            _currentNbAttractorsDone++;
         }
 
         private List<Vector3> GenerateAttractors()
         {
             return treeVolume.GenerateRandomLocalSpaceAttractors(this);
+        }
+
+        [Button]
+        public void GrowNextThird()
+        {
+            _currentThird++;
+            if (_currentThird > 3)
+            {
+                _currentThird = 3;
+            }
         }
     }
 }

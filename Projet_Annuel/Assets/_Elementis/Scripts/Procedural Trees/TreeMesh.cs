@@ -122,7 +122,7 @@ namespace _Elementis.Scripts.Procedural_Trees
                 else
                 {
                     size += branch.Children.Sum(b => Mathf.Pow(b.Size, invertGrowth));
-                    size = Mathf.Pow(size, 1 / invertGrowth);
+                    size = Mathf.Pow(size, 1.0f / (invertGrowth));
                 }
 
                 branch.Size = size;

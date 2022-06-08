@@ -13,6 +13,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
         public CinemachineVirtualCamera pathCam;
         public Transform camFollow;
         public WaterPathActivatorPrePhaseBase prePhase;
+        public WaterPathActivatorPostPhase postPhase;
         public float pathSpeed = 1;
         public RamSpline spline;
         public List<Vector4> pathsLocalPoints;
@@ -24,6 +25,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
         private List<Vector4> _paths;
         private bool _hasEnded;
         [SerializeField] private float debugRadiusScale = 1f;
+        private ElementisCharacterController _player;
 
         private void Awake()
         {
@@ -39,9 +41,9 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
             if(_activated){return;}
             _activated = true;
 
-            var player = FindObjectOfType<ElementisCharacterController>();
-            player.LockInputs();
-            player.UnFocusCamera();
+            _player = FindObjectOfType<ElementisCharacterController>();
+            _player.LockInputs();
+            _player.UnFocusCamera();
             pathCam.Priority = 10;
 
             StartCoroutine(prePhase.DoPrePhase(this, OnPrephaseEnd));
@@ -91,6 +93,14 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
         private void OnActivationEnd()
         {
             _hasEnded = true;
+            pathCam.Priority = 0;
+            StartCoroutine(postPhase.DoPostPhase(this, OnPostPhaseEnd));
+        }
+
+        private void OnPostPhaseEnd()
+        {
+            _player.UnLockInputs();
+            _player.FocusCamera();
         }
 
         private void OnPrephaseEnd()

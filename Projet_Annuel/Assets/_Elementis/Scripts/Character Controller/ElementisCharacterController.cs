@@ -413,5 +413,15 @@ namespace _Elementis.Scripts.Character_Controller
         {
             cinemachineCam.Priority = 0;
         }
+
+        public void UnLockInputs()
+        {
+            _input.CanUseInputs = true;
+        }
+
+        public void FocusCamera()
+        {
+            cinemachineCam.Priority = 10;
+        }
     }
 }

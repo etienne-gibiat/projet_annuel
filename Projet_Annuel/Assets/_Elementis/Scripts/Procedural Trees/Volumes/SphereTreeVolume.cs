@@ -20,7 +20,7 @@ namespace _Elementis.Scripts.Procedural_Trees.Volumes
             {
                 var randomRadius = Random.Range(0f, 1f);
                 randomRadius = Mathf.Pow(Mathf.Sin(randomRadius * Mathf.PI / 2f), 0.8f);
-                randomRadius *= radius;
+                randomRadius *= radius * tree.Scale;
                 
                 var alpha = Random.Range(0f, Mathf.PI);
                 var theta = Random.Range(0f, Mathf.PI*2f);
@@ -31,7 +31,7 @@ namespace _Elementis.Scripts.Procedural_Trees.Volumes
                     randomRadius * Mathf.Cos(alpha)
                 );
 
-                pt += center;
+                pt += center * tree.Scale;
 
                 res.Add(pt);
             }
@@ -43,7 +43,7 @@ namespace _Elementis.Scripts.Procedural_Trees.Volumes
         {
             base.DrawGizmos(treeGenerator);
             Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(treeGenerator.transform.position + center, radius);
+            Gizmos.DrawWireSphere(treeGenerator.transform.position + center * treeGenerator.Scale, radius * treeGenerator.Scale);
         }
     }
 }
