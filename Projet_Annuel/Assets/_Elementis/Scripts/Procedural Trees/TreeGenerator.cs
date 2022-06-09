@@ -43,12 +43,14 @@ namespace _Elementis.Scripts.Procedural_Trees
         private float _timeElapsedSinceLastIteration;
         private float _killRangeSqr;
         private float _attractionRangeSqr;
-        private int _nbAttractorsThird;
         private int _currentThird;
-        private int _currentNbAttractorsDone;
 
         private float _highestAttractorYDone;
-        private int TargetAttractorsCount => _currentThird * _nbAttractorsThird;
+        private float _distancePerThird;
+
+        private float CurrentThirdMaxAttractorY => GetDistanceMaxY(_currentThird);
+
+        
 
         public int NbAttractors => nbAttractors;
         public IReadOnlyList<Branch> Branches => _branches;
@@ -63,10 +65,7 @@ namespace _Elementis.Scripts.Procedural_Trees
         private void Awake()
         {
             _highestAttractorYDone = transform.position.y;
-            _currentNbAttractorsDone = 0;
             _currentThird = 0;
-            nbAttractors = nbAttractors - nbAttractors % 3;
-            _nbAttractorsThird = nbAttractors / 3;
             _attractors = new List<Vector3>();
             _activeAttractors = new List<int>();
             _branches = new List<Branch>();
@@ -79,6 +78,20 @@ namespace _Elementis.Scripts.Procedural_Trees
         private void Start()
         {
             _attractors = GenerateAttractors();
+
+            var minY = transform.position.y;
+            var maxY = _attractors.Aggregate(transform.position, (current, attr) =>
+            {
+                if (current.y > attr.y)
+                {
+                    return current;
+                }
+
+                return attr;
+            }).y + 0.01f;
+
+            _distancePerThird = (maxY - minY) / 3f;
+
             var position = transform.position;
             _firstBranch = new Branch(position, position + Vector3.up * BranchLength, Vector3.up);
             _branches.Add(_firstBranch);
@@ -107,8 +120,8 @@ namespace _Elementis.Scripts.Procedural_Trees
             ToMesh();
         }
 
-        public bool IsCurrentThirdFinished => _currentNbAttractorsDone >= TargetAttractorsCount;
-        public Vector3 PointOfInterest => transform.position.WithY(_highestAttractorYDone);
+        public bool IsCurrentThirdFinished => _branches.Any(at => at.End.y >= CurrentThirdMaxAttractorY);
+        public Vector3 PointOfInterest => transform.position.WithY(GetDistanceMaxY(Mathf.Max(_currentThird - 1, 0)));
 
         private void OnDrawGizmos()
         {
@@ -125,6 +138,17 @@ namespace _Elementis.Scripts.Procedural_Trees
                     Gizmos.color = _activeAttractors.Contains(i) ? PgColors.Yellowish : PgColors.Redish;
                     Gizmos.DrawSphere(attractor, 0.05f * Scale);
                 }
+
+                Gizmos.color = PgColors.Blueish;
+                for (int i = 1; i <= 3; i++)
+                {
+                    var y = GetDistanceMaxY(i);
+                    var pos = transform.position.WithY(y);
+                    Gizmos.DrawCube(pos, new Vector3(1,0,1));
+                }
+                
+                Gizmos.color = PgColors.Redish;
+                Gizmos.DrawSphere(PointOfInterest, 0.1f * Scale);
             }
 
             if (_branches != null)
@@ -269,7 +293,11 @@ namespace _Elementis.Scripts.Procedural_Trees
             }
             _attractors.RemoveAt(i);
             nbAttractors = NbAttractors - 1;
-            _currentNbAttractorsDone++;
+        }
+        
+        private float GetDistanceMaxY(int currentThird)
+        {
+            return transform.position.y + currentThird * _distancePerThird;
         }
 
         private List<Vector3> GenerateAttractors()
