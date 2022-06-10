@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using _Elementis.Scripts.Procedural_Trees.Volumes;
 using PGSauce.Core;
 using PGSauce.Core.Extensions;
 using PGSauce.Core.PGDebugging;
+using PGSauce.Core.Utilities;
 using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Elementis.Scripts.Procedural_Trees
 {
@@ -30,7 +34,12 @@ namespace _Elementis.Scripts.Procedural_Trees
         private float killRange = 0.5f;
         [FoldoutGroup(ParamsGroup), SerializeField, Range(0f, 0.2f)]
         private float randomGrowth = 0.1f;
+
+        [FoldoutGroup(ParamsGroup), SerializeField]
+        private MinMax<int> leavesPerGermBranch;
+        [SerializeField] private TreeLeavesManager treeLeavesManager;
         [SerializeField] private TreeMesh treeMesh;
+        [SerializeField] private MinMax<float> germBranchSize;
 
         /// <summary>
         /// Local positions of the attractors
@@ -50,17 +59,28 @@ namespace _Elementis.Scripts.Procedural_Trees
 
         private float CurrentThirdMaxAttractorY => GetDistanceMaxY(_currentThird);
 
-        
+        [ShowInInspector] public int ExtremitiesCount => _extremities?.Count ?? 0;
 
         public int NbAttractors => nbAttractors;
-        public IReadOnlyList<Branch> Branches => _branches;
         public float IterationTimeRatio => _timeElapsedSinceLastIteration / timeBetweenIterations;
 
-        [ShowInInspector] public int BranchCount => _branches != null ? _branches.Count : 0;
+        [ShowInInspector] public int BranchCount => _branches?.Count ?? 0;
 
         public float Scale => scale;
 
         private float BranchLength => branchLength * Scale;
+
+        public float GermBranchRadius => treeLeavesManager.GermBranchRadius;
+
+        public bool IsCurrentThirdFinished => CheckIfCurrentThirdIsFinished();
+
+        public Vector3 PointOfInterest => transform.position.WithY(GetDistanceMaxY(Mathf.Max(_currentThird - 1, 0)));
+        public Vector3 WorldCenter => treeVolume.GetWorldCenter(this);
+
+        public MinMax<float> GermBranchSizeRange => germBranchSize;
+        public IReadOnlyList<Branch> Branches => _branches;
+
+        public MinMax<int> LeavesPerGermBranch => leavesPerGermBranch;
 
         private void Awake()
         {
@@ -97,31 +117,83 @@ namespace _Elementis.Scripts.Procedural_Trees
             _branches.Add(_firstBranch);
             _extremities.Add(_firstBranch);
         }
+        
+        private bool CheckIfCurrentThirdIsFinished()
+        {
+            if (HasReachedMaxAttractorY)
+            {
+                var withGerms = _branches.Where(b => b.HasGerm).ToList();
+
+                if (withGerms.Count == 0)
+                {
+                    return true;
+                }
+
+                var fullyGrown = withGerms.All(b => b.Germ.FullyGrown);
+
+                if (fullyGrown)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool HasReachedMaxAttractorY
+        {
+            get { return _branches.Any(at => at.End.y >= CurrentThirdMaxAttractorY); }
+        }
 
         private void Update()
         {
-            if (nbAttractors <= 0)
-            {
-                return;
-            }
-
             if (IsCurrentThirdFinished)
             {
                 return;
+                /*
+                var withGerms = _branches.Where(b => b.HasGerm).ToList();
+
+                if (withGerms.Count == 0)
+                {
+                    return;
+                }
+
+                var fullyGrown = withGerms.All(b => b.Germ.FullyGrown);
+
+                if (fullyGrown)
+                {
+                    return;
+                }*/
             }
             
             _timeElapsedSinceLastIteration += Time.deltaTime;
             if (_timeElapsedSinceLastIteration > timeBetweenIterations)
             {
                 _timeElapsedSinceLastIteration = 0f;
+                
+                if (nbAttractors > 0 && !HasReachedMaxAttractorY)
+                {
+                    DoIteration();
+                }
 
-                DoIteration();
+                foreach (var branch in _branches.Where(b => b.HasGerm && b.Germ.BranchIsGrown))
+                {
+                    branch.Germ.LeavesAreGrown = true;
+                }
+
+                foreach (var branch in _branches.Where(b => b.HasGerm && !b.Germ.BranchIsGrown))
+                {
+                    branch.Germ.BeginGrowLeaves();
+                }
+
+                CreateLeavesGerms();
             }
             ToMesh();
+            treeLeavesManager.UpdateLeaves(this);
         }
 
-        public bool IsCurrentThirdFinished => _branches.Any(at => at.End.y >= CurrentThirdMaxAttractorY);
-        public Vector3 PointOfInterest => transform.position.WithY(GetDistanceMaxY(Mathf.Max(_currentThird - 1, 0)));
+        
+
 
         private void OnDrawGizmos()
         {
@@ -156,16 +228,56 @@ namespace _Elementis.Scripts.Procedural_Trees
                 foreach (var b in _branches) {
                     Gizmos.color = PgColors.Greenish;
                     Gizmos.DrawLine(b.Start, b.End);
-                    Gizmos.color = PgColors.Purple;
+                    var isExtremity = IsExtremity(b);
+                    var isFinished = IsBranchFinished(b);
+
+                    if (isFinished)
+                    {
+                        Gizmos.color = b.HasGerm ? Color.green : Color.red;
+                    }
+                    else
+                    {
+                        Gizmos.color = isExtremity ? PgColors.Purple : PgColors.Greenish;
+                    }
+                    
+                    
                     Gizmos.DrawSphere(b.End, 0.05f * Scale);
                     Gizmos.DrawSphere(b.Start, 0.05f * Scale);
+                    //Handles.Label((b.Start + b.End) / 2f, $"{b.DistanceFromRoot}");
+
+                    if (b.HasGerm)
+                    {
+                        Gizmos.color = Color.blue;
+                        Gizmos.DrawLine(b.Germ.Start, b.Germ.End);
+                        
+                        Gizmos.color = Color.blue;
+                        foreach (var leaf in b.Germ.Leaves)
+                        {
+                            Gizmos.DrawSphere(leaf.transform.position, 0.025f * Scale);
+                        }
+                    }
                 }
             }
         }
 
-        private Vector3 GetWorldSpaceAttractor(int i)
+        private bool IsExtremity(Branch b)
         {
-            return transform.GetWorldPosition(_attractors[i]);
+            return _extremities.Contains(b);
+        }
+
+        private bool IsBranchFinished(Branch b)
+        {
+            return _attractors.All(att =>(GetWorldSpaceAttractor(att)- b.End).sqrMagnitude > _attractionRangeSqr);
+        }
+
+        public Vector3 GetWorldSpaceAttractor(int i)
+        {
+            return GetWorldSpaceAttractor(_attractors[i]);
+        }
+
+        public Vector3 GetWorldSpaceAttractor(Vector3 localSpace)
+        {
+            return transform.GetWorldPosition(localSpace);
         }
 
 
@@ -194,6 +306,19 @@ namespace _Elementis.Scripts.Procedural_Trees
                     var newBranch = new Branch(start, end, direction, extremity);
                     _branches.Add(newBranch);
                     _extremities[i] = extremity;
+                }
+            }
+        }
+
+        private void CreateLeavesGerms()
+        {
+            foreach (var branch in _branches.Where(branch => IsBranchFinished(branch) && !branch.IsGermStateDecided))
+            {
+                branch.IsGermStateDecided = true;
+                
+                if (Random.Range(0f, 1f) <= treeVolume.ProbabilityToHaveALeafGerm(this, branch.End) || IsExtremity(branch))
+                {
+                    branch.GrowGerm(this);
                 }
             }
         }
@@ -313,6 +438,12 @@ namespace _Elementis.Scripts.Procedural_Trees
             {
                 _currentThird = 3;
             }
+        }
+
+        public SpriteRenderer GetNewLeaf()
+        {
+            var prefab = treeLeavesManager.LeavesPrefabs[treeLeavesManager.LeavesPrefabs.GetRandomIndex()];
+            return Instantiate(prefab, treeLeavesManager.transform);
         }
     }
 }

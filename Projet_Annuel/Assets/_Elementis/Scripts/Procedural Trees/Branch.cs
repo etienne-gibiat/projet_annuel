@@ -6,6 +6,7 @@ namespace _Elementis.Scripts.Procedural_Trees
 {
     public class Branch
     {
+        private LeafGerm _germ;
         public Vector3 Start { get; set; }
         public Vector3 End { get; set; }
         public Vector3 Direction { get; private set; }
@@ -16,11 +17,18 @@ namespace _Elementis.Scripts.Procedural_Trees
         public bool HasAttractors => Attractors.Count > 0;
 
         private int AttractorsNumber => Attractors.Count;
-        private int DistanceFromRoot { get; set; }
+        public int DistanceFromRoot { get; set; }
         public bool IsLeaf => Children.Count == 0;
         public float Size { get; set; }
         public int VertexId { get; set; }
         public bool IsRoot => Parent == null;
+        public bool IsGermStateDecided { get; set; }
+
+        public bool HasGerm => Germ != null;
+        public Vector3 GermDirection => Germ.GermDirection;
+        public float GermBranchSize => Germ.GermBranchSize;
+
+        public LeafGerm Germ => _germ;
 
         public Branch(Vector3 start, Vector3 end, Vector3 direction, Branch parent = null)
         {
@@ -82,5 +90,12 @@ namespace _Elementis.Scripts.Procedural_Trees
 
             return pt * randomGrowth;
         }
+
+        public void GrowGerm(TreeGenerator tree)
+        {
+            _germ = new LeafGerm(tree, this);
+        }
+
+        
     }
 }
