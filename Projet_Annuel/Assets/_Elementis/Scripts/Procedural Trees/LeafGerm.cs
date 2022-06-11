@@ -58,23 +58,25 @@ namespace _Elementis.Scripts.Procedural_Trees
             {
                 var leaf = tree.GetNewLeaf();
                 _leaves.Add(leaf);
-                _leavesScales.Add(leaf.transform.localScale);
+                _leavesScales.Add(leaf.transform.localScale * tree.Scale);
                 leaf.gameObject.SetActive(false);
                 leaf.transform.localScale = Vector3.zero;
-                leaf.transform.position = GetRandomLeafSpawnPoint(tree);
+                leaf.transform.position = GetRandomLeafSpawnPoint(tree, branch);
                 leaf.transform.localRotation = Quaternion.Euler(Random.Range(0f, 360f),Random.Range(0f, 360f),Random.Range(0f, 360f));
             }
         }
 
-        private Vector3 GetRandomLeafSpawnPoint(TreeGenerator tree)
+        private Vector3 GetRandomLeafSpawnPoint(TreeGenerator tree, Branch b)
         {
+            return b.End;
+            /*
             var position = new Vector3(Mathf.Cos(Random.Range(0f, 360f) * Mathf.Deg2Rad) * tree.GermBranchRadius, 0,
                 Mathf.Sin(Random.Range(0f, 360f) * Mathf.Deg2Rad) * tree.GermBranchRadius);
             var posT = Random.Range(0.1f, 1f);
             var rot = Quaternion.FromToRotation(Vector3.up, GermDirection);
             position = rot * position;
             position += Start + (End - Start) * posT;
-            return position + tree.transform.position;
+            return position + tree.transform.position;*/
         }
 
 

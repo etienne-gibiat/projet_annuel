@@ -84,6 +84,7 @@ namespace _Elementis.Scripts.Procedural_Trees
 
         private void Awake()
         {
+            transform.SetGlobalScale(Vector3.one);
             _highestAttractorYDone = transform.position.y;
             _currentThird = 0;
             _attractors = new List<Vector3>();
@@ -150,20 +151,6 @@ namespace _Elementis.Scripts.Procedural_Trees
             if (IsCurrentThirdFinished)
             {
                 return;
-                /*
-                var withGerms = _branches.Where(b => b.HasGerm).ToList();
-
-                if (withGerms.Count == 0)
-                {
-                    return;
-                }
-
-                var fullyGrown = withGerms.All(b => b.Germ.FullyGrown);
-
-                if (fullyGrown)
-                {
-                    return;
-                }*/
             }
             
             _timeElapsedSinceLastIteration += Time.deltaTime;

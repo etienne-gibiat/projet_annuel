@@ -24,7 +24,7 @@ namespace _Elementis.Scripts.Procedural_Trees.Volumes
             {
                 var randomRadius = Random.Range(0f, 1f);
                 randomRadius = Mathf.Pow(Mathf.Sin(randomRadius * Mathf.PI / 2f), 0.8f);
-                randomRadius *= radius * tree.Scale;
+                randomRadius *= WorldRadius(tree);
                 
                 var alpha = Random.Range(0f, Mathf.PI);
                 var theta = Random.Range(0f, Mathf.PI*2f);
@@ -35,9 +35,13 @@ namespace _Elementis.Scripts.Procedural_Trees.Volumes
                     randomRadius * Mathf.Cos(alpha)
                 );
 
-                pt += center * tree.Scale;
+                //pt += center * tree.Scale;
 
-                res.Add(pt);
+                //pt += tree.transform.position;
+
+                pt += GetWorldCenter(tree);
+
+                res.Add(tree.transform.GetLocalPosition(pt));
             }
 
             return res;
