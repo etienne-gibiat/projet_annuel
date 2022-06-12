@@ -8,6 +8,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
 {
     public class WaterActivatorPostPhaseGrowTree : WaterPathActivatorPostPhase
     {
+        public float waitAfterGrowth = 0.75f;
         public TreeGenerator tree;
         public CinemachineVirtualCamera cam;
         
@@ -21,6 +22,8 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
                 cam.LookAt.position = tree.PointOfInterest;
                 yield return new WaitForEndOfFrame();
             }
+
+            yield return new WaitForSeconds(waitAfterGrowth);
 
             cam.Priority = 0;
             onPostPhaseEnd();
