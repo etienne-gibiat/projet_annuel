@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using PGSauce.Core.Utilities;
 using UnityEngine.Rendering;
 
 
@@ -427,9 +428,21 @@ public class RamSpline : MonoBehaviour
         pos.w = width;
         controlPoints[controlPoints.Count - 1] = pos;
     }
+    
+    private float TotalDistance(List<Vector4> cPoints)
+    {
+        var dist = 0f;
+        for (int i = 0; i < cPoints.Count - 1; i++)
+        {
+            dist += Vector3.Distance(cPoints[i],
+                cPoints[i + 1]);
+        }
+
+        return dist;
+    }
 
 
-    public void GenerateSpline(List<RamSpline> generatedSplines = null)
+    public void GenerateSpline(List<RamSpline> generatedSplines = null, float progression = 1f)
     {
         generatedSplines = new List<RamSpline>();
 
@@ -457,12 +470,30 @@ public class RamSpline : MonoBehaviour
             GenerateEndingParentBased();
         }
 
-
-
+        var totalDistance = TotalDistance(controlPoints);
+        var targetDistance = progression * totalDistance;
+        var currentDistance = 0f;
 
         List<Vector4> pointsChecked = new List<Vector4>();
-        for (int i = 0; i < controlPoints.Count; i++)
+        if (progression > 0)
         {
+            for (int i = 0; i < controlPoints.Count - 1; i++)
+            {
+                var distanceCurrToNext = Vector3.Distance(controlPoints[i],
+                    controlPoints[i + 1]);
+                if (currentDistance + distanceCurrToNext < targetDistance)
+                {
+                    pointsChecked.Add(controlPoints[i]);
+                    currentDistance += distanceCurrToNext;
+                }
+                else
+                {
+                    pointsChecked.Add(controlPoints[i]);
+                    var t = (targetDistance - currentDistance) / distanceCurrToNext ;
+                    pointsChecked.Add(Vector4.Lerp(controlPoints[i], controlPoints[i + 1], t));
+                    break;
+                }
+                /*
             if (i > 0)
             {
                 if (Vector3.Distance((Vector3)controlPoints[i], (Vector3)controlPoints[i - 1]) > 0)
@@ -470,7 +501,8 @@ public class RamSpline : MonoBehaviour
 
             }
             else
-                pointsChecked.Add(controlPoints[i]);
+                pointsChecked.Add(controlPoints[i]);*/
+            }
         }
 
         Mesh mesh = new Mesh();

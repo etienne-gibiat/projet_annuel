@@ -21,14 +21,14 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
         public WaterPathActivatorPostPhase postPhase;
         public float pathSpeed = 1;
         public RamSpline spline;
-        public List<Vector4> pathsLocalPoints;
+        public Transform playerSpawnPoint;
+        public List<Vector4> pathsLocalPoints => spline.controlPoints;
         [SerializeField] private List<EventData> events;
 
         private bool _activated;
         private bool _animating;
         private int _currentPointIndex;
         private Vector3 _currentPathPosition;
-        private List<Vector4> _paths;
         private bool _hasEnded;
         [SerializeField] private float debugRadiusScale = 1f;
         private ElementisCharacterController _player;
@@ -47,9 +47,9 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
             _activated = false;
             pathCam.Priority = 0;
             _animating = false;
-            _paths = new List<Vector4>();
             _hasEnded = false;
             CurrentDistanceRatio = 0;
+            UpdateSpline();
         }
 
         public void Activate()
@@ -75,8 +75,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
             if (Vector3.Distance(targetPos, _currentPathPosition) <= .01f)
             {
                 _currentPathPosition = targetPos;
-                var localPoint = spline.transform.InverseTransformPoint(_currentPathPosition);
-                _paths[_paths.Count - 1] = new Vector4(localPoint.x, localPoint.y, localPoint.z, pathsLocalPoints[_currentPointIndex + 1].w);
+
                 _currentPointIndex++;
                 if (IsCurrentPointLastOne)
                 {
@@ -84,7 +83,6 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
                     OnActivationEnd();
                     return;
                 }
-                _paths.Add(new Vector4(localPoint.x, localPoint.y, localPoint.z, pathsLocalPoints[_currentPointIndex + 1].w));
                 targetPos = spline.transform.GetWorldPosition(pathsLocalPoints[_currentPointIndex + 1]);
             }
 
@@ -94,13 +92,6 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
             var delta = Mathf.Min(distance, pathSpeed * Time.deltaTime);
             CurrentDistanceRatio += delta / TotalDistance() ;
             _currentPathPosition += dirToTargetPos * delta;
-            var point = spline.transform.InverseTransformPoint(_currentPathPosition);
-            var currentW = pathsLocalPoints[_currentPointIndex].w;
-            var nextW = pathsLocalPoints[_currentPointIndex + 1].w;
-            var startPos = spline.transform.GetWorldPosition(pathsLocalPoints[_currentPointIndex]);
-            var distanceStartToEnd = Vector3.Distance(startPos, targetPos);
-            var pathWidth = distance.Remap(0, distanceStartToEnd, nextW, currentW);
-            _paths[_paths.Count - 1] = new Vector4(point.x, point.y, point.z, pathWidth);
             UpdateSpline();
             SetLookAtPosition(_currentPathPosition);
             if (events.Count > 0)
@@ -124,6 +115,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
 
         private void OnPostPhaseEnd()
         {
+            _player.transform.position = playerSpawnPoint.position;
             _player.UnLockInputs();
             _player.FocusCamera();
         }
@@ -131,32 +123,22 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
         private void OnPrephaseEnd()
         {
             _animating = true;
+            
             _currentPointIndex = 0;
             _currentPathPosition = spline.transform.GetWorldPosition(pathsLocalPoints[_currentPointIndex]);
             SetLookAtPosition(_currentPathPosition);
-            var localPoint = spline.transform.InverseTransformPoint(_currentPathPosition);
-            _paths.Add(new Vector4(localPoint.x, localPoint.y, localPoint.z, pathsLocalPoints[_currentPointIndex].w));
-            _paths.Add(new Vector4(localPoint.x, localPoint.y, localPoint.z, pathsLocalPoints[_currentPointIndex].w));
+
             UpdateSpline();
         }
 
         private void UpdateSpline()
         {
-            spline.controlPoints = _paths;
-            spline.GenerateSpline();
+            spline.GenerateSpline(progression:CurrentDistanceRatio);
         }
 
         public void SetLookAtPosition(Vector3 pos)
         {
             camFollow.position = pos;
-        }
-
-        [Button]
-        private void ConvertSplineToPoints()
-        {
-            pathsLocalPoints = spline.controlPoints;
-            spline.controlPoints = new List<Vector4>();
-            spline.GenerateSpline();
         }
 
         private void OnDrawGizmos()
