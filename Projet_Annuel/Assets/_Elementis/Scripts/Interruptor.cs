@@ -2,7 +2,7 @@
 
 namespace _Elementis.Scripts
 {
-    public class Interruptor : MonoBehaviour, IShootable
+    public class Interruptor : MonoBehaviour, IShootable, IPuzzlePiece
     {
         public Material onShootMaterial;
         public MeshRenderer meshRenderer;

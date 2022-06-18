@@ -11,12 +11,12 @@ namespace _Elementis.Scripts
     {
         public UnityEvent onPuzzleFinished;
         
-        private HashSet<Interruptor> _interruptors;
+        private HashSet<IPuzzlePiece> _interruptors;
         private bool _isFinished;
 
         private void Awake()
         {
-            _interruptors = GetComponentsInChildren<Interruptor>().ToHashSet();
+            _interruptors = GetComponentsInChildren<IPuzzlePiece>().ToHashSet();
             foreach (var interruptor in _interruptors)
             {
                 interruptor.SetPuzzle(this);
@@ -25,7 +25,7 @@ namespace _Elementis.Scripts
             _isFinished = _interruptors.Count == 0;
         }
 
-        public void OnInterruptorActivation(Interruptor interruptor)
+        public void OnInterruptorActivation(IPuzzlePiece interruptor)
         {
             if (_isFinished || !_interruptors.Contains(interruptor)) {return;}
             if (!_interruptors.All(inte => inte.IsActivated)) {return;}
