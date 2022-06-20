@@ -34,6 +34,7 @@ MonoBehaviour:
     - Dreamteck.Utilities
     - Dreamteck.Splines
     - ShapesRuntime
+    - Assembly-CSharp-firstpass
     - Cinemachine
     - Animancer.Examples
     - LeTai.TrueShadow.Demo
@@ -49,7 +50,6 @@ MonoBehaviour:
     - LeanCommon
     - LoadingScreen.Misc
     - Sirenix.OdinInspector.CompatibilityLayer
-    - Assembly-CSharp-firstpass
     - Dreamteck.Splines.Editor
     - Elringus.BlendModes.Editor
     - MK.Glow.Editor
