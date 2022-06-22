@@ -121,6 +121,11 @@ namespace _Elementis.Scripts.Procedural_Trees
         
         private bool CheckIfCurrentThirdIsFinished()
         {
+            if (_attractors.Count == 0)
+            {
+                return true;
+            }
+            
             if (HasReachedMaxAttractorY)
             {
                 var withGerms = _branches.Where(b => b.HasGerm).ToList();

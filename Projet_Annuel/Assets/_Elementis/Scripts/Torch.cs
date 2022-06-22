@@ -10,24 +10,30 @@ namespace _Elementis.Scripts
     {
         public GameObject fire;
         public PgSfxObject fireTurnOnSfx;
+        public AudioSource fireLoopSound;
+        private bool _on;
 
         private void Awake()
         {
             fire.SetActive(false);
+            _on = false;
         }
 
         [UsedImplicitly]
         public void TurnOn()
         {
+            if (_on)
+            {
+                return;
+            }
+
+            _on = true;
             fire.SetActive(true);
             if (fireTurnOnSfx)
             {
                 PgAudioManager.Sfx.Play(fireTurnOnSfx, fire.transform.position);
             }
-            else
-            {
-                PGDebug.Message($"FIRE SFX Torch").LogTodo();
-            }
+            fireLoopSound.Play();
         }
     }
 }

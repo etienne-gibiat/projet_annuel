@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f7febe0e7f42899bc65a4e804b8239, type: 3}
+  m_Name: Torch Woosh Sound
+  m_EditorClassIdentifier: 
+  CollapseEditions: 0
+  SFXName: 
+  SFXLayers:
+  - LayerName: 
+    SFX: {fileID: 8300000, guid: cf95a10fdd4d3a64c8d633c64d98c51f, type: 3}
+    RandomizeVolume: 0
+    FixedVolume: 1
+    MinVolume: 0.5
+    MaxVolume: 1
+    RandomizePitch: 0
+    FixedPitch: 1
+    MinPitch: 0.75
+    MaxPitch: 1.5
+    DelaySFX: 0
+    RandomizeDelay: 0
+    FixedDelayTime: 0
+    MinDelayTime: 0
+    MaxDelayTime: 0
+    Mute: 0
+    BypassEffects: 0
+    BypassReverbZones: 0
+    Priority: 128
+    StereoPan: 0
+    SpatialBlend: 0
+    ReverbZoneMix: 0
+    MixerOverride: {fileID: 0}
+    MinDistance: 1
+    MaxDistance: 500
+    RolloffMode: 0
+  RandomizeVolume: 0
+  FixedVolume: 1
+  MinVolume: 0.5
+  MaxVolume: 1
+  RandomizePitch: 0
+  FixedPitch: 1
+  MinPitch: 0.75
+  MaxPitch: 1.5
+  DelaySFX: 0
+  RandomizeDelay: 0
+  FixedDelayTime: 0
+  MinDelayTime: 0
+  MaxDelayTime: 0
+  LimitPolyphony: 0
+  MaxVoices: 0
+  MinSeparation: 0

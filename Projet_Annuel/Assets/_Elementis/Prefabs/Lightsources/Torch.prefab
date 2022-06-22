@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: {fileID: 1819631147239312726}
-  fireTurnOnSfx: {fileID: 0}
+  fireTurnOnSfx: {fileID: 11400000, guid: 0b530f0c251bd1949ac15cbe2b74353f, type: 2}
+  fireLoopSound: {fileID: 1622675400316054215}
 --- !u!1001 &1820389242611877826
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -128,6 +129,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1820389242612014402}
     m_Modifications:
+    - target: {fileID: 1111314861989826, guid: 94305d9725bf52e499a0ed9a3b3ce8ba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1425545274330252, guid: 94305d9725bf52e499a0ed9a3b3ce8ba, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -216,6 +221,12 @@ PrefabInstance:
 --- !u!1 &1819631147239312726 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1111314861989826, guid: 94305d9725bf52e499a0ed9a3b3ce8ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 1820389242882921108}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1622675400316054215 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1137076386626861139, guid: 94305d9725bf52e499a0ed9a3b3ce8ba,
     type: 3}
   m_PrefabInstance: {fileID: 1820389242882921108}
   m_PrefabAsset: {fileID: 0}
