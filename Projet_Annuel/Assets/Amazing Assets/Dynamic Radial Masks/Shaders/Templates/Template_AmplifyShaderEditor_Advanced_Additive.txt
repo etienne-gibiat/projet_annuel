@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b2425a2284af743826c689403a4924, type: 3}
+  m_Name: DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#
+  m_EditorClassIdentifier: 
+  m_functionInfo: "// Made with Amplify Shader Editor\n// Available at the Unity Asset
+    Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=18800\n410;88;1706;726;493.5;312;1;True;False\nNode;AmplifyShaderEditor.CustomExpressionNode;3;309.5,4.5;Float;False;DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_float(WorldPosition,
+    Noise, Mask)@;7;False;3;True;WorldPosition;FLOAT3;0,0,0;In;;Float;False;True;Noise;FLOAT;0;In;;Float;False;True;Mask;FLOAT;0;Out;;Inherit;False;Read_DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#;False;False;0;4;0;FLOAT;0;False;1;FLOAT3;0,0,0;False;2;FLOAT;0;False;3;FLOAT;0;False;2;FLOAT;0;FLOAT;4\nNode;AmplifyShaderEditor.FunctionInput;5;-2.5,81.5;Inherit;False;Noise;1;1;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionInput;4;-9.5,-38.5;Inherit;False;World
+    Position;3;0;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;6;905.5,26.5;Inherit;False;True;-1;Mask;0;False;1;0;FLOAT;0;False;1;FLOAT;0\nWireConnection;3;1;4;0\nWireConnection;3;2;5;0\nWireConnection;6;0;3;4\nASEEND*/\n//CHKSM=206BCF2A95BE0A33B3C4EC83742AE8CB18968C1D"
+  m_functionName: 
+  m_description: 
+  m_additionalIncludes:
+    m_additionalIncludes: []
+    m_outsideIncludes: []
+  m_additionalPragmas:
+    m_additionalPragmas: []
+    m_outsidePragmas: []
+  m_additionalDirectives:
+    m_validData: 0
+    m_isDirty: 1
+    m_moduleName: ' Additional Directives'
+    m_independentModule: 1
+    m_additionalDirectives:
+    - {fileID: 0}
+    m_shaderFunctionDirectives: []
+    m_nativeDirectives: []
+    m_nativeDirectivesIndex: -1
+    m_nativeDirectivesFoldout: 0
+    m_directivesSaveItems:
+    - LineType: 0
+      LineValue: 
+      GUIDToggle: 1
+      GUIDValue: #CGINC_FILE_GUID#
+      Origin: 2
+  m_nodeCategory: 0
+  m_customNodeCategory: Dynamic Radial Masks
+  m_previewPosition: 0
+  m_hidden: 1

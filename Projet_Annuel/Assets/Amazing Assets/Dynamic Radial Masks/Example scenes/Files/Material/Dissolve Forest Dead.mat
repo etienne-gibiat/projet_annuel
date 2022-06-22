@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Dissolve Forest Dead
+  m_Shader: {fileID: -6465566751694194690, guid: 7c3f78935ff08d34fac6bfa736acaea8,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_2BEB139:
+        m_Texture: {fileID: 2800000, guid: a8baae6b79794a4448fcf5cddc9df7e8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_9BDB4EC1:
+        m_Texture: {fileID: 2800000, guid: 47c6fa989edada94ebbe61902c12ebeb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Cube:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveNoise:
+        m_Texture: {fileID: 2800000, guid: a8baae6b79794a4448fcf5cddc9df7e8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 06e58d689828060408a429b50179243d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _V_VC_IBL_Cube:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - BOOLEAN_A1E07229: 0
+    - Boolean_ED434919: 0
+    - Vector1_31AADB69: 0
+    - Vector1_AF4E674E: 1
+    - Vector1_DAFD8602: 0
+    - _InvertDissolve: 0
+    - _Metallic: 0
+    - _Smoothness: 0
+    - _V_VC_ColorAndTextureEnumID: 0
+    - _V_VC_IBLEnumID: 0
+    - _V_VC_IBL_Cube_Contrast: 1
+    - _V_VC_IBL_Cube_Intensity: 1
+    - _V_VC_IBL_Light_Strength: 0
+    - _V_VC_IBL_Roughness: 0
+    - _V_VC_ReflectionEnumID: 0
+    - _V_VC_Reflection_Fresnel_Bias: -1
+    - _V_VC_Reflection_Roughness: 0.3
+    - _V_VC_Reflection_Strength: 0.5
+    - _V_VC_RenderingOptions_UnlitEnumID: 0
+    - _V_VC_RimBias: 0
+    - _V_VC_RimEnumID: 0
+    - _V_VC_RimPow: 4
+    m_Colors:
+    - Color_2D97BF0F: {r: 1, g: 1, b: 1, a: 1}
+    - Color_6D4C4192: {r: 2.8244383, g: 7.262841, b: 25.688938, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EdgeEmission: {r: 1.5655526, g: 4.030246, b: 14.490566, a: 1}
+    - _ReflectColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _V_VC_MainTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
+    - _V_VC_RimColor: {r: 1, g: 2, b: 1, a: 1}

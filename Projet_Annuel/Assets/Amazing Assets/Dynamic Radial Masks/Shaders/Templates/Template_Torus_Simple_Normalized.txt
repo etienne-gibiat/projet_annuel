@@ -1,0 +1,49 @@
+#define DynamicRadialMasks_#SHAPE_BIG#_#ARRAY_LENGTH#_#ALGORITHM_BIG#_#BLEND_MODE_BIG#_ID#ID#_#SCOPE_BIG#_LOOP_COUNT #ARRAY_LENGTH#
+
+
+#UNIFORM#float4 DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_Position[DynamicRadialMasks_#SHAPE_BIG#_#ARRAY_LENGTH#_#ALGORITHM_BIG#_#BLEND_MODE_BIG#_ID#ID#_#SCOPE_BIG#_LOOP_COUNT];	
+#UNIFORM#float  DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_Radius[DynamicRadialMasks_#SHAPE_BIG#_#ARRAY_LENGTH#_#ALGORITHM_BIG#_#BLEND_MODE_BIG#_ID#ID#_#SCOPE_BIG#_LOOP_COUNT];
+#UNIFORM#float  DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_Intensity[DynamicRadialMasks_#SHAPE_BIG#_#ARRAY_LENGTH#_#ALGORITHM_BIG#_#BLEND_MODE_BIG#_ID#ID#_#SCOPE_BIG#_LOOP_COUNT];
+#UNIFORM#float  DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_EdgeSize[DynamicRadialMasks_#SHAPE_BIG#_#ARRAY_LENGTH#_#ALGORITHM_BIG#_#BLEND_MODE_BIG#_ID#ID#_#SCOPE_BIG#_LOOP_COUNT];
+
+
+#include "../../Core/Core.cginc"
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+//                                Main Method                                 //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+float DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#(float3 positionWS)
+{
+    float retValue = 1; 
+
+	int i = 0;
+#FOR_LOOP#	for(i = 0; i < DynamicRadialMasks_#SHAPE_BIG#_#ARRAY_LENGTH#_#ALGORITHM_BIG#_#BLEND_MODE_BIG#_ID#ID#_#SCOPE_BIG#_LOOP_COUNT; i++)
+	{
+		retValue *= 1 - ShaderExtensions_DynamicRadialMasks_#SHAPE_SMALL#_#ALGORITHM_SMALL#(positionWS,
+																		DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_Position[i].xyz, 
+																		DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_Radius[i],         
+																		DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_Intensity[i],
+																		DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_EdgeSize[i]);
+	}		
+
+    return 1 - retValue;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+//                               Helper Methods                               //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+void DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_float(float3 positionWS, out float retValue)
+{
+    retValue = DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#(positionWS); 		
+}
+
+void DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_half(half3 positionWS, out half retValue)
+{
+    retValue = DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#ALGORITHM_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#(positionWS); 		
+}
