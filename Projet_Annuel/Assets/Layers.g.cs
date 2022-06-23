@@ -7,4 +7,5 @@ public static class Layers
     public const int Water = 4;
     public const int UI = 5;
     public const int PLAYER = 6;
+    public const int FLOOR = 7;
 }
