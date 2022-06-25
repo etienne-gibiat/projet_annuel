@@ -39,6 +39,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DissolveNoise:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -97,6 +101,7 @@ Material:
     - _GrassHeight: 1
     - _GrassWidth: 0.06
     - _Height: 0.8
+    - _InvertDissolve: 0
     - _MaxDist: 60
     - _Metallic: 0
     - _MinDist: 40
@@ -116,6 +121,7 @@ Material:
     - _Strength: 5
     - _Surface: 0
     - _TessellationUniform: 3.5
+    - _UvScale: 1
     - _Width: 0.1
     - _WindSpeed: 100
     - _WindStrength: 0.1
@@ -126,6 +132,7 @@ Material:
     - _BottomColor: {r: 0.006289184, g: 1, b: 0.006289184, a: 1}
     - _Color: {r: 0.2624896, g: 0.5283019, b: 0.3962644, a: 1}
     - _Color2: {r: 0.5, g: 0.9, b: 0.6, a: 1}
+    - _EdgeEmission: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _TopColor: {r: 1, g: 0.41903394, b: 0.23270434, a: 1}

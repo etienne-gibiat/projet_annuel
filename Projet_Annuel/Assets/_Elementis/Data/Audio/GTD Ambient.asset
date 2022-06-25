@@ -20,7 +20,7 @@ MonoBehaviour:
   Editions:
   - Name: 
     Soundtrack: {fileID: 8300000, guid: 37e8528ce0317a24ebcfd2c4b252fd68, type: 3}
-    SoundtrackVolume: 0.75
+    SoundtrackVolume: 0.5
     TransitionSound: {fileID: 0}
     TransitionVolume: 1
     KeepPlaybackTime: 0
