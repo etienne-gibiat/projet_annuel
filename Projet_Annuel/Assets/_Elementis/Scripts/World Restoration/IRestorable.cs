@@ -7,5 +7,6 @@ namespace _Elementis.Scripts.World_Restoration
         void OnRestored();
         void OnUnRestored();
         Vector3 Position();
+        string Name();
     }
 }

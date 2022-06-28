@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using _Elementis.Scripts.Character_Controller;
+using _Elementis.Scripts.River_Editor;
 using Cinemachine;
 using PGSauce.Core.Extensions;
 using PGSauce.Core.Utilities;
@@ -20,9 +22,9 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
         public WaterPathActivatorPrePhaseBase prePhase;
         public WaterPathActivatorPostPhase postPhase;
         public float pathSpeed = 1;
-        public RamSpline spline;
+        public RiverPath river;
         public Transform playerSpawnPoint;
-        public List<Vector4> pathsLocalPoints => spline.controlPoints;
+        public List<Vector4> pathsLocalPoints => river.controlPoints.Select(cp => cp.position).ToList();
         [SerializeField] private List<EventData> events;
 
         private bool _activated;
@@ -71,7 +73,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
             if(_hasEnded) {return;}
             if(IsCurrentPointLastOne) {return;}
 
-            var targetPos = spline.transform.GetWorldPosition(pathsLocalPoints[_currentPointIndex + 1]);
+            var targetPos = river.transform.GetWorldPosition(pathsLocalPoints[_currentPointIndex + 1]);
             if (Vector3.Distance(targetPos, _currentPathPosition) <= .01f)
             {
                 _currentPathPosition = targetPos;
@@ -83,7 +85,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
                     OnActivationEnd();
                     return;
                 }
-                targetPos = spline.transform.GetWorldPosition(pathsLocalPoints[_currentPointIndex + 1]);
+                targetPos = river.transform.GetWorldPosition(pathsLocalPoints[_currentPointIndex + 1]);
             }
 
             var dirToTargetPos = (targetPos - _currentPathPosition);
@@ -125,7 +127,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
             _animating = true;
             
             _currentPointIndex = 0;
-            _currentPathPosition = spline.transform.GetWorldPosition(pathsLocalPoints[_currentPointIndex]);
+            _currentPathPosition = river.transform.GetWorldPosition(pathsLocalPoints[_currentPointIndex]);
             SetLookAtPosition(_currentPathPosition);
 
             UpdateSpline();
@@ -133,7 +135,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
 
         private void UpdateSpline()
         {
-            spline.GenerateSpline(progression:CurrentDistanceRatio);
+            river.UpdateRiver(CurrentDistanceRatio);
         }
 
         public void SetLookAtPosition(Vector3 pos)
@@ -165,7 +167,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
 
         private Vector3 LocalControlPointToWorldPosition(Vector4 localPoint)
         {
-            return spline.transform.GetWorldPosition(localPoint);
+            return river.transform.GetWorldPosition(localPoint);
         }
 
         private Vector3 GetWorldPositionFromDistanceRatio(Float01 ratio)

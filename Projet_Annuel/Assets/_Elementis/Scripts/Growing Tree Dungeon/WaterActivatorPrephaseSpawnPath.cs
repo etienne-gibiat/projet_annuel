@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using _Elementis.Scripts.River_Editor;
 using DG.Tweening;
 using MonKey.Extensions;
 using PGSauce.Animation;
@@ -15,7 +16,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
         public float waterPointEndLerp;
         public Transform start, end;
         public DotweenProfile animationProfile;
-        public RamSpline spline;
+        public RiverPath river;
 
         private void Awake()
         {
@@ -30,26 +31,26 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
                 .SetAs(animationProfile.Params)
                 .OnUpdate((() =>
                 {
-                    var currentSplineLocalPos = spline.controlPoints[spline.controlPoints.Count - 1];
+                    var currentSplineLocalPos = river.controlPoints[river.controlPoints.Count - 1];
                     var targetWorldPos = waterPointEndTarget.position;
-                    var targetLocalPos = spline.transform.InverseTransformPoint(targetWorldPos);
+                    var targetLocalPos = river.transform.InverseTransformPoint(targetWorldPos);
                     var targetControlPoint = new Vector4(targetLocalPos.x, targetLocalPos.y, targetLocalPos.z,
-                        currentSplineLocalPos.w);
-                    var currentSplinePos = Vector4.Lerp(currentSplineLocalPos, targetControlPoint, waterPointEndLerp);
-                    spline.controlPoints[spline.controlPoints.Count - 1] = currentSplinePos;
-                    spline.GenerateSpline();
+                        currentSplineLocalPos.position.w);
+                    var currentSplinePos = Vector4.Lerp(currentSplineLocalPos.position, targetControlPoint, waterPointEndLerp);
+                    river.controlPoints[river.controlPoints.Count - 1].position = currentSplinePos;
+                    river.GenerateRiver();
                     waterPathActivator.SetLookAtPosition(waterPath.transform.position);
                 })).WaitForCompletion();
             
             
             
-            var currentSplineLocalPos = spline.controlPoints[spline.controlPoints.Count - 1];
+            var currentSplineLocalPos = river.controlPoints[river.controlPoints.Count - 1];
             var targetWorldPos = waterPointEndTarget.position;
-            var targetLocalPos = spline.transform.InverseTransformPoint(targetWorldPos);
+            var targetLocalPos = river.transform.InverseTransformPoint(targetWorldPos);
             var targetControlPoint = new Vector4(targetLocalPos.x, targetLocalPos.y, targetLocalPos.z,
-                currentSplineLocalPos.w);
-            spline.controlPoints[spline.controlPoints.Count - 1] = targetControlPoint;
-            spline.GenerateSpline();
+                currentSplineLocalPos.position.w);
+            river.controlPoints[river.controlPoints.Count - 1].position = targetControlPoint;
+            river.GenerateRiver();
             onPrephaseEnd();
         }
     }

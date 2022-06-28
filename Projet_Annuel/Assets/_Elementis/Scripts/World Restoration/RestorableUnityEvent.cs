@@ -21,5 +21,10 @@ namespace _Elementis.Scripts.World_Restoration
         {
             return transform.position;
         }
+
+        public string Name()
+        {
+            return name;
+        }
     }
 }

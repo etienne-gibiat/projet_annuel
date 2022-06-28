@@ -672,19 +672,6 @@ public class RamSpline : MonoBehaviour
 
             orientation *= Quaternion.Lerp(controlPointsRotations[pos], controlPointsRotations[ClampListPos(pos + 1)], tValue);
 
-            //			if (beginningSpline && pos == 0) {
-            //				
-            //				int lastId = beginningSpline.controlPointsOrientation.Count - 1;
-            //				//orientation = beginningSpline.controlPointsOrientation [lastId];
-            //
-            //			} 
-            //		
-            //			if (endingSpline && pos == controlPoints.Count - 2 && tValue == 1) {
-            //				
-            //				//orientation = endingSpline.controlPointsOrientation [0];
-            //
-            //			}
-
             controlPointsOrientation.Add(orientation);
 
             Vector3 posUp = newPos + orientation * (0.5f * controlPoints[pos + tValue].w * Vector3.right);
@@ -780,8 +767,8 @@ public class RamSpline : MonoBehaviour
         Vector3 newPos = GetCatmullRomPosition(t, p0, p1, p2, p3);
         points.Add(newPos);
 
-        Vector3 tangent = GetCatmullRomTangent(t, p0, p1, p2, p3).normalized;
-        Vector3 normal = CalculateNormal(tangent, Vector3.up).normalized;
+        //Vector3 tangent = GetCatmullRomTangent(t, p0, p1, p2, p3).normalized;
+        //Vector3 normal = CalculateNormal(tangent, Vector3.up).normalized;
 
     }
 

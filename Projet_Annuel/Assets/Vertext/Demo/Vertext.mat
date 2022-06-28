@@ -92,7 +92,7 @@ Material:
     - Object_Normal: 0
     - Object_Tangent: 0
     - Precision: 1
-    - Scale: 0.035
+    - Scale: 0.303
     - Separation: 0
     - Stream: 3
     - UV0: 1
@@ -100,8 +100,8 @@ Material:
     - Varying: 1
     - Vertexcolor: 0
     - WIREFRAME: 1
-    - WireframeSmoothing: 10
-    - WireframeThickness: 0.79
+    - WireframeSmoothing: 0
+    - WireframeThickness: 0.9
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1

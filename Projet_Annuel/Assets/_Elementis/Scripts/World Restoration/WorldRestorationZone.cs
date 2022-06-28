@@ -19,6 +19,12 @@ namespace _Elementis.Scripts.World_Restoration
 
         private List<IRestorable> _restorables;
 
+#if UNITY_EDITOR
+        [ShowInInspector]
+        private List<string> Names =>
+            _restorables?.Select(r => r.Name()).ToList();
+#endif
+
         private void Awake()
         {
             _objectToRadius = new Dictionary<IRestorable, float>();
@@ -41,7 +47,7 @@ namespace _Elementis.Scripts.World_Restoration
                 var restorableLerp = _objectToRadius[restorable];
                 if (_currentRadiusLerp < value)
                 {
-                    if (_currentRadiusLerp < restorableLerp && restorableLerp <= value)
+                    if (_currentRadiusLerp <= restorableLerp && restorableLerp <= value)
                     {
                         restorable.OnRestored();
                     }
@@ -49,7 +55,7 @@ namespace _Elementis.Scripts.World_Restoration
                 else if (_currentRadiusLerp > value)
                 {
                     //SHRINKING
-                    if (value < restorableLerp && restorableLerp <= _currentRadiusLerp)
+                    if (value <= restorableLerp && restorableLerp <= _currentRadiusLerp)
                     {
                         restorable.OnUnRestored();
                     }

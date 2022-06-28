@@ -2620,34 +2620,7 @@ public class RamSplineEditor : Editor
 
 
         spline.debugMesh = true;
-
-        //Normals, tangents
-        //if (!spline.debugMesh)
-        //{
-        //points = spline.points.ToArray();
-        //for (int i = 0; i < points.Length; i++)
-        //{
-        //    points[i] += spline.transform.position;
-        //    Handles.color = Color.green;
-        //    if (spline.debugNormals)
-        //    {
-        //        Handles.DrawLine(points[i], points[i] + spline.normalsList[i]);
-
-
-        //    }
-        //    if (spline.debugBitangent)
-        //    {
-
-        //        Vector3 posUp = spline.orientations[i] * Vector3.right;
-        //        Handles.DrawLine(points[i], points[i] + posUp);
-        //    }
-        //    Handles.color = Color.red;
-        //    if (spline.debugTangents)
-        //        Handles.DrawLine(points[i] - spline.tangents[i], points[i] + spline.tangents[i]);
-        //}
-        //}
-        //else if (spline.debugMesh)
-        //{
+        
         Vector3 camPosition = SceneView.lastActiveSceneView.camera.transform.position;
         GUIStyle style = new GUIStyle();
         style.normal.textColor = Color.red;
