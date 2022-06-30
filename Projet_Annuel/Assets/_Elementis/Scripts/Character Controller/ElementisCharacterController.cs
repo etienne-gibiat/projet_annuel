@@ -402,24 +402,37 @@ namespace _Elementis.Scripts.Character_Controller
                     footstepAudioVolume);
             }
         }
+
+        public void TakeControlFromPlayer()
+        {
+            _input.TakeControlFromPlayer();
+            LockInputs();
+            UnFocusCamera();
+        }
+
+        public void GiveControlToPlayer()
+        {
+            UnLockInputs();
+            FocusCamera();
+        }
         
         
-        public void LockInputs()
+        private void LockInputs()
         {
             _input.CanUseInputs = false;
         }
 
-        public void UnFocusCamera()
+        private void UnFocusCamera()
         {
             cinemachineCam.Priority = 0;
         }
 
-        public void UnLockInputs()
+        private void UnLockInputs()
         {
             _input.CanUseInputs = true;
         }
 
-        public void FocusCamera()
+        private void FocusCamera()
         {
             cinemachineCam.Priority = 10;
         }

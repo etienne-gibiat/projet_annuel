@@ -25,6 +25,14 @@ namespace _Elementis.Scripts.Character_Controller
         public bool cursorInputForLook = true;
         
         public bool CanUseInputs { get; set; }
+        
+        public void TakeControlFromPlayer()
+        {
+	        move = Vector2.zero;
+	        sprint = false;
+	        isAiming = false;
+	        isShooting = false;
+        }
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         public void OnMove(InputValue value)
@@ -118,5 +126,7 @@ namespace _Elementis.Scripts.Character_Controller
         {
         	Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
         }
+
+        
     }
 }

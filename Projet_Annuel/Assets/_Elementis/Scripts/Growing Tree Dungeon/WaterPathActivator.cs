@@ -64,8 +64,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
             _activated = true;
 
             _player = FindObjectOfType<ElementisCharacterController>();
-            _player.LockInputs();
-            _player.UnFocusCamera();
+            _player.TakeControlFromPlayer();
             pathCam.Priority = 10;
 
             StartCoroutine(prePhase.DoPrePhase(this, OnPrephaseEnd));
@@ -127,15 +126,13 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
                 GrowingTreeDungeonManager.Instance.OnTreeGrown(() =>
                 {
                     _player.transform.position = playerSpawnPoint.position;
-                    _player.UnLockInputs();
-                    _player.FocusCamera();
+                    _player.GiveControlToPlayer();
                 });
             }
             else
             {
                 _player.transform.position = playerSpawnPoint.position;
-                _player.UnLockInputs();
-                _player.FocusCamera();
+                _player.GiveControlToPlayer();
             }
             
         }

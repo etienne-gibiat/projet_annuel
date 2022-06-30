@@ -1,4 +1,7 @@
 ﻿using System;
+using _Elementis.Scripts.Character_Controller;
+using _Elementis.Scripts.Spells;
+using Cinemachine;
 using JetBrains.Annotations;
 using PGSauce.AudioManagement;
 using UnityEngine;
@@ -10,16 +13,17 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
     {
         [SerializeField] private PgMusicTrack ambient;
         [SerializeField] private PlayableDirector director;
+        [SerializeField] private DungeonDoor door;
         private Action _onTrackFinished;
 
         private void Start()
         {
-            PgAudioManager.Music.Play(ambient, 2f);
+            PgAudioManager.Music.Play(ambient, 2f, 0.5f);
         }
         
         public void OnTreeGrown(Action onTreeGrownFinished)
         {
-            PgAudioManager.Music.Stop(ambient);
+            PgAudioManager.Music.Stop(ambient, 1.5f);
             director.Play();
             _onTrackFinished = onTreeGrownFinished;
         }
@@ -27,8 +31,18 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
         [UsedImplicitly]
         public void OnTrackFinished()
         {
-            PgAudioManager.Music.Play(ambient, 2f);
+            PgAudioManager.Music.Play(ambient, 2f, 0.5f);
             _onTrackFinished?.Invoke();
+        }
+
+        public void OnSpellCollected(SpellData spell)
+        {
+            var player = FindObjectOfType<ElementisCharacterController>();
+            player.TakeControlFromPlayer();
+            door.Open(() =>
+            {
+                player.GiveControlToPlayer();
+            });
         }
     }
 }
