@@ -33,8 +33,7 @@ namespace _Elementis.Scripts.Character_Controller
 	        isAiming = false;
 	        isShooting = false;
         }
-
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
+        
         public void OnMove(InputValue value)
         {
 	        if (!CanUseInputs)
@@ -110,7 +109,6 @@ namespace _Elementis.Scripts.Character_Controller
 		        isShooting = false;
 	        }
         }
-#endif
 
 	    private void Awake()
 	    {

@@ -289,7 +289,7 @@ Shader "Custom/GeometryGrass"
                 #else
                 Light mainLight = GetMainLight();
                 #endif
-                float shadow = mainLight.shadowAttenuation;
+                //float shadow = mainLight.shadowAttenuation;
 
                 // extra point lights support
                 float3 extraLights;
@@ -307,9 +307,9 @@ Shader "Custom/GeometryGrass"
 
                 litColor += float4(extraLights * _LightStrength, 1);
                 // multiply with vertex color, and shadows
-                float4 final = litColor * shadow;
+                float4 final = litColor /* shadow*/;
                 // add in basecolor when lights turned down
-                final += saturate((1 - shadow) * baseColor * 0.2);
+                final += saturate((1 /*- shadow*/) * baseColor * 0.2);
                 // fog
                 float fogFactor = i.fogFactor;
 

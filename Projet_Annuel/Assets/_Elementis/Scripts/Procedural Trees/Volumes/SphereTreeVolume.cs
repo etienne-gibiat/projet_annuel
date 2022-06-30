@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Drawing;
 using PGSauce.Core;
 using PGSauce.Core.Extensions;
 using PGSauce.Core.Strings;
