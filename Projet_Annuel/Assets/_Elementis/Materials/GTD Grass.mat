@@ -100,6 +100,7 @@ Material:
     - _GrassHeight: 1.5
     - _GrassWidth: 0.06
     - _InvertDissolve: 0
+    - _LightStrength: 0.06
     - _MaxDist: 60
     - _Metallic: 0
     - _MinDist: 40

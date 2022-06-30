@@ -27,6 +27,17 @@ namespace _Elementis.Scripts.World_Restoration
 
         private void Awake()
         {
+            Init();
+            UpdateRadius(0f);
+        }
+
+        private void Init()
+        {
+            if (_restorables != null)
+            {
+                return;
+            }
+            
             _objectToRadius = new Dictionary<IRestorable, float>();
             _restorables = GetComponentsInChildren<IRestorable>().ToList();
             foreach (var restorable in _restorables)
@@ -35,13 +46,14 @@ namespace _Elementis.Scripts.World_Restoration
                 var dist = Vector3.Distance(transform.position, restorable.Position());
                 _objectToRadius.Add(restorable, GetLerpFromRadius(dist));
             }
+
             _currentRadiusLerp = 1f;
-            UpdateRadius(0f);
         }
 
         [Button]
         public void UpdateRadius(Float01 value)
         {
+            Init();
             foreach (var restorable in _restorables)
             {
                 var restorableLerp = _objectToRadius[restorable];

@@ -47,6 +47,8 @@ MonoBehaviour:
   fire: {fileID: 1819631147239312726}
   fireTurnOnSfx: {fileID: 11400000, guid: 0b530f0c251bd1949ac15cbe2b74353f, type: 2}
   fireLoopSound: {fileID: 1622675400316054215}
+  turnOnAtStart: 0
+  doTurnOnSound: 1
 --- !u!1001 &1820389242611877826
 PrefabInstance:
   m_ObjectHideFlags: 0

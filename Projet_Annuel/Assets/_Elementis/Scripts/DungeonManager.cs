@@ -1,8 +1,9 @@
-﻿using PGSauce.Core.Utilities;
+﻿using System;
+using PGSauce.Core.Utilities;
 
 namespace _Elementis.Scripts
 {
-    public abstract class DungeonManager : MonoSingleton<DungeonManager>
+    public abstract class DungeonManager<T> : MonoSingleton<T> where T : MonoSingletonBase
     {
         
     }

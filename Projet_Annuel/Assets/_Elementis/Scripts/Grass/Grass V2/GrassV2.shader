@@ -20,6 +20,7 @@ Shader "Custom/GeometryGrass"
         _AmbientStrength("Ambient Strength", Range(0,1)) = 0.5
         _MinDist("Min Distance", Float) = 40
         _MaxDist("Max Distance", Float) = 60
+        _LightStrength("Light Strength", Range(0,1)) = 0.5
     }
 
     // The HLSL code block. Unity SRP uses the HLSL language.
@@ -276,6 +277,7 @@ Shader "Custom/GeometryGrass"
             float4 _TopColor;
             float4 _BottomColor;
             float _AmbientStrength;
+            float _LightStrength;
 
             // The fragment shader definition.            
             half4 frag(g2f i) : SV_Target
@@ -301,9 +303,9 @@ Shader "Custom/GeometryGrass"
                 float4 baseColor = lerp(_BottomColor, _TopColor, saturate(i.uv.y)) * float4(i.diffuseColor, 1);
 
                 // multiply with lighting color
-                float4 litColor = (baseColor * float4(mainLight.color, 1));
+                float4 litColor = (baseColor * float4(mainLight.color, 1) * _LightStrength);
 
-                litColor += float4(extraLights, 1);
+                litColor += float4(extraLights * _LightStrength, 1);
                 // multiply with vertex color, and shadows
                 float4 final = litColor * shadow;
                 // add in basecolor when lights turned down

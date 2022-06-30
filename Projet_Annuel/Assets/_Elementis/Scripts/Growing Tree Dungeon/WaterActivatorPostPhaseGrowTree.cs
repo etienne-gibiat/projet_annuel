@@ -12,7 +12,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
         public TreeGenerator tree;
         public CinemachineVirtualCamera cam;
         
-        public override IEnumerator DoPostPhase(WaterPathActivator waterPathActivator, Action onPostPhaseEnd)
+        public override IEnumerator DoPostPhase(WaterPathActivator waterPathActivator, Action<TreeGenerator> onPostPhaseEnd)
         {
             cam.Priority = 10;
             tree.GrowNextThird();
@@ -26,7 +26,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
             yield return new WaitForSeconds(waitAfterGrowth);
 
             cam.Priority = 0;
-            onPostPhaseEnd();
+            onPostPhaseEnd(tree);
         }
     }
 }

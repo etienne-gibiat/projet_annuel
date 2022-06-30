@@ -206,14 +206,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Big_Cascade_Foam_Falloff: 2.86
-    - MacroWaveTessScale: 0.05
+    - MacroWaveTessScale: 0
     - _AOPower: 1
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 10
     - _AlphaSrcBlend: 1
     - _BackfaceAlpha: 0.929
     - _BigCascadeAngle: 10.2
-    - _BigCascadeAngleFalloff: 2.3
+    - _BigCascadeAngleFalloff: 1.9
     - _BigCascadeFalloff: 80
     - _BigCascadeFlowUVRefreshSpeed: 0.4
     - _BigCascadeFoamFalloff: 0.9
@@ -227,7 +227,7 @@ Material:
     - _BigCascadeTranslucencyMultiply: 0.69
     - _BigCascadeTransparency: 0.002
     - _BigCascadeWaterNormalScale: 0.9
-    - _BigCascadeWaterTessScale: 0.2
+    - _BigCascadeWaterTessScale: 0
     - _BlendMode: 0
     - _CascadeFalloff: 0.84
     - _CascadeFalloffSlow: 5.86
@@ -323,7 +323,7 @@ Material:
     - _SlowCascadeSpeed: 0.15
     - _SlowNormalScale: 0.3
     - _SlowWaterSpeed: 0.5
-    - _SlowWaterTessScale: 0.1
+    - _SlowWaterTessScale: 0
     - _SlowWaterTranslucencyMultiply: 1
     - _SmallCascadeAngle: 0.6
     - _SmallCascadeAngleFalloff: 2
@@ -339,7 +339,7 @@ Material:
     - _SmallCascadeSpeed: 4
     - _SmallCascadeTranslucencyMultiply: 1
     - _SmallCascadeWaterNormalScale: 0.69
-    - _SmallCascadeWaterTessScale: 0.15
+    - _SmallCascadeWaterTessScale: 0
     - _Smoothness: 0.9
     - _Specular: 0.1
     - _SpecularHighlights: 1

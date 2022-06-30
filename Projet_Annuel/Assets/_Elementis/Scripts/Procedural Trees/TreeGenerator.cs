@@ -74,6 +74,8 @@ namespace _Elementis.Scripts.Procedural_Trees
 
         public bool IsCurrentThirdFinished => CheckIfCurrentThirdIsFinished();
 
+        public bool IsTotallyGrown() => _currentThird == 3 && IsCurrentThirdFinished;
+
         public Vector3 PointOfInterest => transform.position.WithY(GetDistanceMaxY(Mathf.Max(_currentThird - 1, 0)));
         public Vector3 WorldCenter => treeVolume.GetWorldCenter(this);
 

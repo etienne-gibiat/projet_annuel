@@ -11,12 +11,21 @@ namespace _Elementis.Scripts
         public GameObject fire;
         public PgSfxObject fireTurnOnSfx;
         public AudioSource fireLoopSound;
+        public bool turnOnAtStart;
+        public bool doTurnOnSound;
         private bool _on;
 
         private void Awake()
         {
-            fire.SetActive(false);
-            _on = false;
+            if (turnOnAtStart)
+            {
+                TurnOn();
+            }
+            else
+            {
+                fire.SetActive(false);
+                _on = false;
+            }
         }
 
         [UsedImplicitly]
@@ -29,7 +38,7 @@ namespace _Elementis.Scripts
 
             _on = true;
             fire.SetActive(true);
-            if (fireTurnOnSfx)
+            if (fireTurnOnSfx && doTurnOnSound)
             {
                 PgAudioManager.Sfx.Play(fireTurnOnSfx, fire.transform.position);
             }

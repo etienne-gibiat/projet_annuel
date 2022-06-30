@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Elementis.Scripts.Character_Controller;
+using _Elementis.Scripts.Procedural_Trees;
 using _Elementis.Scripts.River_Editor;
 using Cinemachine;
+using DG.Tweening;
 using PGSauce.Core.Extensions;
+using PGSauce.Core.PGDebugging;
 using PGSauce.Core.Utilities;
 using Sirenix.OdinInspector;
 #if UNITY_EDITOR
@@ -24,6 +27,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
         public float pathSpeed = 1;
         public RiverPath river;
         public Transform playerSpawnPoint;
+        public AudioSource waterAudio;
         public List<Vector4> pathsLocalPoints => river.controlPoints.Select(cp => cp.position).ToList();
         [SerializeField] private List<EventData> events;
 
@@ -110,16 +114,30 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
 
         private void OnActivationEnd()
         {
+            waterAudio.DOFade(.1f, 0.5f);
             _hasEnded = true;
             pathCam.Priority = 0;
             StartCoroutine(postPhase.DoPostPhase(this, OnPostPhaseEnd));
         }
 
-        private void OnPostPhaseEnd()
+        private void OnPostPhaseEnd(TreeGenerator treeGenerator)
         {
-            _player.transform.position = playerSpawnPoint.position;
-            _player.UnLockInputs();
-            _player.FocusCamera();
+            if (treeGenerator.IsTotallyGrown())
+            {
+                GrowingTreeDungeonManager.Instance.OnTreeGrown(() =>
+                {
+                    _player.transform.position = playerSpawnPoint.position;
+                    _player.UnLockInputs();
+                    _player.FocusCamera();
+                });
+            }
+            else
+            {
+                _player.transform.position = playerSpawnPoint.position;
+                _player.UnLockInputs();
+                _player.FocusCamera();
+            }
+            
         }
 
         private void OnPrephaseEnd()
@@ -195,7 +213,8 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
                 }
             }
 
-            throw new ArgumentException("Can't be here (ratio value must be between 0 and 1)");
+            //throw new ArgumentException("Can't be here (ratio value must be between 0 and 1)");
+            return LocalControlPointToWorldPosition(pathsLocalPoints.Last());
         }
 
         [ShowInInspector]
