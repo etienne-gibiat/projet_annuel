@@ -49,6 +49,8 @@ MonoBehaviour:
     - LeanCommon
     - LoadingScreen.Misc
     - Sirenix.OdinInspector.CompatibilityLayer
+    - Crest
+    - Crest.Examples
     - Dreamteck.Splines.Editor
     - Elringus.BlendModes.Editor
     - MK.Glow.Editor
@@ -59,6 +61,7 @@ MonoBehaviour:
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - MK.Glow.URP.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
+    - Crest.Helpers.Editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
