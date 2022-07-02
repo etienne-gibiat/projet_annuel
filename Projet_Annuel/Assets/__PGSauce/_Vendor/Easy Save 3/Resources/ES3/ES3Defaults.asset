@@ -42,15 +42,14 @@ MonoBehaviour:
     - Elringus.BlendModes.Runtime
     - MK.Glow
     - LeanTouch
-    - sc.fae.runtime
     - LeanLocalization
-    - sc.fae.editor
     - Animancer.FSM
     - LeanCommon
     - LoadingScreen.Misc
     - Sirenix.OdinInspector.CompatibilityLayer
     - Crest
     - Crest.Examples
+    - sc.terrain.painter.runtime
     - Dreamteck.Splines.Editor
     - Elringus.BlendModes.Editor
     - MK.Glow.Editor
@@ -62,6 +61,7 @@ MonoBehaviour:
     - MK.Glow.URP.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
     - Crest.Helpers.Editor
+    - sc.terrain.painter.editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
