@@ -95,6 +95,14 @@ namespace PGSauce.Core.Extensions
         }
 
         /// <summary>
+        /// Remaps a value in input interval into output interval
+        /// </summary>
+        public static float Remap(this float value, MinMax<float> input, MinMax<float> output)
+        {
+            return value.Remap(input.min, input.max, output.min, output.max);
+        }
+
+        /// <summary>
         /// Remaps a value between [inputA, inputB] into [outputA, outputB]
         /// </summary>
         public static float Remap(this int value, float inputA, float inputB, float outputA, float outputB)
