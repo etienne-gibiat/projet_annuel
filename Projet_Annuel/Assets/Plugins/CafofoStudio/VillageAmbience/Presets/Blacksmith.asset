@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72dd9b83d18b94b489439d25bdc2c634, type: 3}
+  m_Name: Blacksmith
+  m_EditorClassIdentifier: 
+  presetName: Blacksmith
+  birdsIntensity: 0.45
+  birdsVolumeMultiplier: 0.36
+  rainIntensity: 0
+  rainVolumeMultiplier: 1
+  waterStreamIntensity: 0
+  waterStreamVolumeMultiplier: 1
+  fireIntensity: 0
+  fireVolumeMultiplier: 1
+  crowdIntensity: 0.15
+  crowdVolumeMultiplier: 0.22
+  blacksmithIntensity: 0.8
+  blacksmithVolumeMultiplier: 0.5
+  lumbermillIntensity: 0
+  lumbermillVolumeMultiplier: 1
+  humanActivityIntensity: 0.2
+  humanActivityVolumeMultiplier: 0.3
+  farmAnimalsIntensity: 0
+  farmAnimalsVolumeMultiplier: 1

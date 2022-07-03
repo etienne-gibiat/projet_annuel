@@ -1,0 +1,433 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &94237024513700743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7616608661470696113}
+  - component: {fileID: 7766083127926977921}
+  m_Layer: 0
+  m_Name: VillageAmbience
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7616608661470696113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94237024513700743}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7766083127926977921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94237024513700743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b8c93188706f14da9beef11f6f43f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwake: 1
+  presets:
+  - {fileID: 11400000, guid: 77c08f92739ae1243959331f93de6a25, type: 2}
+  - {fileID: 11400000, guid: d09fd3f0a060c7b418fb0d766aae4e2d, type: 2}
+  - {fileID: 11400000, guid: 93bf785f8f3d6e24d97d8d7cca9d2897, type: 2}
+  - {fileID: 11400000, guid: 4595c162c49867a4badbb1f100699c4c, type: 2}
+  - {fileID: 11400000, guid: 8aae923fc71838542b1bbba1dff1397d, type: 2}
+  - {fileID: 11400000, guid: 17c0ffa19b2fde941b180892dc0adcb4, type: 2}
+  - {fileID: 11400000, guid: 3c1c64c83623ef746b0c610d461a38c1, type: 2}
+  - {fileID: 11400000, guid: a026e8a20409e8647908a01d6c4245c5, type: 2}
+  _birds:
+    soundName: Birds
+    overrideOutputMixer: {fileID: 0}
+    intensity: 0
+    maxIntensityLabel: 
+    minIntensityLabel: 
+    volumeMultiplier: 1
+    sampleSubElements:
+    - audioClips:
+      - {fileID: 8300000, guid: ef73c3069f239084f9ffd88f8452570a, type: 3}
+      - {fileID: 8300000, guid: 3ea535b858014774c8e284d70e751259, type: 3}
+      - {fileID: 8300000, guid: 7391f7b1b2c1acc43a49c4c3e3ddc2ec, type: 3}
+      - {fileID: 8300000, guid: 965c92bcdfbd19b4f9ea2acdbb7e381c, type: 3}
+      - {fileID: 8300000, guid: ad08c3b839e3f9d45b81b995b9d81d30, type: 3}
+      - {fileID: 8300000, guid: ca8747dd8828ac24dbf48c2ebbc2c952, type: 3}
+      - {fileID: 8300000, guid: c87f478c581aac24a9c6e7a75303b684, type: 3}
+      - {fileID: 8300000, guid: cee957584a24202428f836eab4a389a9, type: 3}
+      - {fileID: 8300000, guid: b6743bc9052c8494eb787a93c6090806, type: 3}
+      - {fileID: 8300000, guid: 8e11f395fe11dde4dba43078df8e9a25, type: 3}
+      - {fileID: 8300000, guid: 1918e44c3a10fdb439d2bb9072950050, type: 3}
+      - {fileID: 8300000, guid: 338677f803056ab4bbd67d6aa45d23a2, type: 3}
+      - {fileID: 8300000, guid: 3c2fe97da2309c941819999726683b8d, type: 3}
+      - {fileID: 8300000, guid: 55afc817da0383c45b877f5451089001, type: 3}
+      - {fileID: 8300000, guid: 67fa4f10c0231d04b87fe9190280c0cf, type: 3}
+      - {fileID: 8300000, guid: 86f92a26ed0ca5a4693c610d6dbcff8a, type: 3}
+      - {fileID: 8300000, guid: 80f427c136cca9040ade417f5b806caa, type: 3}
+      - {fileID: 8300000, guid: 3ccba592d4651a34196800366c9d5d55, type: 3}
+      - {fileID: 8300000, guid: 245d4839adc587c419fc66519ccc4642, type: 3}
+      - {fileID: 8300000, guid: 79ee4b1cb73dd444bb31ab4114939c0f, type: 3}
+      - {fileID: 8300000, guid: e38314313e37df04da52187cb3e0aeae, type: 3}
+      - {fileID: 8300000, guid: 15d3d436cb1e8944788b4abf27fb3e09, type: 3}
+      - {fileID: 8300000, guid: 78465d657019c2e44a77be24c1e9f736, type: 3}
+      - {fileID: 8300000, guid: 6934f952f924cf34e9c958c8dd33410f, type: 3}
+      - {fileID: 8300000, guid: 7e1f32a5a53da784db3cb10390b2a540, type: 3}
+      - {fileID: 8300000, guid: 5a96ba78574629543b8c42dbfec3cb68, type: 3}
+      - {fileID: 8300000, guid: b7474c5e922c6e244a90726acf6efff1, type: 3}
+      - {fileID: 8300000, guid: 2ec7a1d90bae4f94e9c4efd39c1abad5, type: 3}
+      - {fileID: 8300000, guid: db7f74fa3447e0e4cb96aff3303f06b9, type: 3}
+      - {fileID: 8300000, guid: 7b460aad19a7a5944a1473162ccd6703, type: 3}
+      - {fileID: 8300000, guid: 9b32bd8cef7c0f949be1c939e8d90e28, type: 3}
+      - {fileID: 8300000, guid: 5c74e9738678d3948854d8a61e9d0eda, type: 3}
+      - {fileID: 8300000, guid: 9a677b3f03802ed438d14024ba4b4fc2, type: 3}
+      - {fileID: 8300000, guid: 1ae17246d7c74874096835000c1898bf, type: 3}
+      - {fileID: 8300000, guid: 1255a5404b4bd824c8791bd13c89124f, type: 3}
+      - {fileID: 8300000, guid: c82ca3a69ee35d948b4d5d913950348c, type: 3}
+      - {fileID: 8300000, guid: 6d2be0570743f3544b16011ac1ee6de8, type: 3}
+      lowIntensityMinSeconds: 18.9
+      lowIntensityMaxSeconds: 29.5
+      highIntensityMinSeconds: 5.24
+      highIntensityMaxSeconds: 9.2
+    loopSubElements:
+    - isAditive: 0
+      audioClips:
+      - {fileID: 8300000, guid: 0eeee96cc12c35741bbd685521d5eea5, type: 3}
+      - {fileID: 8300000, guid: 6e5ad9c09ab2e02478a9eaaed205334d, type: 3}
+      - {fileID: 8300000, guid: 9966e78e4695bfe4dafbdee69765d6c0, type: 3}
+  _rain:
+    soundName: Rain
+    overrideOutputMixer: {fileID: 0}
+    intensity: 0
+    maxIntensityLabel: 
+    minIntensityLabel: 
+    volumeMultiplier: 1
+    sampleSubElements: []
+    loopSubElements:
+    - isAditive: 0
+      audioClips:
+      - {fileID: 8300000, guid: 6abce8f48084ac54680525496491b3ff, type: 3}
+      - {fileID: 8300000, guid: b4262898b0e0f37488c5e57a98aa3c31, type: 3}
+      - {fileID: 8300000, guid: 673b8fb1e4ae84c41a5cf6aee33da059, type: 3}
+      - {fileID: 8300000, guid: 35bf8f3b01ce3c2458832736466a3e53, type: 3}
+  _waterStream:
+    soundName: Water Stream
+    overrideOutputMixer: {fileID: 0}
+    intensity: 0
+    maxIntensityLabel: 
+    minIntensityLabel: 
+    volumeMultiplier: 1
+    sampleSubElements: []
+    loopSubElements:
+    - isAditive: 0
+      audioClips:
+      - {fileID: 8300000, guid: 1740699a77023e244896b42aafd1bd30, type: 3}
+      - {fileID: 8300000, guid: 7a0e5daf6307f7f468be713a140d6077, type: 3}
+      - {fileID: 8300000, guid: 9ea74840d871da64e8e3337ee98c4f4b, type: 3}
+      - {fileID: 8300000, guid: 01c41c80dcea8f44c82a5da4fa216fef, type: 3}
+      - {fileID: 8300000, guid: e8588d7cb053e9442a613049613c6172, type: 3}
+  _fire:
+    soundName: Fire
+    overrideOutputMixer: {fileID: 0}
+    intensity: 0
+    maxIntensityLabel: 
+    minIntensityLabel: 
+    volumeMultiplier: 1
+    sampleSubElements: []
+    loopSubElements:
+    - isAditive: 0
+      audioClips:
+      - {fileID: 8300000, guid: bb7a1d94f9e56b14ea72a9f2ed029f96, type: 3}
+      - {fileID: 8300000, guid: ee58aa860edcbd14fb01cb6d117c4ecf, type: 3}
+      - {fileID: 8300000, guid: 1422873bfc408f741aeadd645e8080c9, type: 3}
+      - {fileID: 8300000, guid: 19f2a5b16b33a7b4187d08670ff70e99, type: 3}
+  _crowd:
+    soundName: Crowd
+    overrideOutputMixer: {fileID: 0}
+    intensity: 0
+    maxIntensityLabel: 
+    minIntensityLabel: 
+    volumeMultiplier: 1
+    sampleSubElements: []
+    loopSubElements:
+    - isAditive: 0
+      audioClips:
+      - {fileID: 8300000, guid: dc0f5770a152fa6499abba78125820fc, type: 3}
+      - {fileID: 8300000, guid: 0a4d5b75cf08eed43929f9d4ccedda7d, type: 3}
+      - {fileID: 8300000, guid: 913e5a0b7c289804d9d66f99be52e225, type: 3}
+      - {fileID: 8300000, guid: f4b0e09bda390784a961b84d35c0ed6f, type: 3}
+      - {fileID: 8300000, guid: ccd15e89d063101418ceca4db4155068, type: 3}
+  _blacksmith:
+    soundName: Blacksmith
+    overrideOutputMixer: {fileID: 0}
+    intensity: 0
+    maxIntensityLabel: 
+    minIntensityLabel: 
+    volumeMultiplier: 1
+    sampleSubElements:
+    - audioClips:
+      - {fileID: 8300000, guid: b4d1de811b813104a8cef65aa602caa2, type: 3}
+      - {fileID: 8300000, guid: 11eb4d84787c9ea489d531e612dd8fa5, type: 3}
+      - {fileID: 8300000, guid: a894b7cfc841cd3409dd3e47341e079d, type: 3}
+      - {fileID: 8300000, guid: 7ef5c3472d75ee044a3f7fe25e6390e2, type: 3}
+      - {fileID: 8300000, guid: 4f5a9fa1a5e793942a5c144ae666174d, type: 3}
+      - {fileID: 8300000, guid: 86b0becff4b01d846b37e5c7d38ba195, type: 3}
+      - {fileID: 8300000, guid: ee0d2a3538efb7a45a75dea6683b4592, type: 3}
+      - {fileID: 8300000, guid: 61dd63eb229183347aa1fd5cffd7110a, type: 3}
+      - {fileID: 8300000, guid: bdb03481c879b0f4a8b26eef4c4a3ca4, type: 3}
+      - {fileID: 8300000, guid: 8d70c143e3974a749ab5e89c255bb9b9, type: 3}
+      - {fileID: 8300000, guid: a9fa55a1ee7cca147a412352127221cb, type: 3}
+      - {fileID: 8300000, guid: 35cc5f745e5ea6f48b4c2ae19e71c7dd, type: 3}
+      - {fileID: 8300000, guid: 4abe1249784a8ef4fba7c655cd7d196c, type: 3}
+      - {fileID: 8300000, guid: 4a9388889bc5f1e47bdf2aa485f6db27, type: 3}
+      - {fileID: 8300000, guid: 3c257d75e3b4ada4aba544e47fcfa706, type: 3}
+      - {fileID: 8300000, guid: c6c4b953201bfc147bc845536cb36ace, type: 3}
+      - {fileID: 8300000, guid: 5776ffbac0835e042822d9acde352575, type: 3}
+      - {fileID: 8300000, guid: 387672640c2243b49a6fff1aacc310cf, type: 3}
+      - {fileID: 8300000, guid: 8eb9eee34b9552e47963b9f48bf86287, type: 3}
+      - {fileID: 8300000, guid: cc59a1125c01d524e9fceb3ed8d37cd5, type: 3}
+      lowIntensityMinSeconds: 9.9
+      lowIntensityMaxSeconds: 16.17
+      highIntensityMinSeconds: 1.76
+      highIntensityMaxSeconds: 2.44
+    - audioClips:
+      - {fileID: 8300000, guid: e29c1081bce31b740b8b7c43dac7c06c, type: 3}
+      - {fileID: 8300000, guid: e3a5fc44b38960c4abb9711b2f95ab11, type: 3}
+      - {fileID: 8300000, guid: 98c4dd2611b935b46bcb0f316d82aebd, type: 3}
+      - {fileID: 8300000, guid: afd050900a5af4c42b92a9cb5221ffa2, type: 3}
+      - {fileID: 8300000, guid: 466b07c948b39214aa5ae9bf3782120f, type: 3}
+      - {fileID: 8300000, guid: db4255923fb761343b46277820075f09, type: 3}
+      - {fileID: 8300000, guid: 57540604da66f4545a36e699dcc00474, type: 3}
+      - {fileID: 8300000, guid: 78f7ebe374d25384ea7f3e3ee57a6f23, type: 3}
+      - {fileID: 8300000, guid: 654bb91f3ef66294fa2c49bd22765c81, type: 3}
+      - {fileID: 8300000, guid: e241d2044a181d649a68b1a544e63ba3, type: 3}
+      - {fileID: 8300000, guid: 230ff138c9ac62d4785c011f6dcaa05b, type: 3}
+      - {fileID: 8300000, guid: f48197450bc2b6647b297fd1e4be3262, type: 3}
+      - {fileID: 8300000, guid: d68bad9984477d74b840693459d78815, type: 3}
+      - {fileID: 8300000, guid: 5f3d1036101b78647ba40bb4c59cd5da, type: 3}
+      - {fileID: 8300000, guid: 684a106da755c6e4e9c0e56f4a2baa56, type: 3}
+      - {fileID: 8300000, guid: 2f8e5aaa7111936429775620a7676a41, type: 3}
+      - {fileID: 8300000, guid: e1fa7990c1d410443957fe27b17b1717, type: 3}
+      - {fileID: 8300000, guid: 3ed48dc89420cb147bea5573bbe6700f, type: 3}
+      - {fileID: 8300000, guid: 7917c73b4cea4f34e94b28dca4542d62, type: 3}
+      - {fileID: 8300000, guid: febe20d122ea04642a8efb5ee23ffd11, type: 3}
+      lowIntensityMinSeconds: 7.6
+      lowIntensityMaxSeconds: 20.81
+      highIntensityMinSeconds: 1.65
+      highIntensityMaxSeconds: 3.2
+    loopSubElements: []
+  _lumbermill:
+    soundName: Lumbermill
+    overrideOutputMixer: {fileID: 0}
+    intensity: 0
+    maxIntensityLabel: 
+    minIntensityLabel: 
+    volumeMultiplier: 1
+    sampleSubElements:
+    - audioClips:
+      - {fileID: 8300000, guid: fa6e5ae831fe88a4fb1e6f0832dfa1d6, type: 3}
+      - {fileID: 8300000, guid: 3fcbb14fba4d4194c83a4727752de429, type: 3}
+      - {fileID: 8300000, guid: fa01e37758ce34a4685c942481fb0343, type: 3}
+      - {fileID: 8300000, guid: 160393f4af52df74aa8fdd4ab88d255f, type: 3}
+      - {fileID: 8300000, guid: eb560cd72d6a6644180ee8e4f5f2bce5, type: 3}
+      - {fileID: 8300000, guid: 4121451788e25cc44bea7405761785cc, type: 3}
+      - {fileID: 8300000, guid: 1fa947fb78522474a9ef4a66d086313b, type: 3}
+      - {fileID: 8300000, guid: bd0d78b74f049474db2d9ebb246e2e9a, type: 3}
+      - {fileID: 8300000, guid: b0af91c3ccf5dc64d95a579bd5550713, type: 3}
+      - {fileID: 8300000, guid: 58f72ea4100be4842b2bc314ed8b614e, type: 3}
+      - {fileID: 8300000, guid: 51d0ea1464650234fac846b51695dc75, type: 3}
+      - {fileID: 8300000, guid: a1ec9021d5372c4448ffc6e0acbd40ea, type: 3}
+      - {fileID: 8300000, guid: e8321f09cc259b64eaed0a426e3cb406, type: 3}
+      - {fileID: 8300000, guid: 2bfe53ecd187c39438a4b7d877483404, type: 3}
+      - {fileID: 8300000, guid: 6e9f527790fad164693095d9a1e59674, type: 3}
+      - {fileID: 8300000, guid: 2d40cee83b0c9b74e87a62a3e5f34dc4, type: 3}
+      - {fileID: 8300000, guid: 4d00c0c750e34114ea84dfdf3587c5f1, type: 3}
+      - {fileID: 8300000, guid: 01e89879977df234b8f2a9d21b55d62d, type: 3}
+      - {fileID: 8300000, guid: 5b1b1da47a872d6408626fcbec2c55a1, type: 3}
+      - {fileID: 8300000, guid: 5d87cf4cedbd23a47ae2afcbf16b83f6, type: 3}
+      - {fileID: 8300000, guid: cff4726a218af62479cb793e07aefffb, type: 3}
+      - {fileID: 8300000, guid: b64c329dad3564749976bec65999d110, type: 3}
+      - {fileID: 8300000, guid: c1936e212935e2844b0260f873ac568a, type: 3}
+      - {fileID: 8300000, guid: 683a4444849bad74fab9317da58e126e, type: 3}
+      - {fileID: 8300000, guid: 2f3516677e63ac54b9093b0cadc8cfa8, type: 3}
+      - {fileID: 8300000, guid: 70e9f0ab4467ed14e9163eb5591cfc7e, type: 3}
+      - {fileID: 8300000, guid: 320fc0b2fb713e1449ff52bcad2edb06, type: 3}
+      - {fileID: 8300000, guid: 84a419a14f06c324fb43563412ea2a68, type: 3}
+      - {fileID: 8300000, guid: 0b032c2e059b68545b34b061ad446e3d, type: 3}
+      - {fileID: 8300000, guid: 40c5277a0c602e14f96de47bfcaa2c7b, type: 3}
+      - {fileID: 8300000, guid: cf7e7c519d5e433499e4b025eccea962, type: 3}
+      - {fileID: 8300000, guid: de1200cb3b9a92f4d9567e07dbc701ba, type: 3}
+      - {fileID: 8300000, guid: 0b530a574767b644fbfacd0df74f5816, type: 3}
+      - {fileID: 8300000, guid: 3feff5739da46f048af72db5ce6801bb, type: 3}
+      - {fileID: 8300000, guid: 75385d73912d9d5439c524a1e7b991ab, type: 3}
+      - {fileID: 8300000, guid: 1bc7e8f9e23f4fc4291a5cfed95bee4e, type: 3}
+      - {fileID: 8300000, guid: ea82bec56692a654b880bb59bb2e41d6, type: 3}
+      - {fileID: 8300000, guid: 4ea8d723cc2a3644db8e4058c011ede4, type: 3}
+      - {fileID: 8300000, guid: 8e6111f18c4c47440bef200b91fe04b1, type: 3}
+      - {fileID: 8300000, guid: d81f9b19fef2f4b4ca8428ad9a22732e, type: 3}
+      - {fileID: 8300000, guid: ec0fa25dc0cd19b408c4c9d9738a08c8, type: 3}
+      - {fileID: 8300000, guid: 8431708a4a23dfc4493d84174fb1afba, type: 3}
+      - {fileID: 8300000, guid: 7a8f8e32003f3c54e8367cc7cee6f46d, type: 3}
+      - {fileID: 8300000, guid: 1631e0df02f77d7499fab10d19a1b2b2, type: 3}
+      - {fileID: 8300000, guid: 705218101c89a1a4081f64b868925858, type: 3}
+      - {fileID: 8300000, guid: 5dcbdc7021c7eba4e8e27a5514908866, type: 3}
+      lowIntensityMinSeconds: 9.9
+      lowIntensityMaxSeconds: 16.17
+      highIntensityMinSeconds: 1.76
+      highIntensityMaxSeconds: 2.44
+    - audioClips:
+      - {fileID: 8300000, guid: feb91ba8e5017224f872a902e6cbbbe9, type: 3}
+      - {fileID: 8300000, guid: 4950cf74434ec5c4f8ae4a70a34fa4c1, type: 3}
+      - {fileID: 8300000, guid: 04007559283446e4fb73a6340ba85968, type: 3}
+      - {fileID: 8300000, guid: 8111e3cc55206cf478d9806cae33b10a, type: 3}
+      - {fileID: 8300000, guid: 5a95d4aeeca552446b8459a28096e7d4, type: 3}
+      - {fileID: 8300000, guid: a23e7ac6392221c4080061c4d587fb06, type: 3}
+      - {fileID: 8300000, guid: 23f7a0d718ff6b1499231d4688ebbb76, type: 3}
+      - {fileID: 8300000, guid: 2b752a0525fce0f47b1a9e93c7219b58, type: 3}
+      - {fileID: 8300000, guid: e46d9bde889278c4e8a45661a6d0f86f, type: 3}
+      - {fileID: 8300000, guid: 46c4fcaad2bd2f04f92253b8cd6b386b, type: 3}
+      - {fileID: 8300000, guid: bb7da20ee3e06024ba26ba09cc71290b, type: 3}
+      - {fileID: 8300000, guid: b9f3ddee45b5baa4d92d8aec5e90929c, type: 3}
+      - {fileID: 8300000, guid: e3e9045eb8dbaff41be49858ff227c77, type: 3}
+      - {fileID: 8300000, guid: 521ce3fab7708874384ea263f7a99ba6, type: 3}
+      - {fileID: 8300000, guid: 1e451008baef8f0408c803da4733e0c8, type: 3}
+      - {fileID: 8300000, guid: ca067886bb130754cba06bca9d744fd5, type: 3}
+      - {fileID: 8300000, guid: 20d77afe458ddbf4fbeb8d5070d05a8e, type: 3}
+      - {fileID: 8300000, guid: e996cfd66e08f544ba8c7a20f7b63e34, type: 3}
+      - {fileID: 8300000, guid: 823b399f166212e4fabeeaac835f1f08, type: 3}
+      - {fileID: 8300000, guid: 005c2cd98a415a844a6189d3f77443e5, type: 3}
+      - {fileID: 8300000, guid: 4471194756465664f80426201238f983, type: 3}
+      - {fileID: 8300000, guid: 30484d82aa3c9a44bbfdc469d2a19b80, type: 3}
+      - {fileID: 8300000, guid: 6b9795ee2a232ae41975fe98e601ea12, type: 3}
+      - {fileID: 8300000, guid: 5ed324ccdbc564d4080ad6381b18bde8, type: 3}
+      - {fileID: 8300000, guid: f87e0ca76e4aa83408edf71099ec53fd, type: 3}
+      - {fileID: 8300000, guid: cf07b227dfc7c0d42958b4fa68ae1066, type: 3}
+      - {fileID: 8300000, guid: a41b9e8a12eb67f4997af9d6e4adf826, type: 3}
+      - {fileID: 8300000, guid: ff82f5940c002ec489c0b03bb8d16e10, type: 3}
+      - {fileID: 8300000, guid: 0a05d5439ae968c46bb845b57fe560f7, type: 3}
+      - {fileID: 8300000, guid: db30e489dc42cf2419a5f2e9388dd1fa, type: 3}
+      - {fileID: 8300000, guid: 0fe0fc102bd41544ea7538cdee69fe78, type: 3}
+      - {fileID: 8300000, guid: 2e41826ef267caa4ba0c014350d5b6e6, type: 3}
+      - {fileID: 8300000, guid: d688ea67272faf74e80f9c7e35c2c73d, type: 3}
+      - {fileID: 8300000, guid: 5e16dcbf90cbee440ae7a59d2bd6ece6, type: 3}
+      - {fileID: 8300000, guid: 28f015a65147812438cf378491d21a93, type: 3}
+      - {fileID: 8300000, guid: 331167813150ef5448cc68dc0531073b, type: 3}
+      - {fileID: 8300000, guid: eb40cc7bf445a3b449aab229ab2864f9, type: 3}
+      - {fileID: 8300000, guid: e81a11cfa16a3594a9814033d43a6213, type: 3}
+      - {fileID: 8300000, guid: 81b8270064eb444488c7a62b85d5eba0, type: 3}
+      lowIntensityMinSeconds: 7.36
+      lowIntensityMaxSeconds: 20.52
+      highIntensityMinSeconds: 2.36
+      highIntensityMaxSeconds: 2.65
+    loopSubElements: []
+  _humanActivity:
+    soundName: Human Activity
+    overrideOutputMixer: {fileID: 0}
+    intensity: 0
+    maxIntensityLabel: 
+    minIntensityLabel: 
+    volumeMultiplier: 1
+    sampleSubElements:
+    - audioClips:
+      - {fileID: 8300000, guid: 6586a5046cccf42439cd616dae21826e, type: 3}
+      - {fileID: 8300000, guid: f338d2c4077ccec4aa1faa73ca3bbbf2, type: 3}
+      - {fileID: 8300000, guid: e77cb1d6ca5252946898f3a620e1621c, type: 3}
+      - {fileID: 8300000, guid: 702f5db1eb88a3a428380e9447c61ff1, type: 3}
+      - {fileID: 8300000, guid: 8b35e18d7d8a0e14cbdca6652c6f1ec0, type: 3}
+      - {fileID: 8300000, guid: 177017900c5b73a40b3f7704c626829d, type: 3}
+      - {fileID: 8300000, guid: 7b65ff7f704f4e54bb300bbebf953b06, type: 3}
+      - {fileID: 8300000, guid: dc2a6137e5bcbda468675f11702bb78f, type: 3}
+      - {fileID: 8300000, guid: eb526d0e2aaed4540916726964e6c6ff, type: 3}
+      - {fileID: 8300000, guid: dd974b17127a75c48b54abdb5e91ef7f, type: 3}
+      - {fileID: 8300000, guid: 16bcd91a684fb88459b58a32677e9ba5, type: 3}
+      - {fileID: 8300000, guid: 7aa726dcf5bedd047b4c41946c79fe0b, type: 3}
+      - {fileID: 8300000, guid: 2f59c30400acc16449e34f5331f3ecfa, type: 3}
+      - {fileID: 8300000, guid: 945618be37f7fb44bb962dc5247a3cec, type: 3}
+      - {fileID: 8300000, guid: 9f71c1aa0ca080c4ca3fa7828fec6a07, type: 3}
+      - {fileID: 8300000, guid: b73406b05aa1cde4b86e096885c79098, type: 3}
+      - {fileID: 8300000, guid: 4757373fe3c639f4bb8dcf46b419fcd4, type: 3}
+      - {fileID: 8300000, guid: 553ebdbc13cf9be4181f36ec02be6e93, type: 3}
+      - {fileID: 8300000, guid: eaa112b337cdedb42a1b12f61777bf37, type: 3}
+      - {fileID: 8300000, guid: 2c9db3c025be9ae4799cb20719031cf6, type: 3}
+      - {fileID: 8300000, guid: c77b477a9d754764d87a60c40f521a7d, type: 3}
+      - {fileID: 8300000, guid: def32ac78fa950b43bb2b9bc2af74997, type: 3}
+      - {fileID: 8300000, guid: 221b4b29075f81a4d926ff01e4f32836, type: 3}
+      - {fileID: 8300000, guid: cc3444213a87e0743b2d5c329e84c5fa, type: 3}
+      - {fileID: 8300000, guid: 5ffd1b0a3facd0843b71f3f40607c597, type: 3}
+      - {fileID: 8300000, guid: d4185cf39bebcb24ca61cfd610cf95ea, type: 3}
+      lowIntensityMinSeconds: 11.79
+      lowIntensityMaxSeconds: 23.98
+      highIntensityMinSeconds: 2.82
+      highIntensityMaxSeconds: 6.43
+    - audioClips:
+      - {fileID: 8300000, guid: 21bfcb158bf1f8f428942d42664a0711, type: 3}
+      - {fileID: 8300000, guid: 18feb0c16f78967449422c94744485af, type: 3}
+      - {fileID: 8300000, guid: 9b15e0111b8dd7b429895f5f64ccddab, type: 3}
+      - {fileID: 8300000, guid: 4bab929ec00e26e4a90c504d5fe14928, type: 3}
+      - {fileID: 8300000, guid: ed3313f57d596cf47b04cd73dd9a5878, type: 3}
+      - {fileID: 8300000, guid: e0901284e1745e542b4364066e0a0304, type: 3}
+      - {fileID: 8300000, guid: d877b2ad7d082b34aa48b54bb1484160, type: 3}
+      - {fileID: 8300000, guid: f42d282df267e05498c98ffddfc0cf9b, type: 3}
+      - {fileID: 8300000, guid: ef3493fef58328947b0f49072b596bff, type: 3}
+      - {fileID: 8300000, guid: 7d6275d41b18fc94e86bd904752f49b9, type: 3}
+      - {fileID: 8300000, guid: b1b7dfae0e78e324ea9772962c5f923e, type: 3}
+      - {fileID: 8300000, guid: b88e3002717f6cd4a947af1b868ff26c, type: 3}
+      - {fileID: 8300000, guid: 4a6392f5e93457648a17681dded92ae5, type: 3}
+      - {fileID: 8300000, guid: 1f29e5cb44a2a8640a29a11549de37f0, type: 3}
+      - {fileID: 8300000, guid: 7a75ad9902f4726428a3b1a85594e129, type: 3}
+      - {fileID: 8300000, guid: 6689ee6a0d8e8fb4ba5cfe961809ddbc, type: 3}
+      - {fileID: 8300000, guid: 794869c5ec01a244182c2622069a612c, type: 3}
+      - {fileID: 8300000, guid: 1b79e618118a97a48b859111d75949ad, type: 3}
+      - {fileID: 8300000, guid: ef4cbcb31e6670b4ca3a04de407d5681, type: 3}
+      - {fileID: 8300000, guid: 08d20c489c04a6a4587d38e2a1ee2600, type: 3}
+      - {fileID: 8300000, guid: 237f63b2b2046e448af5000a7a478b57, type: 3}
+      - {fileID: 8300000, guid: 313d20180e06bb541a68a57723da9314, type: 3}
+      - {fileID: 8300000, guid: 71b294120380a92459a10780fe6e9dd1, type: 3}
+      - {fileID: 8300000, guid: a70ccb216dff9384c91483260763b24a, type: 3}
+      - {fileID: 8300000, guid: 06a0f290233c72b4b8833fc09ccba3e6, type: 3}
+      - {fileID: 8300000, guid: eb28de27688bf7c46b34e18493a6d08e, type: 3}
+      - {fileID: 8300000, guid: e08cf77c3d36c7842a282e9d6f074454, type: 3}
+      lowIntensityMinSeconds: 13.2
+      lowIntensityMaxSeconds: 23.98
+      highIntensityMinSeconds: 1.35
+      highIntensityMaxSeconds: 4.14
+    - audioClips:
+      - {fileID: 8300000, guid: 2b20bd8bc5b646648b7decff2eee0048, type: 3}
+      - {fileID: 8300000, guid: f47460b30309afe46b72ca8146f264f7, type: 3}
+      - {fileID: 8300000, guid: 8d5d75a54d319b34bb526ed7af57434c, type: 3}
+      - {fileID: 8300000, guid: 81cfe64103acc5f47ad87d3f292ff0d6, type: 3}
+      - {fileID: 8300000, guid: 0856b847b6463bf4396d6acedb6b2915, type: 3}
+      - {fileID: 8300000, guid: 43e99ca79fd5c4847a2a730082077187, type: 3}
+      lowIntensityMinSeconds: 13.28
+      lowIntensityMaxSeconds: 25.43
+      highIntensityMinSeconds: 2.25
+      highIntensityMaxSeconds: 5.99
+    loopSubElements: []
+  _farmAnimals:
+    soundName: Farm Animals
+    overrideOutputMixer: {fileID: 0}
+    intensity: 0
+    maxIntensityLabel: 
+    minIntensityLabel: 
+    volumeMultiplier: 1
+    sampleSubElements: []
+    loopSubElements:
+    - isAditive: 0
+      audioClips:
+      - {fileID: 8300000, guid: 8f46e6bfd9d2d424b91e1195c1ec7132, type: 3}
+      - {fileID: 8300000, guid: bcddf013b7b4f3543b00c3226a156589, type: 3}
+      - {fileID: 8300000, guid: a1415173c8dfb6941ba1a82b1523384e, type: 3}
