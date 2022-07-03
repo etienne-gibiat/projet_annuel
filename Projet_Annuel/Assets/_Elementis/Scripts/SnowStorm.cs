@@ -1,5 +1,6 @@
 ﻿using System;
 using _Elementis.Scripts.Character_Controller;
+using _Elementis.Scripts.Skybox_Blending;
 using DG.Tweening;
 using PGSauce.Animation;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace _Elementis.Scripts
     public class SnowStorm : MonoBehaviour
     {
         public float fogIntensityInSnow = 0.05f;
+        public SkyboxBlender skyboxBlender;
 
         private void Awake()
         {
@@ -42,6 +44,14 @@ namespace _Elementis.Scripts
             if (other.gameObject.layer == Layers.PLAYER)
             {
                 _inSnow = entered;
+                if (_inSnow)
+                {
+                    skyboxBlender.FadeToCloudySky();
+                }
+                else
+                {
+                    skyboxBlender.FadeToDefaultSky();
+                }
                 var player = other.gameObject.GetComponentInParent<ElementisCharacterController>();
                 if (player)
                 {
