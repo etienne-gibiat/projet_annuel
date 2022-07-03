@@ -48283,7 +48283,7 @@ PrefabInstance:
     - target: {fileID: 7766083127926977921, guid: 7260a100792e91b449d4e981564a6886,
         type: 3}
       propertyPath: _lumbermill.intensity
-      value: 0.145
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7766083127926977921, guid: 7260a100792e91b449d4e981564a6886,
         type: 3}
@@ -48316,12 +48316,6 @@ PrefabInstance:
       propertyPath: _rain.overrideOutputMixer
       value: 
       objectReference: {fileID: 24300002, guid: 2bb7f391008b5a04fac7c523ca4eaf73,
-        type: 2}
-    - target: {fileID: 7766083127926977921, guid: 7260a100792e91b449d4e981564a6886,
-        type: 3}
-      propertyPath: _birds.overrideOutputMixer
-      value: 
-      objectReference: {fileID: -4635847793222742559, guid: 2bb7f391008b5a04fac7c523ca4eaf73,
         type: 2}
     - target: {fileID: 7766083127926977921, guid: 7260a100792e91b449d4e981564a6886,
         type: 3}
