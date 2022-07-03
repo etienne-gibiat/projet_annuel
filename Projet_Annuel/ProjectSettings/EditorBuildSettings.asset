@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Elementis/Scenes/Boss Dungeon/Growing Tree/GTD Boss Arena.unity
     guid: b909adb549263774ea04581282008465
+  - enabled: 1
+    path: Assets/_Elementis/Scenes/Boss Dungeon/Growing Tree/Growing Tree.unity
+    guid: 22de2d833578de3498777b64554e8d34
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
       type: 2}

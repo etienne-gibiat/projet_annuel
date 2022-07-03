@@ -27,8 +27,11 @@ namespace _Elementis.Scripts.Character_Controller
         public float speedChangeRate = 10.0f;
 
         public AudioClip landingAudioClip;
+        public AudioClip landingAudioClipSnow;
         public AudioClip[] footstepAudioClips;
+        public AudioClip[] footstepAudioClipsSnow;
         [Range(0, 1)] public float footstepAudioVolume = 0.5f;
+        [Range(0, 1)] public float footstepAudioVolumeSnow = 1f;
 
         [Space(10)] [Tooltip("The height the player can jump")]
         public float jumpHeight = 1.2f;
@@ -109,7 +112,8 @@ namespace _Elementis.Scripts.Character_Controller
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
-        
+        private bool inSnow;
+
 
         private bool IsCurrentDeviceMouse
         {
@@ -121,6 +125,12 @@ namespace _Elementis.Scripts.Character_Controller
 			return false;
 #endif
             }
+        }
+
+        public bool InSnow
+        {
+            get => inSnow;
+            set => inSnow = value;
         }
 
 
@@ -385,23 +395,31 @@ namespace _Elementis.Scripts.Character_Controller
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                if (footstepAudioClips.Length > 0)
+                var footSteps = FootstepAudioClips;
+                
+                if (footSteps.Length > 0)
                 {
-                    var index = Random.Range(0, footstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(footstepAudioClips[index],
-                        transform.TransformPoint(_controller.center), footstepAudioVolume);
+                    var index = Random.Range(0, footSteps.Length);
+                    AudioSource.PlayClipAtPoint(footSteps[index],
+                        transform.TransformPoint(_controller.center), FootstepAudioVolume);
                 }
             }
         }
+
+        private AudioClip[] FootstepAudioClips => InSnow ? footstepAudioClipsSnow : footstepAudioClips;
 
         private void OnLand(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                AudioSource.PlayClipAtPoint(landingAudioClip, transform.TransformPoint(_controller.center),
-                    footstepAudioVolume);
+                AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center),
+                    FootstepAudioVolume);
             }
         }
+
+        private AudioClip LandingAudioClip => InSnow ? landingAudioClipSnow : landingAudioClip;
+
+        private float FootstepAudioVolume => inSnow ? footstepAudioVolumeSnow : footstepAudioVolume;
 
         public void TakeControlFromPlayer()
         {
