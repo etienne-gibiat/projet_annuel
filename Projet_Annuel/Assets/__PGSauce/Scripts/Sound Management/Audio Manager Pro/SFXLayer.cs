@@ -173,7 +173,7 @@ public struct SFXLayer
         else
         {
             //Plays SFXLayer
-            PlaySFXAudio(SFXVolume, SFXPitch);
+            PlaySFXAudio(SFXVolume, SFXPitch, false);
             return null;
         }
     }
@@ -186,7 +186,7 @@ public struct SFXLayer
     /// <param name="Parent">Parent transform to assign to the SFXLayer (Optional).</param>
     /// <param name="IsGlobalPosition">If the position to play the SFXLayer at is global or local to the parent.</param>
     /// <returns>The Coroutine for delaying this SFXLayer (null if no delay is applied).</returns>
-    public Coroutine Play(Vector3 Position, float DelayDuration, float SFXVolume, float SFXPitch, Transform Parent = null, bool IsGlobalPosition = true)
+    public Coroutine Play(Vector3 Position, float DelayDuration, float SFXVolume, float SFXPitch, Transform Parent = null, bool IsGlobalPosition = true, bool looping = false)
     {
         //Delegates job to manager if a delay is required
         if (DelayDuration > 0)
@@ -195,7 +195,7 @@ public struct SFXLayer
         }
 
         //Plays SFXLayer
-        Transform AudioTransform = PlaySFXAudio(SFXVolume, SFXPitch).Source.gameObject.transform;
+        Transform AudioTransform = PlaySFXAudio(SFXVolume, SFXPitch, looping:looping).Source.gameObject.transform;
         AudioTransform.parent = Parent
             ? Parent
             : SFXManager.Main.Parent;
@@ -210,14 +210,14 @@ public struct SFXLayer
     /// <param name="SFXVolume">The volume multiplier applied.</param>
     /// <param name="SFXPitch">The pitch multiplier applied.</param>
     /// <returns>The AudioObject that this SFXLayer is being played on.</returns>
-    private AudioObject PlaySFXAudio(float SFXVolume, float SFXPitch)
+    private AudioObject PlaySFXAudio(float SFXVolume, float SFXPitch, bool looping)
     {
         //Calculates volume and pitch
         float Volume = GetVolume(SFXVolume);
         float Pitch = GetPitch(SFXPitch);
 
         //Creates AudioObject and sequences end
-        AudioObject LayerAudio = SFXManager.Main.StartAudio(SFX, false, false);
+        AudioObject LayerAudio = SFXManager.Main.StartAudio(SFX, looping, false);
         CopySFXSettings(LayerAudio);
         LayerAudio.SourceVolume = Volume;
         LayerAudio.Source.pitch = Pitch;

@@ -12,7 +12,7 @@ namespace _Elementis.Scripts.Character_Controller
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
     [RequireComponent(typeof(PlayerInput))]
 #endif
-    public class ElementisCharacterController : PGMonoBehaviour, IDieable
+    public class ElementisCharacterController : PGMonoBehaviour, IDieable, IDamageable
     {
         [Header("Player")] [Tooltip("Move speed of the character in m/s")]
         public float moveSpeed = 2.0f;
@@ -179,9 +179,9 @@ namespace _Elementis.Scripts.Character_Controller
             CameraRotation();
         }
         
-        public void Die()
+        public void Die(Vector3 force)
         {
-            PGDebug.Message($"KILL PLAYER").LogTodo();
+            PGDebug.Message($"KILL PLAYER force {force.ToString("F4")}").LogTodo();
         }
 
         private void AssignAnimationIDs()
@@ -453,6 +453,11 @@ namespace _Elementis.Scripts.Character_Controller
         private void FocusCamera()
         {
             cinemachineCam.Priority = 10;
+        }
+
+        public void TakeDamage(float damage)
+        {
+            PGDebug.Message($"TAKE DAMAGE {damage}").LogTodo();
         }
     }
 }

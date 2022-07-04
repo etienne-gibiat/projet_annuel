@@ -34,7 +34,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29fa0085f50d5e54f8144f766051a691, type: 3}
   m_Name: FilmGrain
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   type:
     m_OverrideState: 1
@@ -184,16 +184,16 @@ MonoBehaviour:
     m_Value: 0
   focusDistance:
     m_OverrideState: 1
-    m_Value: 2.11
+    m_Value: 1.98
     min: 0.1
   aperture:
     m_OverrideState: 1
-    m_Value: 5.6
+    m_Value: 9.7
     min: 1
     max: 32
   focalLength:
     m_OverrideState: 1
-    m_Value: 50
+    m_Value: 67
     min: 1
     max: 300
   bladeCount:
@@ -227,15 +227,15 @@ MonoBehaviour:
   m_AdvancedMode: 0
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 1
   contrast:
     m_OverrideState: 0
     m_Value: 10
     min: -100
     max: 100
   colorFilter:
-    m_OverrideState: 0
-    m_Value: {r: 0, g: 1, b: 0.39277267, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0.9308176, g: 0.99433327, b: 1, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1

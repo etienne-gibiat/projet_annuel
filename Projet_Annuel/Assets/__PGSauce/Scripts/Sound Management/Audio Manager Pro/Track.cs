@@ -101,7 +101,7 @@ namespace PGSauce.AudioManagement.External
             if (Intro != null)
             {
                 //Plays the intro
-                AudioObject IntroAudio = MusicManager.Main.StartAudio(Intro, false);
+                AudioObject IntroAudio = MusicManager.Main.StartAudio(Intro);
                 IntroAudio.SourceVolume = IntroVolume;
                 IntroAudio.Source.loop = false;
                 ActiveAudio.Add(IntroAudio);
