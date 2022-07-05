@@ -37,7 +37,10 @@ namespace _Elementis.Scripts
             
             _currentFog = Mathf.Lerp(_currentFog, _targetFog, fogLerp);
 
-            RenderSettings.fogDensity = _currentFog;
+            if (_inBiome)
+            {
+                RenderSettings.fogDensity = _currentFog;
+            }
         }
 
         private void OnTriggerEnter(Collider other)
