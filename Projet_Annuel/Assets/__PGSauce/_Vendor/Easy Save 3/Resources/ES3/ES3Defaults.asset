@@ -56,6 +56,7 @@ MonoBehaviour:
     - ShapesEditor
     - Dreamteck.Utilities.Editor
     - LeTai.TrueShadow.Editor
+    - ThirteenPixels.Placr
     - AssetUsageDetector.Editor
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - Crest.Helpers.Editor
