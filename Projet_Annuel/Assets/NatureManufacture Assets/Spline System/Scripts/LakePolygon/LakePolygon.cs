@@ -125,11 +125,6 @@ public class LakePolygon : MonoBehaviour
     public bool removeFirstPointSimulation = true;
 
 
-    public bool normalFromRaycast = false;
-    public bool snapToTerrain = false;
-    public LayerMask snapMask = 1;
-
-
 #if VEGETATION_STUDIO_PRO
     public float biomMaskResolution = 0.5f;
     public float vegetationBlendDistance = 1;
@@ -256,7 +251,7 @@ public class LakePolygon : MonoBehaviour
     }
 
 
-    public void GeneratePolygon(bool quick = false)
+    public void GeneratePolygon()
     {
 
 
@@ -331,7 +326,6 @@ public class LakePolygon : MonoBehaviour
         polygon.Triangulate(options, quality);
 
         indices.Clear();
-
         foreach (var triangle in mesh.triangles)
         {
             Vertex vertex = mesh.vertices[triangle.vertices[2].id];
@@ -353,43 +347,50 @@ public class LakePolygon : MonoBehaviour
 
         }
 
-        RaycastHit hit;
+
         Vector3[] vertices = verts.ToArray();
-        int vertCount = vertices.Length;
-
-        Vector3[] normals = new Vector3[vertCount];
-        Vector2[] uvs = new Vector2[vertCount];
-        colors = new Color[vertCount];
-        // 
-
-        for (int i = 0; i < vertCount; i++)
+        for (int i = 0; i < vertices.Length; i++)
         {
-            if (Physics.Raycast(vertices[i] + transform.position + Vector3.up * 10, Vector3.down, out hit, 1000, snapMask.value))
-            {
-                if (snapToTerrain)
-                {
-                    vertices[i] = hit.point - transform.position + new Vector3(0, 0.1f, 0);
-
-                }
-
-            }
             vertices[i].y += yOffset;
+        }
+        int vertCount = vertices.Length;
+        currentMesh = new Mesh();
 
-            if (normalFromRaycast)
-                normals[i] = hit.normal;
-            else
-                normals[i] = Vector3.up;
+        vertsGenerated = vertCount;
 
+        if (vertCount > 65000)
+        {
+            currentMesh.indexFormat = IndexFormat.UInt32;
+        }
+
+        currentMesh.vertices = vertices;
+        currentMesh.subMeshCount = 1;
+        currentMesh.SetTriangles(indices, 0);
+        Vector2[] uvs = new Vector2[vertCount];
+        for (int i = 0; i < uvs.Length; i++)
+        {
             uvs[i] = new Vector2(vertices[i].x, vertices[i].z) * 0.01f * uvScale;
-            colors[i] = Color.black;
+
         }
 
 
+        Vector3[] normals = new Vector3[vertCount];
+        for (int i = 0; i < normals.Length; i++)
+        {
+            normals[i] = Vector3.up;
+        }
+
+
+        colors = new Color[vertCount];
+        for (int i = 0; i < colors.Length; i++)
+        {
+            colors[i] = Color.black;
+        }
 
         //if (colorsFlowMap.Count != vertCount)
         //    colorsFlowMap.Clear();
 
-        if (overrideFlowMap || quick)
+        if (overrideFlowMap)
         {
             while (colorsFlowMap.Count < vertCount)
             {
@@ -446,23 +447,9 @@ public class LakePolygon : MonoBehaviour
                 colorsFlowMap.Add(flow);
 
             }
-
         }
         //Debug.Log("poly");
 
-
-        currentMesh = new Mesh();
-
-        vertsGenerated = vertCount;
-
-        if (vertCount > 65000)
-        {
-            currentMesh.indexFormat = IndexFormat.UInt32;
-        }
-
-        currentMesh.vertices = vertices;
-        currentMesh.subMeshCount = 1;
-        currentMesh.SetTriangles(indices, 0);
 
         currentMesh.uv = uvs;
         currentMesh.uv4 = colorsFlowMap.ToArray();

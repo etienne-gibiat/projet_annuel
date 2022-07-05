@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using PGSauce.Core.Utilities;
 using UnityEngine.Rendering;
 
 
@@ -146,7 +145,6 @@ public class RamSpline : MonoBehaviour
 
     public float length = 0;
     public float fulllength = 0;
-    public float uv3length;
 
     public float minMaxWidth;
     public float uvWidth;
@@ -428,21 +426,9 @@ public class RamSpline : MonoBehaviour
         pos.w = width;
         controlPoints[controlPoints.Count - 1] = pos;
     }
-    
-    private float TotalDistance(List<Vector4> cPoints)
-    {
-        var dist = 0f;
-        for (int i = 0; i < cPoints.Count - 1; i++)
-        {
-            dist += Vector3.Distance(cPoints[i],
-                cPoints[i + 1]);
-        }
-
-        return dist;
-    }
 
 
-    public void GenerateSpline(List<RamSpline> generatedSplines = null, float progression = 1f)
+    public void GenerateSpline(List<RamSpline> generatedSplines = null)
     {
         generatedSplines = new List<RamSpline>();
 
@@ -470,30 +456,12 @@ public class RamSpline : MonoBehaviour
             GenerateEndingParentBased();
         }
 
-        var totalDistance = TotalDistance(controlPoints);
-        var targetDistance = progression * totalDistance;
-        var currentDistance = 0f;
+
+
 
         List<Vector4> pointsChecked = new List<Vector4>();
-        if (progression > 0)
+        for (int i = 0; i < controlPoints.Count; i++)
         {
-            for (int i = 0; i < controlPoints.Count - 1; i++)
-            {
-                var distanceCurrToNext = Vector3.Distance(controlPoints[i],
-                    controlPoints[i + 1]);
-                if (currentDistance + distanceCurrToNext < targetDistance)
-                {
-                    pointsChecked.Add(controlPoints[i]);
-                    currentDistance += distanceCurrToNext;
-                }
-                else
-                {
-                    pointsChecked.Add(controlPoints[i]);
-                    var t = (targetDistance - currentDistance) / distanceCurrToNext ;
-                    pointsChecked.Add(Vector4.Lerp(controlPoints[i], controlPoints[i + 1], t));
-                    break;
-                }
-                /*
             if (i > 0)
             {
                 if (Vector3.Distance((Vector3)controlPoints[i], (Vector3)controlPoints[i - 1]) > 0)
@@ -501,8 +469,7 @@ public class RamSpline : MonoBehaviour
 
             }
             else
-                pointsChecked.Add(controlPoints[i]);*/
-            }
+                pointsChecked.Add(controlPoints[i]);
         }
 
         Mesh mesh = new Mesh();
@@ -672,6 +639,19 @@ public class RamSpline : MonoBehaviour
 
             orientation *= Quaternion.Lerp(controlPointsRotations[pos], controlPointsRotations[ClampListPos(pos + 1)], tValue);
 
+            //			if (beginningSpline && pos == 0) {
+            //				
+            //				int lastId = beginningSpline.controlPointsOrientation.Count - 1;
+            //				//orientation = beginningSpline.controlPointsOrientation [lastId];
+            //
+            //			} 
+            //		
+            //			if (endingSpline && pos == controlPoints.Count - 2 && tValue == 1) {
+            //				
+            //				//orientation = endingSpline.controlPointsOrientation [0];
+            //
+            //			}
+
             controlPointsOrientation.Add(orientation);
 
             Vector3 posUp = newPos + orientation * (0.5f * controlPoints[pos + tValue].w * Vector3.right);
@@ -767,8 +747,8 @@ public class RamSpline : MonoBehaviour
         Vector3 newPos = GetCatmullRomPosition(t, p0, p1, p2, p3);
         points.Add(newPos);
 
-        //Vector3 tangent = GetCatmullRomTangent(t, p0, p1, p2, p3).normalized;
-        //Vector3 normal = CalculateNormal(tangent, Vector3.up).normalized;
+        Vector3 tangent = GetCatmullRomTangent(t, p0, p1, p2, p3).normalized;
+        Vector3 normal = CalculateNormal(tangent, Vector3.up).normalized;
 
     }
 
@@ -917,9 +897,6 @@ public class RamSpline : MonoBehaviour
         if (beginningSpline != null)
             length = beginningSpline.length;
 
-
-
-
         minMaxWidth = 1;
         uvWidth = 1;
         uvBeginning = 0;
@@ -955,6 +932,7 @@ public class RamSpline : MonoBehaviour
         }
 
 
+
         float roundEnding = Mathf.Round(fulllength);
 
         for (int i = 0; i < pointsDown.Count; i++)
@@ -969,10 +947,12 @@ public class RamSpline : MonoBehaviour
                 length += (uvWidth * Vector3.Distance(pointsDown[i], pointsDown[i - 1]) / (float)(uvScale * width)) / fulllength * roundEnding;
             }
 
-
-
             float u = 0;
             float u3 = 0;
+
+
+
+
 
 
             for (int j = 0; j < vertsInShape; j++)
@@ -1168,23 +1148,6 @@ public class RamSpline : MonoBehaviour
 
                 float uv4v = -(u3 - 0.5f) * 0.01f;
 
-                uv3length = length / (float)fulllength;
-
-                if (beginningSpline != null)
-                {
-                    uv3length = (length - beginningSpline.length) / (float)fulllength + beginningSpline.uv3length;
-
-                    // Debug.Log(uv3length + " " + beginningSpline.uv3length + " " + length + " " + fulllength);
-                }
-
-                if (beginnigChildSplines != null && beginnigChildSplines.Count > 0)
-                {
-
-                    uv3length = (length) / (float)fulllength + beginnigChildSplines[0].uv3length;
-                }
-
-
-
                 if (uvRotation)
                 {
 
@@ -1192,7 +1155,7 @@ public class RamSpline : MonoBehaviour
                     {
 
                         uvs[id] = new Vector2(1 - length, u);
-                        uvs3[id] = new Vector2(1 - uv3length, u3);
+                        uvs3[id] = new Vector2(1 - length / (float)fulllength, u3);
                         uvs4[id] = new Vector2(uv4u, uv4v);
 
                     }
@@ -1200,7 +1163,7 @@ public class RamSpline : MonoBehaviour
                     {
 
                         uvs[id] = new Vector2(1 + length, u);
-                        uvs3[id] = new Vector2(1 + uv3length, u3);
+                        uvs3[id] = new Vector2(1 + length / (float)fulllength, u3);
                         uvs4[id] = new Vector2(uv4u, uv4v);
 
                     }
@@ -1211,14 +1174,14 @@ public class RamSpline : MonoBehaviour
                     {
 
                         uvs[id] = new Vector2(u, 1 - length);
-                        uvs3[id] = new Vector2(u3, 1 - uv3length);
+                        uvs3[id] = new Vector2(u3, 1 - length / (float)fulllength);
                         uvs4[id] = new Vector2(uv4v, uv4u);
                     }
                     else
                     {
 
                         uvs[id] = new Vector2(u, 1 + length);
-                        uvs3[id] = new Vector2(u3, 1 + uv3length);
+                        uvs3[id] = new Vector2(u3, 1 + length / (float)fulllength);
                         uvs4[id] = new Vector2(uv4v, uv4u);
 
                     }
@@ -2364,23 +2327,20 @@ public class RamSpline : MonoBehaviour
     }
     public void TerrainClearFoliage(bool details = true)
     {
-        //Debug.Log("TerrainClearFoliage");
+
         bool savedAutoSyncTransforms = Physics.autoSyncTransforms;
         Physics.autoSyncTransforms = false;
-
-
         foreach (Terrain terrain in Terrain.activeTerrains)
         {
 
-            //Debug.Log("tarrain: " + terrain.name);
             TerrainData terrainData = terrain.terrainData;
             Transform transformTerrain = terrain.transform;
             float posY = terrain.transform.position.y;
             float sizeX = terrain.terrainData.size.x;
             float sizeY = terrain.terrainData.size.y;
             float sizeZ = terrain.terrainData.size.z;
-            float terrainTowidth = (1 / (float)sizeZ * (terrainData.detailWidth));
-            float terrainToheight = (1 / (float)sizeX * (terrainData.detailHeight));
+            float terrainTowidth = (1 / (float)sizeZ * (terrainData.detailWidth - 1));
+            float terrainToheight = (1 / (float)sizeX * (terrainData.detailHeight - 1));
 
 
 #if UNITY_EDITOR
@@ -2411,14 +2371,10 @@ public class RamSpline : MonoBehaviour
             Vector3 position = Vector3.zero;
             if (details)
             {
-
-                //Debug.Log("details");
                 for (pointsStart = 0; pointsStart < pointsUp.Count; pointsStart = Mathf.Clamp(pointsStart + pointsCount - 1, 0, pointsUp.Count))
                 {
-
                     int end = Mathf.Min(pointsStart + pointsCount, pointsUp.Count);
-                    int currentCount = Mathf.Min(pointsCount, pointsUp.Count - pointsStart);
-                    //Debug.Log("Current count " + currentCount + "  " + pointsStart);
+                    //int currentCount = Mathf.Min(pointsCount, pointsUp.Count - pointsStart);
 
                     transformPointUp.Clear();
                     transformPointDown.Clear();
@@ -2427,7 +2383,6 @@ public class RamSpline : MonoBehaviour
                     {
                         transformPointUp.Add(transform.TransformPoint(pointsUp[i]));
                         transformPointDown.Add(transform.TransformPoint(pointsDown[i]));
-
                     }
 
                     minX = float.MaxValue;
@@ -2441,7 +2396,6 @@ public class RamSpline : MonoBehaviour
                     {
                         Vector3 point = transformPointUp[i];
 
-                        //Debug.DrawLine(transformPointUp[i], transformPointUp[i] + Vector3.up * 10, Color.black, 5);
 
                         if (minX > point.x)
                             minX = point.x;
@@ -2460,7 +2414,6 @@ public class RamSpline : MonoBehaviour
                     {
                         Vector3 point = transformPointDown[i];
 
-                        // Debug.DrawLine(transformPointDown[i], transformPointDown[i] + Vector3.up * 10, Color.blue, 5);
 
                         if (minX > point.x)
                             minX = point.x;
@@ -2475,17 +2428,11 @@ public class RamSpline : MonoBehaviour
                             maxZ = point.z;
                     }
 
+                    minX -= terrain.transform.position.x + distSmooth;
+                    maxX -= terrain.transform.position.x - distSmooth;
 
-                    //Debug.DrawLine(new Vector3(minX, 0, minZ), new Vector3(minX, 0, minZ) + Vector3.up * 100, Color.magenta, 10);
-                    //Debug.DrawLine(new Vector3(minX, 0, maxZ), new Vector3(minX, 0, maxZ) + Vector3.up * 100, Color.magenta, 10);
-                    //Debug.DrawLine(new Vector3(maxX, 0, minZ), new Vector3(maxX, 0, minZ) + Vector3.up * 100, Color.cyan, 10);
-                    //Debug.DrawLine(new Vector3(maxX, 0, maxZ), new Vector3(maxX, 0, maxZ) + Vector3.up * 100, Color.cyan, 10);
-
-                    minX -= transformTerrain.position.x + distanceClearFoliage;
-                    maxX -= transformTerrain.position.x - distanceClearFoliage;
-
-                    minZ -= transformTerrain.position.z + distanceClearFoliage;
-                    maxZ -= transformTerrain.position.z - distanceClearFoliage;
+                    minZ -= terrain.transform.position.z + distSmooth;
+                    maxZ -= terrain.transform.position.z - distSmooth;
 
 
                     minX = minX * terrainToheight;
@@ -2494,66 +2441,48 @@ public class RamSpline : MonoBehaviour
                     minZ = minZ * terrainTowidth;
                     maxZ = maxZ * terrainTowidth;
 
+                    minX = Mathf.Floor(Mathf.Clamp(minX, 0, (terrainData.alphamapWidth)));
+                    maxX = Mathf.Ceil(Mathf.Clamp(maxX + 1, 0, (terrainData.alphamapWidth)));
+                    minZ = Mathf.Floor(Mathf.Clamp(minZ, 0, (terrainData.alphamapHeight)));
+                    maxZ = Mathf.Ceil(Mathf.Clamp(maxZ + 1, 0, (terrainData.alphamapHeight)));
+
+                    int[,] detailLayer;// = terrainData.GetAlphamaps((int)minX, (int)minZ, (int)(maxX - minX), (int)(maxZ - minZ));
 
 
-                    minX = Mathf.Floor(Mathf.Clamp(minX, 0, (terrainData.detailWidth)));
-                    maxX = Mathf.Ceil(Mathf.Clamp(maxX + 1, 0, (terrainData.detailWidth)));
-                    minZ = Mathf.Floor(Mathf.Clamp(minZ, 0, (terrainData.detailHeight)));
-                    maxZ = Mathf.Ceil(Mathf.Clamp(maxZ + 1, 0, (terrainData.detailHeight)));
-
-                    int[,] detailLayer;
-                   
-                   
-                   
-                   
-                   
-                   
-                   
-
-                    if (maxX - minX > 0 && maxZ - minZ > 0)
+                    for (int l = 0; l < terrainData.detailPrototypes.Length; l++)
                     {
-                        //Debug.Log("DetailLayers");
-                        for (int l = 0; l < terrainData.detailPrototypes.Length; l++)
-                        {
-                            detailLayer = terrainData.GetDetailLayer((int)minX, (int)minZ, (int)(maxX - minX), (int)(maxZ - minZ), l);
-                            //Debug.Log("DetailLayer " + l);
+                        detailLayer = terrainData.GetDetailLayer((int)minX, (int)minZ, (int)(maxX - minX), (int)(maxZ - minZ), l);
 
-                            for (int x = 0; x < detailLayer.GetLength(0); x++)
+                        for (int x = 0; x < detailLayer.GetLength(0); x++)
+                        {
+
+                            for (int z = 0; z < detailLayer.GetLength(1); z++)
                             {
 
-                                for (int z = 0; z < detailLayer.GetLength(1); z++)
+
+                                position.x = (z + minX) / (float)terrainToheight + terrain.transform.position.x;
+                                position.z = (x + minZ) / (float)terrainTowidth + terrain.transform.position.z;
+
+
+                                Ray ray = new Ray(position + Vector3.up * 3000, Vector3.down);
+                                RaycastHit hit;
+                                if (meshCollider.Raycast(ray, out hit, 10000))
                                 {
+                                    detailLayer[x, z] = 0;
 
-
-                                    position.x = (z + minX) / (float)terrainToheight + terrain.transform.position.x;
-                                    position.z = (x + minZ) / (float)terrainTowidth + terrain.transform.position.z;
-
-
-                                    Ray ray = new Ray(position + Vector3.up * 3000, Vector3.down);
-
-                                   // Debug.DrawRay(position + Vector3.up * 10, ray.direction * 20, Color.red, 3);
-
-
-                                    RaycastHit hit;
-                                    if (meshCollider.Raycast(ray, out hit, 10000))
-                                    {
-                                        detailLayer[x, z] = 0;
-
-
-                                    }
 
                                 }
+
                             }
-
-
-                            terrainData.SetDetailLayer((int)minX, (int)minZ, l, detailLayer);
                         }
+
+
+                        terrainData.SetDetailLayer((int)minX, (int)minZ, l, detailLayer);
                     }
 
 
 
                 }
-
             }
             else
             {

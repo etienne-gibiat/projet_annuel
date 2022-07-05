@@ -26,6 +26,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Elementis/Scenes/Boss Dungeon/Ice/Ice Dungeon.unity
     guid: 7544d380fe0394e48ad8b900d6c6160f
+  - enabled: 1
+    path: Assets/_Elementis/Scenes/Boss Dungeon/Lava/Lava Dungeon Entrance.unity
+    guid: b5ec14299da5df442a97bf7e1facfa1b
+  - enabled: 1
+    path: Assets/_Elementis/Scenes/Boss Dungeon/Lava/Lava Dungeon.unity
+    guid: 692960d88e0b80841af3b4ba92ce76b5
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
       type: 2}

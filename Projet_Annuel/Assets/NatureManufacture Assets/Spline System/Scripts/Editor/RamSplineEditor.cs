@@ -778,19 +778,13 @@ public class RamSplineEditor : Editor
 
         Terrain terrain = Terrain.activeTerrain;
 
-        //Debug.Log("terrain " + terrain.name);
         int splatNumber = terrain.terrainData.terrainLayers.Length;
-
-        //Debug.Log("splatNumber "+ splatNumber);
         string[] options = new string[splatNumber];
         for (int i = 0; i < splatNumber; i++)
         {
             options[i] = i + " - ";
-
-            //Debug.Log("diffuseTexture is null " + (terrain.terrainData.terrainLayers[i].diffuseTexture == null));
             if (terrain.terrainData.terrainLayers[i] != null && terrain.terrainData.terrainLayers[i].diffuseTexture != null)
             {
-                //Debug.Log(terrain.terrainData.terrainLayers[i].diffuseTexture.name);
                 options[i] += terrain.terrainData.terrainLayers[i].diffuseTexture.name;
             }
         }
@@ -2446,17 +2440,7 @@ public class RamSplineEditor : Editor
                     Undo.RecordObject(spline, "Add point");
 
                     Vector4 position = hit.point - spline.transform.position;
-
-                    if (!Event.current.alt)
-                        spline.AddPoint(position);
-                    else
-                    {
-                        spline.AddPointAfter(-1);
-                        spline.ChangePointPosition(0, position);
-
-                        spline.GenerateSpline();
-                    }
-
+                    spline.AddPoint(position);
 
                     spline.GenerateSpline();
 
@@ -2620,7 +2604,34 @@ public class RamSplineEditor : Editor
 
 
         spline.debugMesh = true;
-        
+
+        //Normals, tangents
+        //if (!spline.debugMesh)
+        //{
+        //points = spline.points.ToArray();
+        //for (int i = 0; i < points.Length; i++)
+        //{
+        //    points[i] += spline.transform.position;
+        //    Handles.color = Color.green;
+        //    if (spline.debugNormals)
+        //    {
+        //        Handles.DrawLine(points[i], points[i] + spline.normalsList[i]);
+
+
+        //    }
+        //    if (spline.debugBitangent)
+        //    {
+
+        //        Vector3 posUp = spline.orientations[i] * Vector3.right;
+        //        Handles.DrawLine(points[i], points[i] + posUp);
+        //    }
+        //    Handles.color = Color.red;
+        //    if (spline.debugTangents)
+        //        Handles.DrawLine(points[i] - spline.tangents[i], points[i] + spline.tangents[i]);
+        //}
+        //}
+        //else if (spline.debugMesh)
+        //{
         Vector3 camPosition = SceneView.lastActiveSceneView.camera.transform.position;
         GUIStyle style = new GUIStyle();
         style.normal.textColor = Color.red;

@@ -22,6 +22,15 @@ namespace _Elementis.Scripts
                 dieable.Die((transform.position - _lastPos));
             }
         }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            var dieable = other.gameObject.GetComponentInParent<IDieable>();
+            if (dieable != null)
+            {
+                dieable.Die((transform.position - _lastPos));
+            }
+        }
         
         
     }

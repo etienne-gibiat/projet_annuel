@@ -60,8 +60,6 @@ public class LakePolygonEditor : Editor
     {
         lakes = FindObjectsOfType<LakePolygon>();
 
-        SceneView.duringSceneGui -= this.OnSceneGUIInvoke;
-        SceneView.duringSceneGui += this.OnSceneGUIInvoke;
     }
 
     private void OnDisable()
@@ -82,8 +80,6 @@ public class LakePolygonEditor : Editor
             lakePolygon.lakePolygonPaintData = null;
         if (lakePolygon.lakePolygonClearData != null)
             lakePolygon.lakePolygonClearData = null;
-
-        SceneView.duringSceneGui -= this.OnSceneGUIInvoke;
     }
 
 
@@ -141,12 +137,12 @@ public class LakePolygonEditor : Editor
 "Add point between existing points - SHIFT + Left Button Click \n" +
 "Remove point - CTRL + SHIFT + Left Button Click", MessageType.Info);
             EditorGUILayout.Space();
-
+            
 
             lakePolygon.currentProfile = (LakePolygonProfile)EditorGUILayout.ObjectField("Lake profile", lakePolygon.currentProfile, typeof(LakePolygonProfile), false);
 
 
-
+           
 
             if (GUILayout.Button("Create profile from settings"))
             {
@@ -323,7 +319,7 @@ public class LakePolygonEditor : Editor
 
             EditorGUILayout.EndHorizontal();
 
-            lakePolygon.yOffset = EditorGUILayout.DelayedFloatField("Y offset mesh", lakePolygon.yOffset);
+            lakePolygon.yOffset = EditorGUILayout.FloatField("Y offset mesh", lakePolygon.yOffset);
             EditorGUI.indentLevel--;
             EditorGUILayout.Space();
 
@@ -348,22 +344,6 @@ public class LakePolygonEditor : Editor
             lakePolygon.uvScale = EditorGUILayout.FloatField("UV scale", lakePolygon.uvScale);
             EditorGUI.indentLevel--;
 
-            EditorGUILayout.Space();
-
-            if (GUILayout.Button("Snap/Unsnap mesh to terrain"))
-            {
-                lakePolygon.snapToTerrain = !lakePolygon.snapToTerrain;
-
-            }
-            EditorGUI.indentLevel++;
-            ///spline.snapMask = EditorGUILayout.MaskField ("Layers", spline.snapMask, InternalEditorUtility.layers);
-            lakePolygon.snapMask = RamSplineEditor.LayerMaskField("Layers", lakePolygon.snapMask, true);
-
-            lakePolygon.normalFromRaycast = EditorGUILayout.Toggle("Take Normal from terrain", lakePolygon.normalFromRaycast);
-            EditorGUI.indentLevel--;
-
-
-            EditorGUILayout.Space();
             GUILayout.Label("Lightning settings:", EditorStyles.boldLabel);
 
             EditorGUI.indentLevel++;
@@ -386,24 +366,6 @@ public class LakePolygonEditor : Editor
             if (GUILayout.Button("Generate polygon"))
             {
                 lakePolygon.GeneratePolygon();
-
-            }
-
-            EditorGUILayout.Space();
-            if (GUILayout.Button("Export as mesh"))
-            {
-
-                string path = EditorUtility.SaveFilePanelInProject("Save lake mesh", "", "asset", "Save lake mesh");
-
-
-                if (path.Length != 0 && lakePolygon.meshfilter.sharedMesh != null)
-                {
-
-                    AssetDatabase.CreateAsset(lakePolygon.meshfilter.sharedMesh, path);
-
-                    AssetDatabase.Refresh();
-                    lakePolygon.GeneratePolygon();
-                }
 
             }
         }
@@ -1371,9 +1333,9 @@ public class LakePolygonEditor : Editor
         }
     }
 
-    bool dragged;
 
-    protected virtual void OnSceneGUIInvoke(SceneView sceneView)
+
+    protected virtual void OnSceneGUI()
     {
         if (lakePolygon == null)
             lakePolygon = (LakePolygon)target;
@@ -1450,13 +1412,6 @@ public class LakePolygonEditor : Editor
                 Handles.color = Color.red;
                 Handles.SphereHandleCap(0, (Vector3)lakePolygon.points[selectedPosition] + lakePolygon.transform.position, Quaternion.identity, 1, EventType.Repaint);
 
-            }
-
-
-
-            if (dragged && Event.current.type == EventType.MouseUp)
-            {
-                lakePolygon.GeneratePolygon();
             }
 
 
@@ -1544,13 +1499,12 @@ public class LakePolygonEditor : Editor
 
                 }
 
+
                 if (EditorGUI.EndChangeCheck())
                 {
 
-                    dragged = true;
-
                     Undo.RecordObject(lakePolygon, "Change Position");
-                    lakePolygon.GeneratePolygon(true);
+                    lakePolygon.GeneratePolygon();
 #if VEGETATION_STUDIO
                     RegenerateVegetationMask();
 #endif
@@ -1560,21 +1514,16 @@ public class LakePolygonEditor : Editor
 
                 }
 
-
-
             }
-
-
-
-
-
 
             if (controlPointToDelete >= 0)
             {
                 Undo.RecordObject(lakePolygon, "Remove point");
                 Undo.RecordObject(lakePolygon.transform, "Remove point");
 
+
                 lakePolygon.RemovePoint(controlPointToDelete);
+
                 lakePolygon.GeneratePolygon();
 
                 GUIUtility.hotControl = controlId;
