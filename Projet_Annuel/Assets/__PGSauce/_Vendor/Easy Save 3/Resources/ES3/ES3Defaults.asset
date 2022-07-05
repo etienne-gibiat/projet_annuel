@@ -29,6 +29,7 @@ MonoBehaviour:
     referenceMode: 2
     serializationDepthLimit: 64
     assemblyNames:
+    - Crest
     - Assembly-CSharp
     - LeTai.TrueShadow
     - Dreamteck.Utilities
@@ -36,20 +37,19 @@ MonoBehaviour:
     - ShapesRuntime
     - Assembly-CSharp-firstpass
     - Cinemachine
+    - Crest.Examples
     - Animancer.Examples
     - LeTai.TrueShadow.Demo
     - Animancer
     - Elringus.BlendModes.Runtime
     - MK.Glow
+    - sc.terrain.painter.runtime
     - LeanTouch
     - LeanLocalization
     - Animancer.FSM
     - LeanCommon
     - LoadingScreen.Misc
     - Sirenix.OdinInspector.CompatibilityLayer
-    - Crest
-    - Crest.Examples
-    - sc.terrain.painter.runtime
     - Dreamteck.Splines.Editor
     - Elringus.BlendModes.Editor
     - MK.Glow.Editor
@@ -58,9 +58,9 @@ MonoBehaviour:
     - LeTai.TrueShadow.Editor
     - AssetUsageDetector.Editor
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
+    - Crest.Helpers.Editor
     - MK.Glow.URP.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
-    - Crest.Helpers.Editor
     - sc.terrain.painter.editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
