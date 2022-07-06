@@ -13,6 +13,11 @@ namespace _Elementis.Scripts
         public Color fogColor = Color.white;
         public Material defaultSkybox;
         public Material volcanoSkybox;
+        
+        public void Deactivate()
+        {
+            _deactivated = true;
+        }
 
         private void Awake()
         {
@@ -29,6 +34,7 @@ namespace _Elementis.Scripts
         private float _targetFog;
         private float _currentFog;
         [SerializeField] private float fogLerp = 0.05f;
+        private bool _deactivated;
 
         private void Update()
         {
@@ -37,7 +43,7 @@ namespace _Elementis.Scripts
             
             _currentFog = Mathf.Lerp(_currentFog, _targetFog, fogLerp);
 
-            if (_inBiome)
+            if (_inBiome && !_deactivated)
             {
                 RenderSettings.fogDensity = _currentFog;
             }
@@ -53,15 +59,18 @@ namespace _Elementis.Scripts
             if (other.gameObject.layer == Layers.PLAYER)
             {
                 _inBiome = entered;
-                if (_inBiome)
+                if (!_deactivated)
                 {
-                    RenderSettings.skybox = volcanoSkybox;
-                    RenderSettings.fogColor = fogColor;
-                }
-                else
-                {
-                    RenderSettings.skybox = defaultSkybox;
-                    RenderSettings.fogColor = _defaultColor;
+                    if (_inBiome)
+                    {
+                        RenderSettings.skybox = volcanoSkybox;
+                        RenderSettings.fogColor = fogColor;
+                    }
+                    else
+                    {
+                        RenderSettings.skybox = defaultSkybox;
+                        RenderSettings.fogColor = _defaultColor;
+                    }
                 }
             }
         }

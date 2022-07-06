@@ -12,6 +12,11 @@ namespace _Elementis.Scripts
         public float fogIntensityInSnow = 0.05f;
         public SkyboxBlender skyboxBlender;
 
+        public void Deactivate()
+        {
+            _deactivated = true;
+        }
+
         private void Awake()
         {
             _normalFogIntensity = RenderSettings.fogDensity;
@@ -24,14 +29,19 @@ namespace _Elementis.Scripts
         private float _targetFog;
         private float _currentFog;
         [SerializeField] private float fogLerp = 0.05f;
+        private bool _deactivated;
 
         private void Update()
         {
+
             _targetFog = _inSnow ? fogIntensityInSnow : _normalFogIntensity;
             
             _currentFog = Mathf.Lerp(_currentFog, _targetFog, fogLerp);
 
-            RenderSettings.fogDensity = _currentFog;
+            if (!_deactivated || !_inSnow)
+            {
+                RenderSettings.fogDensity = _currentFog;
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -44,14 +54,18 @@ namespace _Elementis.Scripts
             if (other.gameObject.layer == Layers.PLAYER)
             {
                 _inSnow = entered;
-                if (_inSnow)
+                if (!_deactivated)
                 {
-                    skyboxBlender.FadeToCloudySky();
+                    if (_inSnow)
+                    {
+                        skyboxBlender.FadeToCloudySky();
+                    }
+                    else
+                    {
+                        skyboxBlender.FadeToDefaultSky();
+                    }
                 }
-                else
-                {
-                    skyboxBlender.FadeToDefaultSky();
-                }
+                
                 var player = other.gameObject.GetComponentInParent<ElementisCharacterController>();
                 if (player)
                 {

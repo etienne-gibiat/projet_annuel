@@ -4,6 +4,7 @@ using _Elementis.Scripts.Spells;
 using JetBrains.Annotations;
 using PGSauce.AudioManagement;
 using PGSauce.Core.PGDebugging;
+using PGSauce.Save;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -36,6 +37,7 @@ namespace _Elementis.Scripts.Lava_Dungeon
         public void OnTrackFinished()
         {
             player.GiveControlToPlayer();
+            OnDungeonFinished();
         }
     }
 }

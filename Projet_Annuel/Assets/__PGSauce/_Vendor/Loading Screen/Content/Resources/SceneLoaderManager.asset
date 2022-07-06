@@ -13,55 +13,73 @@ MonoBehaviour:
   m_Name: SceneLoaderManager
   m_EditorClassIdentifier: 
   sceneList:
-  - SceneName: LoadExample
-    SceneAsset: {fileID: 102900000, guid: 511f544c1ae32b3448425de6b65acff2, type: 3}
-    DisplayName: Scene Example Name
-    Description: Prompta noluisse verterem sed eu, mundi graece eum in. Vis ut alia
-      euismod tincidunt, per no ubique euismod. Indoctum qualisque vituperata an
-      his. Timeam feugait id mel, vis in iuvaret fabulas. Quis veri diceret vix in,
-      numquam praesent elaboraret eum ne.
-    SkipType: 0
-    LoadingType: 1
-    FakeLoadingTime: 7
-    Backgrounds:
-    - {fileID: 21300000, guid: 2650407d6311724489f3256696e75bb0, type: 3}
-    - {fileID: 21300000, guid: af238b260179c884b93aa3248768f90b, type: 3}
-    - {fileID: 21300000, guid: d693da8ebc165674b9509bab6391e358, type: 3}
-  - SceneName: 0_Check Update
-    SceneAsset: {fileID: 102900000, guid: 79704a8071047e04093cd8414f25a592, type: 3}
-    DisplayName: 0_Check Update
-    Description: Used to check if there are updates
-    SkipType: 3
-    LoadingType: 0
-    FakeLoadingTime: 2
-    Backgrounds: []
-  - SceneName: Main Menu Scene
-    SceneAsset: {fileID: 102900000, guid: e383f42f87080db47a4c2ab848daa410, type: 3}
-    DisplayName: Main Menu Scene
+  - SceneName: 0_Startup
+    SceneAsset: {fileID: 102900000, guid: c88fc341c2c3b2c4588fcd2da4d6ff7b, type: 3}
+    DisplayName: 0_Startup
     Description: 
     SkipType: 3
     LoadingType: 0
     FakeLoadingTime: 2
     Backgrounds: []
-  - SceneName: Game Scene
-    SceneAsset: {fileID: 102900000, guid: e27f4264f085ba24f908dd47d4b92baa, type: 3}
-    DisplayName: Game Scene
+  - SceneName: 1_Managers
+    SceneAsset: {fileID: 102900000, guid: 953f9d0ddd083c14f932080e3919eb6a, type: 3}
+    DisplayName: 1_Managers
     Description: 
     SkipType: 3
     LoadingType: 0
     FakeLoadingTime: 2
     Backgrounds: []
-  - SceneName: Tuto
-    SceneAsset: {fileID: 102900000, guid: 47c00e1f014f97141a87f29bd6dc559b, type: 3}
-    DisplayName: Game Scene
+  - SceneName: 2_MenuScene
+    SceneAsset: {fileID: 102900000, guid: 6db8c12fe40613f44999d10f108aaa26, type: 3}
+    DisplayName: 2_MenuScene
     Description: 
     SkipType: 3
     LoadingType: 0
     FakeLoadingTime: 2
     Backgrounds: []
-  - SceneName: ProceduralMap
-    SceneAsset: {fileID: 102900000, guid: 742f73f2e9c1b724fb7ae7ae4adb1578, type: 3}
-    DisplayName: ProceduralMap
+  - SceneName: 3_GameScene
+    SceneAsset: {fileID: 102900000, guid: d8cd855e6e7f3964485ff4c2eff9e2c0, type: 3}
+    DisplayName: 3_GameScene
+    Description: 
+    SkipType: 3
+    LoadingType: 0
+    FakeLoadingTime: 2
+    Backgrounds: []
+  - SceneName: GTD Boss Arena
+    SceneAsset: {fileID: 102900000, guid: b909adb549263774ea04581282008465, type: 3}
+    DisplayName: GTD Boss Arena
+    Description: 
+    SkipType: 3
+    LoadingType: 0
+    FakeLoadingTime: 2
+    Backgrounds: []
+  - SceneName: Growing Tree
+    SceneAsset: {fileID: 102900000, guid: 22de2d833578de3498777b64554e8d34, type: 3}
+    DisplayName: Growing Tree
+    Description: 
+    SkipType: 3
+    LoadingType: 0
+    FakeLoadingTime: 2
+    Backgrounds: []
+  - SceneName: Ice Dungeon
+    SceneAsset: {fileID: 102900000, guid: 7544d380fe0394e48ad8b900d6c6160f, type: 3}
+    DisplayName: Ice Dungeon
+    Description: 
+    SkipType: 3
+    LoadingType: 0
+    FakeLoadingTime: 2
+    Backgrounds: []
+  - SceneName: Lava Dungeon Entrance
+    SceneAsset: {fileID: 102900000, guid: b5ec14299da5df442a97bf7e1facfa1b, type: 3}
+    DisplayName: Lava Dungeon Entrance
+    Description: 
+    SkipType: 3
+    LoadingType: 0
+    FakeLoadingTime: 2
+    Backgrounds: []
+  - SceneName: Lava Dungeon
+    SceneAsset: {fileID: 102900000, guid: 692960d88e0b80841af3b4ba92ce76b5, type: 3}
+    DisplayName: Lava Dungeon
     Description: 
     SkipType: 3
     LoadingType: 0

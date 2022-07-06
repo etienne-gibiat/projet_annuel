@@ -14,7 +14,7 @@ namespace _Elementis.Scripts
         {
             if (other.gameObject.layer == Layers.PLAYER)
             {
-                SceneManager.LoadScene(scene.ScenePath);
+                bl_SceneLoader.GetActiveLoader().LoadLevel(scene.SceneName);
             }
         }
     }

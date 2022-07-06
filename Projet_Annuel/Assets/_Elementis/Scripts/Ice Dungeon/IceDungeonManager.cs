@@ -4,6 +4,7 @@ using DG.Tweening;
 using JetBrains.Annotations;
 using PGSauce.Animation;
 using PGSauce.AudioManagement;
+using PGSauce.Save;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -19,6 +20,7 @@ namespace _Elementis.Scripts.Ice_Dungeon
         [SerializeField] private DotweenProfile stormMove;
         [SerializeField] private GameObject terrainAfterAvalanche;
         [SerializeField] private GameObject terrainBeforeAvalanche;
+        
 
         public override void Init()
         {
@@ -44,6 +46,11 @@ namespace _Elementis.Scripts.Ice_Dungeon
                 terrainBeforeAvalanche.SetActive(false);
                 storm.gameObject.SetActive(false);
             });
+        }
+
+        public void OnSpellCollected(SpellData spell)
+        {
+            OnDungeonFinished();
         }
     }
 }
