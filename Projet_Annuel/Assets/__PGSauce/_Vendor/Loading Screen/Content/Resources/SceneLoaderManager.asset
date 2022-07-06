@@ -85,10 +85,12 @@ MonoBehaviour:
     LoadingType: 0
     FakeLoadingTime: 2
     Backgrounds: []
-  tipsList:
-  - Create beautiful loading screens for improved your game
-  - Easy to use and implement
-  - 'Remember that have 3 diferent styles for select. '
-  - Create as many tips as you need
-  - Improved the look of your game with awasome backgrounds.
-  - Good backgrounds sounds increase the motivation of players.
+  - SceneName: Final Dungeon
+    SceneAsset: {fileID: 102900000, guid: d26179a4ae2bd48429fd460d02a7e7ba, type: 3}
+    DisplayName: Final Dungeon
+    Description: 
+    SkipType: 3
+    LoadingType: 0
+    FakeLoadingTime: 2
+    Backgrounds: []
+  tipsList: []

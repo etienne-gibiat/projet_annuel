@@ -141,6 +141,8 @@ namespace _Elementis.Scripts.Character_Controller
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+
+            Cursor.visible = false;
         }
 
 
