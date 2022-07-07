@@ -151,6 +151,7 @@ public class DragonBot : BotControl
         }
         anim.SetBool("IsOnTopOfDestination", true);
         invincible = false;
+        transform.Find("HUDEnnemy").gameObject.SetActive(true);
         agent.enabled = true;
     }
     protected override void Move()

@@ -5178,7 +5178,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1556546512857350516}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: PauseManagerScript, Assembly-CSharp
         m_MethodName: ChangeFullscreen
         m_Mode: 1
         m_Arguments:
@@ -8214,9 +8214,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3c063e147e9a44d9a0f1ed035ce8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealthBar: {fileID: 0}
   CurrentHealth: 0
+  ManaBar: {fileID: 0}
   CurrentMana: 0
-  CurrentXp: 0
+  Player: {fileID: 0}
 --- !u!1 &9114880117344009394
 GameObject:
   m_ObjectHideFlags: 0
@@ -9161,9 +9163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3c063e147e9a44d9a0f1ed035ce8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealthBar: {fileID: 0}
   CurrentHealth: 0
+  ManaBar: {fileID: 0}
   CurrentMana: 0
-  CurrentXp: 0
+  Player: {fileID: 0}
 --- !u!1 &9114880118311157477
 GameObject:
   m_ObjectHideFlags: 0
@@ -9903,6 +9907,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2679087537213977990, guid: d9dcae4f7b6cebf4980bee8d462c06f8,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseManagerScript, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2679087537799359343, guid: d9dcae4f7b6cebf4980bee8d462c06f8,
         type: 3}

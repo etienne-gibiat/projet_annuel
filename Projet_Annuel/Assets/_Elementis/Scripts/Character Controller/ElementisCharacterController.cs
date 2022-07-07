@@ -106,6 +106,9 @@ namespace _Elementis.Scripts.Character_Controller
         [SerializeField]
         private CinemachineVirtualCamera cinemachineAimCam;
 
+        [SerializeField]
+        private GameObject GameOver;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -190,11 +193,13 @@ namespace _Elementis.Scripts.Character_Controller
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
-
-            JumpAndGravity();
-            GroundedCheck();
-            Move();
-            UpdateWeapon();
+            if (!isDead)
+            {
+                JumpAndGravity();
+                GroundedCheck();
+                Move();
+                UpdateWeapon();
+            }
         }
 
         private void LateUpdate()
@@ -222,7 +227,15 @@ namespace _Elementis.Scripts.Character_Controller
         public void Die()
         {
             isDead = true;
+            _animator.Play("Death");
             PGDebug.Message($"KILL PLAYER").LogTodo();
+        }
+
+        public void DeathAnimation()
+        {
+
+            GameOver.SetActive(true);
+            Time.timeScale = 0;
         }
 
         private void AssignAnimationIDs()
