@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3745697774100952936}
   - component: {fileID: 4084963784373988817}
+  - component: {fileID: 4178167607915297275}
   m_Layer: 0
   m_Name: SM_MH_01_Dirt_Floor_01
   m_TagString: Untagged
@@ -46,6 +47,101 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5915769044924172163, guid: c44b1dca6df74644aa5486e61343258b, type: 3}
+--- !u!114 &4178167607915297275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4084963784373988818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80060facab484b32a4490258502174d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  palette: {fileID: 11400000, guid: e9af7e888eb23544797aba95c230e9bc, type: 2}
+  faceDetails:
+  - offset: {x: 0, y: 0, z: 0}
+    faceDir: 0
+    faceDetails:
+      topLeft: 0
+      top: 0
+      topRight: 0
+      left: 0
+      center: 0
+      right: 0
+      bottomLeft: 0
+      bottom: 0
+      bottomRight: 0
+  - offset: {x: 0, y: 0, z: 0}
+    faceDir: 1
+    faceDetails:
+      topLeft: 0
+      top: 0
+      topRight: 0
+      left: 0
+      center: 0
+      right: 0
+      bottomLeft: 0
+      bottom: 0
+      bottomRight: 0
+  - offset: {x: 0, y: 0, z: 0}
+    faceDir: 2
+    faceDetails:
+      topLeft: 0
+      top: 0
+      topRight: 0
+      left: 0
+      center: 0
+      right: 0
+      bottomLeft: 0
+      bottom: 0
+      bottomRight: 0
+  - offset: {x: 0, y: 0, z: 0}
+    faceDir: 3
+    faceDetails:
+      topLeft: 0
+      top: 0
+      topRight: 0
+      left: 0
+      center: 0
+      right: 0
+      bottomLeft: 0
+      bottom: 0
+      bottomRight: 0
+  - offset: {x: 0, y: 0, z: 0}
+    faceDir: 4
+    faceDetails:
+      topLeft: 0
+      top: 0
+      topRight: 0
+      left: 0
+      center: 0
+      right: 0
+      bottomLeft: 0
+      bottom: 0
+      bottomRight: 0
+  - offset: {x: 0, y: 0, z: 0}
+    faceDir: 5
+    faceDetails:
+      topLeft: 0
+      top: 0
+      topRight: 0
+      left: 0
+      center: 0
+      right: 0
+      bottomLeft: 0
+      bottom: 0
+      bottomRight: 0
+  offsets:
+  - {x: 0, y: 0, z: 0}
+  center: {x: -0.5, y: 0, z: -0.5}
+  tileSize: {x: 1, y: 1, z: 1}
+  rotatable: 1
+  reflectable: 1
+  rotationGroupType: 3
+  symmetric: 1
+  instantiateChildrenOnly: 0
 --- !u!1 &5458306277387002861
 GameObject:
   m_ObjectHideFlags: 0
