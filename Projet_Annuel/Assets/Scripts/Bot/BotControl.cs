@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using _Elementis.Scripts.Character_Controller;
 public class BotControl : MonoBehaviour
 {
 
@@ -23,7 +24,7 @@ public class BotControl : MonoBehaviour
     protected float chaseRange = 10f; // Distance pour chase
     protected float attackRange = 5f; // Distance pour lancer des attaques
     protected float durationAttack; // Durée de l'attaque
-    public vThirdPersonInput Player; // Script associé au joueur
+    public ElementisCharacterController Player; // Script associé au joueur
     protected float Distance; // Distance avec le joueur
     protected float DistanceBase; // Distance séparant le bot de sa base
     protected bool invincible = false; // Invincibilité
@@ -33,23 +34,18 @@ public class BotControl : MonoBehaviour
     protected float initialSpeed;
     protected Arme arme;
     protected ArrayList listEffectCoroutine = new ArrayList();
-    protected QuestManager questManager;
     protected virtual void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform; // On récupère le joueur
-        Player = target.GetComponent<vThirdPersonInput>();
+        Player = target.GetComponentInChildren<ElementisCharacterController>();
+        target = Player.transform;
 
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         basePositions = transform.position; // On récupère les coordonnées du spawn du bot
-        Player.OnLevelChanged += BotControl_OnLevelChanged;
+        //Player.OnLevelChanged += BotControl_OnLevelChanged;
         initialSpeed = agent.speed;
         arme = GetComponentInChildren<Arme>();
-        questManager = GameObject.Find("HUD/Quest").GetComponent<QuestManager>();
-        if (transform.parent != null)
-        {
-            questManager.AttachToMob(transform.parent.name);
-        }
 }
     protected virtual void Update()
     {
@@ -66,7 +62,7 @@ public class BotControl : MonoBehaviour
                 returnToIdle();
             }
             // Quand le joueur est assez rapproché ou que l'ennemi s'est fait taper récemment
-            if (getAttacked || (Distance <= chaseRange))
+            if (agent.enabled && (getAttacked || (Distance <= chaseRange)))
             {
                 Move();
             }
@@ -86,7 +82,7 @@ public class BotControl : MonoBehaviour
     /// </summary>
     virtual protected void Move()
     {
-        agent.SetDestination(target.position);
+        agent.SetDestination(Player.transform.position);
     }
     /// <summary>
     /// Gestion de l'attaque du bot
@@ -102,14 +98,17 @@ public class BotControl : MonoBehaviour
     {
         //Retourne à la base, s'arrêteras dans un périmètre de 2m autour de sa base car on ne peut jamais retourner à sa position exact.
 
-        if (DistanceBase > 8)
+        if (DistanceBase > 8 && agent.enabled)
         {
             agent.destination = basePositions;
         }
         else
         {
-            //Le bot est de retour à sa base, il se régénère 
-            agent.destination = transform.position;
+            if (agent.enabled)
+            {
+                //Le bot est de retour à sa base, il se régénère 
+                agent.destination = transform.position;
+            }
             EnnemyHealth = Mathf.Min(EnnemyHealth + (Time.deltaTime*8) * MaxHealth / 100, MaxHealth);
             
         }
@@ -201,10 +200,6 @@ public class BotControl : MonoBehaviour
         agent.isStopped = true;
         anim.Play("Death");
         Destroy(transform.gameObject, 5);
-        if (transform.parent != null)
-        {
-            questManager.DetachToMob(transform.parent.name);
-        }
     }
 
     /// <summary>

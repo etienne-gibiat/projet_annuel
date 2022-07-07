@@ -2,6 +2,7 @@
 using PGSauce.Core.PGDebugging;
 using PGSauce.Unity;
 using StarterAssets;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,27 @@ namespace _Elementis.Scripts.Character_Controller
 #endif
     public class ElementisCharacterController : PGMonoBehaviour, IDieable, IDamageable
     {
+        [Header("Stats")]
+        [Tooltip("Actual health of the character")]
+        public float Health;
+        [Tooltip("Max health of the character")]
+        public float MaxHealth;
+        [Tooltip("Actual mana of the character")]
+        public float Mana;
+        [Tooltip("Max mana of the character")]
+        public float MaxMana;
+        [Tooltip("Speed mana recuperation of the character")]
+        public float speedMana = 15f;
+        [Tooltip("Speed health recuperation of the character")]
+        public float speedHealth = 0.2f;
+        [Tooltip("Actual level of the character")]
+        public int level;
+        [Tooltip("Actual xp of the character")]
+        public float xp;
+        [Tooltip("xp needed to level up for the character")]
+        public float MaxXpBeforeLevelUp;
+        [Tooltip("Is player dead")]
+        public bool isDead;
         [Header("Player")] [Tooltip("Move speed of the character in m/s")]
         public float moveSpeed = 2.0f;
 
@@ -45,6 +67,12 @@ namespace _Elementis.Scripts.Character_Controller
 
         [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
         public float fallTimeout = 0.15f;
+
+        [Tooltip("The bow used by the character")]
+        public GameObject Weapon_Bow;
+
+        [Tooltip("The staff used by the character")]
+        public GameObject Weapon_Staff;
 
         [Header("Player Grounded")]
         [Tooltip(
@@ -78,6 +106,12 @@ namespace _Elementis.Scripts.Character_Controller
         [SerializeField]
         private CinemachineVirtualCamera cinemachineCam;
 
+        [SerializeField]
+        private CinemachineVirtualCamera cinemachineAimCam;
+
+        [SerializeField]
+        private GameObject GameOver;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -89,6 +123,8 @@ namespace _Elementis.Scripts.Character_Controller
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
+        private bool _isBowActiv = true;
+        [HideInInspector] public event EventHandler OnLevelChanged;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -105,7 +141,7 @@ namespace _Elementis.Scripts.Character_Controller
         private PlayerInput _playerInput;
 #endif
         private Animator _animator;
-        private CharacterController _controller;
+        public CharacterController _controller;
         private InputController _input;
         private GameObject _mainCamera;
 
@@ -160,7 +196,7 @@ namespace _Elementis.Scripts.Character_Controller
 #endif
 
             AssignAnimationIDs();
-
+            InitializeStats();
             // reset our timeouts on start
             _jumpTimeoutDelta = jumpTimeout;
             _fallTimeoutDelta = fallTimeout;
@@ -169,10 +205,13 @@ namespace _Elementis.Scripts.Character_Controller
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
-
-            JumpAndGravity();
-            GroundedCheck();
-            Move();
+            if (!isDead)
+            {
+                JumpAndGravity();
+                GroundedCheck();
+                Move();
+                UpdateWeapon();
+            }
         }
 
         private void LateUpdate()
@@ -180,10 +219,35 @@ namespace _Elementis.Scripts.Character_Controller
             lockCameraPosition = _input.toggleCameraLock;
             CameraRotation();
         }
-        
+
+        /// <summary>
+        /// Initialize stats of the player
+        /// </summary>
+        protected virtual void InitializeStats()
+        {
+            MaxHealth = 100f;
+            MaxMana = 100f;
+            Health = MaxHealth;
+            Mana = MaxMana;
+            level = 1;
+            xp = 0;
+            MaxXpBeforeLevelUp = 200;
+            isDead = false;
+
+        }
+
         public void Die(Vector3 force)
         {
-            PGDebug.Message($"KILL PLAYER force {force.ToString("F4")}").LogTodo();
+            isDead = true;
+            _animator.Play("Death");
+            PGDebug.Message($"KILL PLAYER").LogTodo();
+        }
+
+        public void DeathAnimation()
+        {
+
+            GameOver.SetActive(true);
+            Time.timeScale = 0;
         }
 
         private void AssignAnimationIDs()
@@ -290,11 +354,18 @@ namespace _Elementis.Scripts.Character_Controller
 
 
             var targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-
-            // move the player
             _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-
+                                new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            /*// move the player
+            if (!grounded || _input.isAiming)
+            {
+                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                                new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            }
+            else
+            {
+                _controller.Move(new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            }*/
             // update animator if using character
             if (_hasAnimator)
             {
@@ -379,6 +450,114 @@ namespace _Elementis.Scripts.Character_Controller
             return Mathf.Clamp(lfAngle, lfMin, lfMax);
         }
 
+        /// <summary>
+        /// Character receive damage
+        /// </summary>
+        /// <param name="damage"></param>
+        public void ApplyDamage(float damage)
+        {
+            if (!isDead)
+            {
+                Health = Health - damage;
+                print(gameObject.name + " a subit " + damage + " points de dégâts");
+                if (Health <= 0)
+                {
+                    Die(Vector3.zero);
+                }
+                if (Health > MaxHealth)
+                {
+                    Health = MaxHealth;
+                }
+            }
+        }
+
+        private void setAimCamera()
+        {
+            cinemachineCam.gameObject.SetActive(false);
+            cinemachineAimCam.gameObject.SetActive(true);
+        }
+
+        private void setFollowCamera()
+        {
+            cinemachineCam.gameObject.SetActive(true);
+            cinemachineAimCam.gameObject.SetActive(false);
+        }
+
+        private void UpdateWeapon()
+        {
+            if (_input.isAiming)
+            {
+                setAimCamera();
+                _animator.SetBool("isAiming", true);
+                var shootRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+                var direction = shootRay.direction;
+                Vector3 dir = new Vector3(transform.position.x + direction.x * 2, transform.position.y, transform.position.z + direction.z * 2);
+                transform.LookAt(dir);
+                if (_input.isShooting)
+                {
+                    _animator.SetBool("Fire", true);
+                }
+                else
+                {
+                    _animator.SetBool("Fire", false);
+                }
+            }
+            else
+            {
+                setFollowCamera();
+                _animator.SetBool("isAiming", false);
+            }
+            if (_input.isChangingWeapon)
+            {
+                _isBowActiv = !_isBowActiv;
+                
+                if (_isBowActiv)
+                {
+                    PGDebug.Message($"GET BOW").LogTodo();
+                    Weapon_Bow.SetActive(true);
+                    Weapon_Staff.SetActive(false);
+                }
+                else
+                {
+                    PGDebug.Message($"GET STAFF").LogTodo();
+                    Weapon_Bow.SetActive(false);
+                    Weapon_Staff.SetActive(true);
+                }
+                _input.isChangingWeapon = false;
+            }
+            
+        }
+
+        /// <summary>
+        /// Give xp to the player
+        /// </summary>
+        /// <param name="xpToGet"></param>
+        public void getXp(float xpToGet)
+        {
+            xp += xpToGet;
+            while (xp >= MaxXpBeforeLevelUp)
+            {
+                xp = xp - MaxXpBeforeLevelUp;
+                level += 1;
+                levelUp();
+                print("You won a level !");
+                if (OnLevelChanged != null) OnLevelChanged(this, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Player level up
+        /// </summary>
+        private void levelUp()
+        {
+            speedMana += 2;
+            speedHealth += 0.1f;
+            MaxXpBeforeLevelUp *= 1.8f;
+            MaxHealth += 30;
+            Health = MaxHealth;
+
+        }
+
         private void OnDrawGizmosSelected()
         {
             var transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
@@ -401,9 +580,9 @@ namespace _Elementis.Scripts.Character_Controller
                 
                 if (footSteps.Length > 0)
                 {
-                    var index = Random.Range(0, footSteps.Length);
-                    AudioSource.PlayClipAtPoint(footSteps[index],
-                        transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                var index = UnityEngine.Random.Range(0, footstepAudioClips.Length);
+                                    AudioSource.PlayClipAtPoint(footstepAudioClips[index],
+                                        transform.TransformPoint(_controller.center), footstepAudioVolume);
                 }
             }
         }

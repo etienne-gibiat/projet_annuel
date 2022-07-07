@@ -9,26 +9,38 @@ public class EnnemyHealthBar : MonoBehaviour
     public GameObject HealthBarUI;
     public Slider slider;
     private BotControl scriptBot;
-    private Camera cam;
+    private Cinemachine.CinemachineVirtualCamera cam;
+    private Transform player;
     private void Start()
     {
         
         scriptBot = GetComponent<BotControl>();
-        cam = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Camera>();
-        HealthBarUI.SetActive(false);
+        StartCoroutine(InitializeVariable());
+        
         slider = HealthBarUI.transform.Find("Slider").GetComponent<Slider>();
         //cam = scriptBot.target.GetComponentInChildren<Camera>();
     }
+
+    private IEnumerator InitializeVariable()
+    {
+        yield return new WaitUntil(hasPlayer);
+        player = scriptBot.Player.transform.parent;
+        cam = player.GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>();
+    }
+
+    private bool hasPlayer()
+    {
+        return scriptBot.Player != null;
+    }
     private void LateUpdate()
     {
-        HealthBarUI.transform.LookAt(cam.transform);
+        if (cam != null)
+        {
+            HealthBarUI.transform.LookAt(cam.transform);
+        }
         health = scriptBot.EnnemyHealth;
         maxHealth = scriptBot.MaxHealth;
         slider.value = CalculateHealth();
-        if (health < maxHealth)
-        {
-            HealthBarUI.SetActive(true);
-        }
     }
 
     private float CalculateHealth()
