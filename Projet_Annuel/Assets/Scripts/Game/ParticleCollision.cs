@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using _Elementis.Scripts.Character_Controller;
 
 public class ParticleCollision : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class ParticleCollision : MonoBehaviour
         {
             if (other.gameObject.tag == "Player")
             {
-                other.GetComponent<vThirdPersonInput>().ApplyDamage(damage);
+                other.GetComponent<ElementisCharacterController>().ApplyDamage(damage);
                 alreadyAttacked = true;
             }
         }

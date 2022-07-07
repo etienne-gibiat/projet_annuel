@@ -62,7 +62,7 @@ public class BotControl : MonoBehaviour
                 returnToIdle();
             }
             // Quand le joueur est assez rapproché ou que l'ennemi s'est fait taper récemment
-            if (getAttacked || (Distance <= chaseRange))
+            if (agent.enabled && (getAttacked || (Distance <= chaseRange)))
             {
                 Move();
             }
@@ -98,14 +98,17 @@ public class BotControl : MonoBehaviour
     {
         //Retourne à la base, s'arrêteras dans un périmètre de 2m autour de sa base car on ne peut jamais retourner à sa position exact.
 
-        if (DistanceBase > 8)
+        if (DistanceBase > 8 && agent.enabled)
         {
             agent.destination = basePositions;
         }
         else
         {
-            //Le bot est de retour à sa base, il se régénère 
-            agent.destination = transform.position;
+            if (agent.enabled)
+            {
+                //Le bot est de retour à sa base, il se régénère 
+                agent.destination = transform.position;
+            }
             EnnemyHealth = Mathf.Min(EnnemyHealth + (Time.deltaTime*8) * MaxHealth / 100, MaxHealth);
             
         }

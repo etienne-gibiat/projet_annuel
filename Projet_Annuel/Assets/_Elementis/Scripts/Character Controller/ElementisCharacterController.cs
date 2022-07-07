@@ -528,6 +528,8 @@ namespace _Elementis.Scripts.Character_Controller
             speedMana += 2;
             speedHealth += 0.1f;
             MaxXpBeforeLevelUp *= 1.8f;
+            MaxHealth += 30;
+            Health = MaxHealth;
 
         }
 
