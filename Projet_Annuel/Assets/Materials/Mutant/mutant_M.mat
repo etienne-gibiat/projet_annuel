@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mutant_M
-  m_Shader: {fileID: -6465566751694194690, guid: 966c49972836abb4e8ff0cc23648f68c,
+  m_Shader: {fileID: -6465566751694194690, guid: 987edf585d55cc14ca13b2ed9c65eca1,
     type: 3}
   m_ShaderKeywords: _GLOSSINESS_FROM_BASE_ALPHA _NORMALMAP _SPECULAR_COLOR
   m_LightmapFlags: 4
@@ -53,6 +53,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DissolveMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -69,6 +73,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: e80c3c84ea861404d8a427db8b7abf04, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -79,6 +87,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_04660b27ba64938090bf3321f4e9cfc9_Texture_1:
         m_Texture: {fileID: 2800000, guid: 7823344e2bb7b994f9901bb92ede3d60, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_2633c2be0b644cad920789ed538ec8a4_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 9f729659fba82ba4ba8d58df02b5a2a0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_2c113655298b49039489b2706de334d6_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 202afdc1029ec2648a7cc25312ee16b3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_BF1BDB02_Texture_1:
@@ -120,6 +136,9 @@ Material:
     - _Cutoff: 0
     - _DetailNormalMapScale: 1
     - _Dissolve: 0.391
+    - _DissolveAmount: 0
+    - _DissolveEmission: 1
+    - _DissolveWidth: 0.05
     - _DstBlend: 0
     - _EdgeColorIntensity: 1
     - _EdgeWidth: 0.037
@@ -130,6 +149,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _NoiseScale: 50
+    - _NormalStrenght: 0.5
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueOffset: 0
@@ -147,8 +167,10 @@ Material:
     m_Colors:
     - Color_82175667: {r: 766.9961, g: 24.094118, b: 0, a: 1}
     - Color_9372EFE: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
+    - Color_f258b797ae1d41c19873221a9da3e9dc: {r: 0, g: 3.769633, b: 4, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DissolveColor: {r: 1, g: 1, b: 1, a: 1}
     - _EdgeColor: {r: 4, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NoiseUVSpeed: {r: 0, g: 0, b: 0, a: 0}

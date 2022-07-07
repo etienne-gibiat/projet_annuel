@@ -14,7 +14,7 @@ public class Demon : BotControl
     public Vector3 v3Pos;
     private Vector3 v3Ret;
     public Vector3 v3Velocity;
-    private Vector3 BlackHoleScale = new Vector3(1,1,1);
+    public Vector3 BlackHoleScale = new Vector3(1,1,1);
     protected override void Start()
     {
         base.Start();
@@ -52,9 +52,10 @@ public class Demon : BotControl
     public override void AttackBegin()
     {
         Vector3 posPlayer = GetProjectedPosition(1f);
-        Transform obj = Instantiate(BlackHole, posPlayer + new Vector3(0,3,0),Quaternion.identity);
+        Transform obj = Instantiate(BlackHole, posPlayer + new Vector3(0,1,0),Quaternion.identity);
         obj.localScale = BlackHoleScale;
-        obj.GetComponentInChildren<Singularity>().setDamage(actualDamage / 200);
+        obj.GetComponentInChildren<Singularity>().setDamage(actualDamage / 200f);
+        obj.GetComponentInChildren<Singularity>().setPlayer(Player);
         Destroy(obj.gameObject, 3);
 
     }

@@ -16,6 +16,7 @@ namespace _Elementis.Scripts.Character_Controller
         public bool toggleCameraLock;
         public bool isAiming;
         public bool isShooting;
+        public bool isChangingWeapon;
 
         [Header("Movement Settings")]
         public bool analogMovement;
@@ -101,6 +102,23 @@ namespace _Elementis.Scripts.Character_Controller
 	        {
 		        isShooting = false;
 	        }
+        }
+
+        public void OnChangeWeapon(InputValue value)
+        {
+            if (!CanUseInputs)
+            {
+                return;
+            }
+            if (value.Get<float>() != 0)
+            {
+                isChangingWeapon = true;
+            }
+            else
+            {
+                isChangingWeapon = false;
+            }
+
         }
 #endif
 

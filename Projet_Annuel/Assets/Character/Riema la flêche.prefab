@@ -2785,7 +2785,7 @@ Transform:
   - {fileID: 8926589684665837261}
   m_Father: {fileID: 455282266593182327}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 2.419827, y: 90.27448, z: -0.2983939}
+  m_LocalEulerAnglesHint: {x: 5.024552e-13, y: 0.0000011186986, z: -0.00003690412}
 --- !u!136 &2772401765581079377
 CapsuleCollider:
   m_ObjectHideFlags: 0

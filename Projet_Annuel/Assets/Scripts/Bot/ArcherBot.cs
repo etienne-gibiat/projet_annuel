@@ -106,7 +106,7 @@ public class ArcherBot : BotControl
     }
     protected override void Move()
     {
-        if(Vector3.Distance(transform.position, target.position) < attackRange - 2)
+        if(Vector3.Distance(transform.position, Player.transform.position) < attackRange - 2)
         {
             agent.speed = 0;
         }
@@ -140,7 +140,7 @@ public class ArcherBot : BotControl
     protected IEnumerator Check()
     {
         yield return new WaitForEndOfFrame();
-        v3Velocity = Player.GetComponent<Rigidbody>().velocity;
+        v3Velocity = Player.GetComponent<CharacterController>().velocity;
         Vector3 v3Accel = v3Velocity - v3PrevVel;
         v3AverageVelocity = v3Velocity;
         v3AverageAcceleration = v3Accel;
