@@ -35,6 +35,7 @@ namespace _Elementis.Scripts.Character_Controller
             Arrow.gameObject.GetComponent<Arme>().setForce(shootForce);
             Arrow.gameObject.GetComponent<Arme>().setShooter(this);
             Arrow.gameObject.GetComponent<Arme>().Active = true;
+            Arrow.gameObject.GetComponent<Arme>().setDamage(40);
             Destroy(Arrow.gameObject, 10);
             Arrow.GetComponent<Rigidbody>().AddForce(direction * 25,ForceMode.Impulse);
             
