@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Tessera;
 using UnityEngine;
 
 namespace _Elementis.Scripts.WFC
@@ -37,11 +36,6 @@ namespace _Elementis.Scripts.WFC
         /// </summary>
         public CellRotation[] CellRotations { get; internal set; }
 
-        /// <summary>
-        /// Gives a mesh deformation from tile space to generator space. 
-        /// Null for grids that do not have deformed tiles.
-        /// </summary>
-        public MeshDeformation MeshDeformation { get;  internal set; }
         public TileRequest Clone()
         {
             var i = (TileRequest)MemberwiseClone();

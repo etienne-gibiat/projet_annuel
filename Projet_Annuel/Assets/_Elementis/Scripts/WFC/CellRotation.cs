@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Tessera;
 using UnityEngine;
 
 namespace _Elementis.Scripts.WFC
