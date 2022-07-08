@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using PGSauce.Core.PGDebugging;
 using PGSauce.Unity;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Profiling;
 
@@ -149,6 +151,13 @@ namespace _Elementis.Scripts.WFC
 
         public WfcCompletion Generate(WfcOptions options = null)
         {
+            var clearable = GetTileOutput().IsEmpty;
+            if (clearable)
+            {
+                Clear();
+            }
+            
+            
             options ??= new WfcOptions();
             var e = StartGenerate(options);
             while (e.MoveNext())
@@ -414,7 +423,7 @@ namespace _Elementis.Scripts.WFC
         {
             var t1 = DateTime.Now;
             var progress = wfcOptions.progress;
-            var seed = wfcOptions.seed <= 0 ? UnityEngine.Random.Range(int.MinValue, int.MaxValue) : wfcOptions.seed;
+            var seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
             var rng = new XoRoRNG(seed);
             ValidateTiles();
             var actualInitialConstraints = new List<IWfcInitialConstraint>();

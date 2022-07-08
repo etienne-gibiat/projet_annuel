@@ -33,8 +33,11 @@ EditorBuildSettings:
     path: Assets/_Elementis/Scenes/Boss Dungeon/Lava/Lava Dungeon.unity
     guid: 692960d88e0b80841af3b4ba92ce76b5
   - enabled: 1
-    path: Assets/_Elementis/Scenes/Boss Dungeon/Final Dungeon/Final Dungeon.unity
+    path: 
     guid: d26179a4ae2bd48429fd460d02a7e7ba
+  - enabled: 1
+    path: Assets/_Elementis/Scenes/Boss Dungeon/Final Dungeon/Final Dungeon.unity
+    guid: 4b59aeee7082b064ea9bffddfd1ef988
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
       type: 2}

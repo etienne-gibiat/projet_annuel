@@ -45,6 +45,7 @@ namespace _Elementis.Scripts.Growing_Tree_Dungeon
             door.Open(() =>
             {
                 player.GiveControlToPlayer();
+                OnDungeonFinished();
             });
         }
     }

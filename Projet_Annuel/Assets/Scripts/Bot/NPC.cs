@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using _Elementis.Scripts;
+using _Elementis.Scripts.Character_Controller;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -8,36 +11,38 @@ public class NPC : MonoBehaviour
     // Start is called before the first frame update
 
     public AudioSource hmmm;
-    public string[] dialog;
     private Transform player;
-    private Animator anim;
-    private Transform Exclamation;
-    private Transform QuestTxt;
-    private Transform QuestManager;
-    private int rangeQuest = 4;
+    public Transform Exclamation;
+    public Transform QuestTxt;
+    public TMP_Text text;
+    public NpcQuestTextProvider textProvider;
+    private int rangeQuest = 6;
     private bool questGiven = false;
+    private bool wasInRange;
+
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        Exclamation = transform.Find("Quest").transform.Find("Exclamation");
-        QuestTxt = transform.Find("Quest").transform.Find("QuestText");
-        anim = this.GetComponent<Animator>();
-        QuestManager = GameObject.Find("HUD").transform.Find("Quest").GetChild(0);
+        player = FindObjectOfType<ElementisCharacterController>().transform;
     }
     private void Update()
     {
-        if (Vector3.Distance(this.transform.position, player.transform.position) < rangeQuest)
+        var inRange = Vector3.Distance(this.transform.position, player.transform.position) < rangeQuest;
+        if (inRange)
         {
             if (!questGiven)
             {
-                StartCoroutine(getQuete());
+                hmmm.Play();
                 questGiven = true;
             }
-            anim.SetTrigger("PlayerAround");
+
+            if (!wasInRange)
+            {
+                textProvider.PlayerEnteredInRange();
+            }
+
+            text.text = GetCurrentText();
             QuestTxt.gameObject.SetActive(true);
             Exclamation.gameObject.SetActive(false);
-            
-
         }
         else
         {
@@ -49,19 +54,12 @@ public class NPC : MonoBehaviour
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2);
+
+         wasInRange = inRange;
     }
 
-    /// <summary>
-    /// Rend la quête active
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator getQuete()
+    private string GetCurrentText()
     {
-        hmmm.Play();
-        yield return new WaitForSeconds(2f);
-        QuestManager.gameObject.SetActive(true);
-        
-
+        return textProvider.GetCurrentText();
     }
-
 }

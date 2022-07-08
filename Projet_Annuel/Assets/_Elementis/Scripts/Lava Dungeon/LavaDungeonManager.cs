@@ -16,10 +16,12 @@ namespace _Elementis.Scripts.Lava_Dungeon
         public PgMusicTrack bossMusic;
         public ElementisCharacterController player;
         [SerializeField] private PlayableDirector director;
+        public FightManager_Lava fightmanager;
         
         public void TriggerFight()
         {
             PgAudioManager.Music.Play(bossMusic, 0, 1);
+            fightmanager.startFight();
             PGDebug.Message($"CEDRIC : mettre le boss / les vagues  comme tu veux ici").LogTodo();
         }
         
