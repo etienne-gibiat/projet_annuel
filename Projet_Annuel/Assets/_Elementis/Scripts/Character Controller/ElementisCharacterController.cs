@@ -213,8 +213,8 @@ namespace _Elementis.Scripts.Character_Controller
         /// </summary>
         protected virtual void InitializeStats()
         {
-            MaxHealth = 100f;
-            MaxMana = 100f;
+            MaxHealth = 1000f;
+            MaxMana = 1000f;
             Health = MaxHealth;
             Mana = MaxMana;
             level = 1;

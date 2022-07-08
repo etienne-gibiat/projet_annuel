@@ -20,9 +20,10 @@ namespace _Elementis.Scripts.Lava_Dungeon
         
         public void TriggerFight()
         {
-            PgAudioManager.Music.Play(bossMusic, 0, 1);
+            
             fightmanager.startFight();
             PGDebug.Message($"CEDRIC : mettre le boss / les vagues  comme tu veux ici").LogTodo();
+            PgAudioManager.Music.Play(bossMusic, 0, 1);
         }
         
         [Button]
@@ -30,9 +31,10 @@ namespace _Elementis.Scripts.Lava_Dungeon
         {
             PGDebug.Message($"CEDRIC : appelle cette méthode que tout le fight est fini").LogTodo();
             
-            PgAudioManager.Music.Stop(bossMusic, 1.5f);
+            
             player.TakeControlFromPlayer();
             director.Play();
+            PgAudioManager.Music.Stop(bossMusic, 1.5f);
         }
         
         [UsedImplicitly]
