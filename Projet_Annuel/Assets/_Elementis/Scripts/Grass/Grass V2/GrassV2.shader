@@ -21,6 +21,7 @@ Shader "Custom/GeometryGrass"
         _MinDist("Min Distance", Float) = 40
         _MaxDist("Max Distance", Float) = 60
         _LightStrength("Light Strength", Range(0,1)) = 0.5
+        [Toggle] _UseMask("Use Mask", Float) = 1
     }
 
     // The HLSL code block. Unity SRP uses the HLSL language.
@@ -92,6 +93,8 @@ Shader "Custom/GeometryGrass"
     float _BladeCurve;
 
     float _MinDist, _MaxDist;
+
+    
 
     uniform float3 _PositionMoving;
 
@@ -278,6 +281,7 @@ Shader "Custom/GeometryGrass"
             float4 _BottomColor;
             float _AmbientStrength;
             float _LightStrength;
+            float _UseMask;
 
             // The fragment shader definition.            
             half4 frag(g2f i) : SV_Target
@@ -318,12 +322,16 @@ Shader "Custom/GeometryGrass"
                 // add in ambient color
                 final += (unity_AmbientSky * _AmbientStrength);
 
-
-                float mask = DynamicRadialMasks_HeightField_1_Advanced_Normalized_ID1_Local(i.worldPos, 0);
-                if (mask <= 0.0f)
+                if (_UseMask)
                 {
-                    clip(-1);
+                    float mask = DynamicRadialMasks_HeightField_1_Advanced_Normalized_ID1_Local(i.worldPos, 0);
+                    if (mask <= 0.0f)
+                    {
+                        clip(-1);
+                    }
                 }
+
+                
                 
                 return final;
             }

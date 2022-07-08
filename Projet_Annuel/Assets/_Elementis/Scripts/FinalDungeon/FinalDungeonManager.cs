@@ -20,6 +20,6 @@ public class FinalDungeonManager : MonoBehaviour
 
     private void OnFightWin()
     {
-        victoryPanel.SetActive(true);
+        //victoryPanel.SetActive(true);
     }
 }
